@@ -15,9 +15,9 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  height: 80px;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -35,4 +35,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  text-align: left;
+}
+
+.dashboard {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  padding: 1rem 1rem;
+  justify-content: space-between;
+}
+
+.board {
+  flex: 1;
+  margin: 0.5rem;
+  background-color: lightblue;
+  height: 200px;
 }
