@@ -3,10 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Create</title>
     <link rel="stylesheet" href="./ProjectCreate.css">
+    <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
+    <title>Project List</title>
 </head>
 <body>
-    
+    <header>      
+        <div id="titleContainer">
+            <div id="logo">
+                <i class="fa-solid fa-bars"></i>
+                <span>JJapRa</span>
+            </div>
+            <div id="middle">
+                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-regular fa-bell"></i>
+            </div>
+            <div id="profile">                
+                    <span>Suzzang</span>
+                    <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="mainContainer">
+            <div id="mainTitle">
+                <span id="mainTitleText">Create Project</span>   
+            </div>
+            <div id="mainContent">
+                <div id="info">
+                    <div class="oneInput">
+                        <div class="inputLabel">
+                            Name *
+                        </div>
+                        <input type="text" id="projectName" placeholder="Project Name">
+                        </div>
+                    <div class="oneInput">
+                        <div class="inputLabel">
+                            Dev *
+                        </div>
+                        <select>
+                            <option value="1">DDing</option>
+                            <option value="2">Channy</option>
+                            <option value="3">Suzzang</option>
+                            <option value="4">Migging</option>
+                            <option value="5">Unstraguram</option>
+                        </select>
+                    </div>
+                    <div class="oneInput">
+                        <div class="inputLabel">
+                            PL *
+                        </div>
+                        <select>
+                            <option value="1">DDing</option>
+                            <option value="2">Channy</option>
+                            <option value="3">Suzzang</option>
+                            <option value="4">Migging</option>
+                            <option value="5">Unstraguram</option>
+                        </select>
+                    </div>
+                    <div class="oneInput">
+                        <div class="inputLabel">
+                            Tester *
+                        </div>
+                        <select>
+                            <option value="1">DDing</option>
+                            <option value="2">Channy</option>
+                            <option value="3">Suzzang</option>
+                            <option value="4">Migging</option>
+                            <option value="5">Unstraguram</option>
+                        </select>
+                    </div>
+                    <div class="oneInput" >
+                        <button id="createBtn">Create</button>
+                    </div>
+                </div>
+                <div id="projectImg">
+                    <img src="./src/createProject.svg">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <span>Copyrightⓒ JJapRa 2024</span>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poetsen+One&display=swap');
+
+/* .poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } */
+
+html {
+    height: 100%;
+}
+body {
+    background-color: beige;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: rgb(94, 94, 94);
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+}
+
+header {
+    background-color: white;
+    height: 65px;
+    color: rgb(147, 147, 147); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:rgb(149, 149, 149);
+    font-family: "Poetsen One", sans-serif;
+}
+
+main {
+    background-color: rgb(232, 232, 244);
+    height: 100%;
+    overflow-y: auto;
+}
+
+footer{
+    background-color: white;
+    height: 30px;
+    color:rgb(149, 149, 149);
+    font-weight: 300;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#titleContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    
+}
+
+
+    #logo {
+        display: flex;
+        flex-direction: row;
+        margin-right: auto;
+        font-size: 25px;
+        align-items: center;
+    }
+    #middle {
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+        .fa-envelope, .fa-bell {
+            font-size: 13px;
+            margin-right: 15px;
+        }
+
+    #profile {
+        display: flex;
+        flex-direction: row;
+        /* margin-left: auto; */
+        border-left: 1px solid rgb(193, 193, 193);
+        display: flex;
+        align-items: center;
+        font-family: "Nunito", sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+    }
+        .fa-user-circle{
+            color: rgb(99, 99, 99);
+            font-size: 30px;
+        }
+
+
+/* main */
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+    
+}
+    #mainTitle {
+        font-size: 40px;
+        border-bottom: 1px solid rgb(193, 193, 193);
+        color: rgb(75, 86, 82);
+        margin-bottom: 30px;
+    }
+
+
+/*  */
+span {
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.fa-chess-king{
+    font-size: 15px;
+}
+.fa-user-circle {
+    font-size: 20px;
+}
+a {
+    text-decoration: none;
+    color: rgb(76, 192, 149);
+}
+a:hover{
+    color: rgb(151, 151, 151);
+}
+a:active{
+    color: rgb(76, 192, 149);
+}
+
+.fa-circle-plus {
+    font-size: 60px;
+    text-shadow: 7px 9px 20px 0px #575757;
+}
+
+.fa-bars {
+    font-size: 30px;
+    color: rgb(124, 154, 255);
+    margin-right: 20px;
+}
+
+input {
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    width: 150px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 7px;
+    border: 1px solid #ced4da;
+}
+select {
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    width: 160px;
+    padding: 5px;
+    color: rgb(120, 120, 120);
+    background-color: #fff;
+
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  }  
+  select:hover {
+    border-color: #888;
+  }
+  select:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+  select:disabled {
+    opacity: 0.5;
+  }
+
+  /* create 부분 */
+  .oneInput {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 70px;
+ }
+
+
+ #createBtn{
+    border: 3px solid #1cc88a;
+    background-color: #1cc88a;
+    border-radius: 6px;
+    color: white;
+    width: 100px;
+    height: 40px;
+    font-weight: 800;
+    font-size: 15px;
+    margin: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
+ }
+
+ #mainContent {
+    display: flex;
+    flex-direction: row;
+
+    margin: 20px;
+ }
+
+ #projectImg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+
+ img {
+    width: 320px;
+    margin-left: 600px;
+ }
