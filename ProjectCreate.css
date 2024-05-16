@@ -97,13 +97,16 @@ footer{
     display: flex;
     flex-direction: column;
     margin: 100px;
-    
+    margin-bottom: 0;
 }
     #mainTitle {
-        font-size: 40px;
+        font-size: 50px;
         border-bottom: 1px solid rgb(193, 193, 193);
         color: rgb(75, 86, 82);
         margin-bottom: 30px;
+    }
+    #mainTitleText{
+        margin-left: 50px;
     }
 
 
@@ -145,9 +148,9 @@ a:active{
 
 input {
     box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-    width: 150px;
+    width: 180px;
     height: 20px;
-    padding: 5px;
+    padding: 10px;
     border-radius: 7px;
     border: 1px solid #ced4da;
 }
@@ -155,13 +158,13 @@ select {
     font-family: "Nunito", sans-serif;
     font-weight: 500;
     line-height: 1.5;
-    width: 160px;
-    padding: 5px;
+    width:200px;
+    padding: 10px;
     color: rgb(120, 120, 120);
     background-color: #fff;
 
     border: 1px solid #ced4da;
-    border-radius: 5px;
+    border-radius: 7px;
     box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
   }  
   select:hover {
@@ -178,11 +181,15 @@ select {
     opacity: 0.5;
   }
 
+  .inputLabel{
+    font-size:20px;
+  }
+
   /* create 부분 */
   .oneInput {
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 70px;
+    /* margin-left: 70px; */
  }
 
 
@@ -195,16 +202,20 @@ select {
     height: 40px;
     font-weight: 800;
     font-size: 15px;
-    margin: 40px;
     margin-top: 20px;
-    margin-left: 30px;
  }
 
  #mainContent {
     display: flex;
     flex-direction: row;
-
+    justify-content: center;
     margin: 20px;
+ }
+
+ #info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
  }
 
  #projectImg{
@@ -214,7 +225,12 @@ select {
     align-items: center;
  }
 
- img {
+ /* img {
     width: 320px;
     margin-left: 600px;
+ } */
+
+ button:hover {
+    background-color: #6d6d6d;
+    color: white;
  }

@@ -41,7 +41,7 @@
                         <div class="inputLabel">
                             Dev *
                         </div>
-                        <select>
+                        <select> <!-- 여기에서 DB에 있는 사용자들 list 불러와야 함? -->
                             <option value="1">DDing</option>
                             <option value="2">Channy</option>
                             <option value="3">Suzzang</option>
@@ -74,12 +74,12 @@
                         </select>
                     </div>
                     <div class="oneInput" >
-                        <button id="createBtn">Create</button>
+                        <button id="createBtn" onclick="openProjectList()">Create</button>
                     </div>
                 </div>
-                <div id="projectImg">
+                <!-- <div id="projectImg">
                     <img src="./src/createProject.svg">
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
@@ -87,4 +87,5 @@
         <span>Copyrightⓒ JJapRa 2024</span>
     </footer>
 </body>
+<script src="./ProjectCreate.js"></script>
 </html>
