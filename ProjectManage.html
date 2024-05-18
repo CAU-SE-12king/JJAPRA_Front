@@ -4,50 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="ProjectManage.css">
+    <link rel="stylesheet" href="global.css">
+    <script src="ProjectManage.js" defer></script>
+    <title>ProjectManage</title>
 </head>
 
 <body>
-    <header className="App-header">
-        <div>LOGO</div>
+    <header>
+        <div id="titleContainer">
+            <div id="logo">
+                <i class="fa-solid fa-bars"></i>
+                <span>JJapRa</span>
+            </div>
+            <div id="middle">
+                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-regular fa-bell"></i>
+            </div>
+            <div id="profile">
+                <span>MIGI</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
     </header>
 
     <main>
+        <aside class="modal" id="config-overlay">
+            <h2>이슈 내용을 작성해주세요</h2>
+            <form action="">
+                <!--title,description,reporter,reporteddate,fixer,assignee,priority,state
+                이중 reporter는 생성한 사람,
+                reporteddate는 생성 날짜
+                state는 todo 고정-->
+                <div class="form-control">
+                    <label for="title">이슈 이름</label>
+                    <input type="text" name="title" id="issueTitle" required>
+                    <label for="description">이슈 설명</label>
+                    <input type="text" name="description" id="issueDescription" required>
+                    <label for="priority">우선순위</label>
+                    <input type="text" name="priority" id="issuePriority" required>
+                </div>
+                <p id="config-errors"></p>
+                <div>
+                    <button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
+                    <button type="submit" class="btn">Confirm</button>
+                </div>
+            </form>
+        </aside>
         <div className="dashboard">
             <div className="board" id="new">
                 <ul>
                     <li>이슈 1</li>
                     <li>이슈 2</li>
                 </ul>
-                <button>이슈 만들기</button>
+                <button class="createIssuebtn" id="btn1">이슈 만들기</button>
             </div>
             <div className="board" id="assigned">
                 <ul>
                     <li>이슈 1</li>
                     <li>이슈 2</li>
                 </ul>
-                <button>이슈 만들기</button>
+                <button class="createIssuebtn">이슈 만들기</button>
             </div>
             <div className="board" id="resolved">
                 <ul>
                     <li>이슈 1</li>
                     <li>이슈 2</li>
                 </ul>
-                <button>이슈 만들기</button>
+                <button class="createIssuebtn">이슈 만들기</button>
             </div>
             <div className="board" id="fixed">
                 <ul>
                     <li>이슈 1</li>
                     <li>이슈 2</li>
                 </ul>
-                <button>이슈 만들기</button>
+                <button class="createIssuebtn">이슈 만들기</button>
             </div>
             <div className="board" id="closed">
                 <ul>
                     <li>이슈 1</li>
                     <li>이슈 2</li>
                 </ul>
-                <button>이슈 만들기</button>
+                <button class="createIssuebtn">이슈 만들기</button>
             </div>
         </div>
     </main>
