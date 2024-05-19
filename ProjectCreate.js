@@ -1,7 +1,7 @@
 
 const openProjectList = () => {
     // window.location.href = "./ProjectList.html"; // 기존 탭에서 전환
-    window.open("./ProjectList.html", "_blank"); // 새 탭으로 열기
+    window.location.href="./ProjectList.html";
     getProjectInputs();
 }
 
@@ -14,9 +14,4 @@ const getProjectInputs = () => {
     
     //확인
     console.log(projectName, projectDescription, dev, pl, tester);
-
-    return {
-        projectName,
-        projectDescription
-    }
 }
