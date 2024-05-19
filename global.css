@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poetsen+One&display=swap");
+
+/* .poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  } */
+html {
+  height: 100%;
+}
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: beige;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: rgb(94, 94, 94);
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+}
+header {
+  background-color: white;
+  height: 65px;
+  color: rgb(147, 147, 147);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: rgb(149, 149, 149);
+  font-family: "Poetsen One", sans-serif;
+}
+
+#titleContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+#logo {
+  display: flex;
+  flex-direction: row;
+  margin-right: auto;
+  font-size: 25px;
+  align-items: center;
+}
+#middle {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.fa-envelope,
+.fa-bell {
+  font-size: 13px;
+  margin-right: 15px;
+}
+
+#profile {
+  display: flex;
+  flex-direction: row;
+  /* margin-left: auto; */
+  border-left: 1px solid rgb(193, 193, 193);
+  display: flex;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+}
+.fa-user-circle {
+  color: rgb(99, 99, 99);
+  font-size: 30px;
+}

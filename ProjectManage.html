@@ -45,48 +45,62 @@
                     <input type="text" name="priority" id="issuePriority" required>
                 </div>
                 <p id="config-errors"></p>
-                <div>
+                <div class="modal-btnarea">
                     <button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
                     <button type="submit" class="btn">Confirm</button>
                 </div>
             </form>
         </aside>
-        <div className="dashboard">
-            <div className="board" id="new">
-                <ul>
-                    <li>이슈 1</li>
-                    <li>이슈 2</li>
-                </ul>
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <h2>프로젝트 명</h2>
                 <button class="createIssuebtn" id="btn1">이슈 만들기</button>
             </div>
-            <div className="board" id="assigned">
-                <ul>
-                    <li>이슈 1</li>
-                    <li>이슈 2</li>
-                </ul>
-                <button class="createIssuebtn">이슈 만들기</button>
-            </div>
-            <div className="board" id="resolved">
-                <ul>
-                    <li>이슈 1</li>
-                    <li>이슈 2</li>
-                </ul>
-                <button class="createIssuebtn">이슈 만들기</button>
-            </div>
-            <div className="board" id="fixed">
-                <ul>
-                    <li>이슈 1</li>
-                    <li>이슈 2</li>
-                </ul>
-                <button class="createIssuebtn">이슈 만들기</button>
-            </div>
-            <div className="board" id="closed">
-                <ul>
-                    <li>이슈 1</li>
-                    <li>이슈 2</li>
-                </ul>
-                <button class="createIssuebtn">이슈 만들기</button>
-            </div>
+            <section class="dashboard-section">
+                <div class="board" id="new">
+                    <p>new</p>
+                    <ul>
+                        <li id="1">이슈 1</li>
+                        <li id="2">이슈 2</li>
+                    </ul>
+                </div>
+                <div class="board" id="assigned">
+                    <p>assigned</p>
+                    <section>
+                        <ul>
+                            <li id="3">이슈 1</li>
+                            <li id="4">이슈 2</li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="board" id="resolved">
+                    <p>resolved</p>
+                    <section>
+                        <ul>
+                            <li id="5">이슈 1</li>
+                            <li id="6">이슈 2</li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="board" id="fixed">
+                    <p>fixed</p>
+                    <section>
+                        <ul>
+                            <li id="7">이슈 1</li>
+                            <li id="8">이슈 2</li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="board" id="closed">
+                    <p>closed</p>
+                    <section>
+                        <ul>
+                            <li id="9">이슈 1</li>
+                            <li id="10">이슈 2</li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
         </div>
     </main>
 </body>
