@@ -103,7 +103,7 @@ footer{
         font-size: 50px;
         border-bottom: 1px solid rgb(193, 193, 193);
         color: rgb(75, 86, 82);
-        margin-bottom: 30px;
+        margin-bottom: 10px;
     }
     #mainTitleText{
         margin-left: 50px;
@@ -194,7 +194,7 @@ select {
 
 
  #createBtn{
-    border: 3px solid #1cc88a;
+    border: none;
     background-color: #1cc88a;
     border-radius: 6px;
     color: white;
@@ -202,9 +202,10 @@ select {
     height: 40px;
     font-weight: 800;
     font-size: 15px;
-    margin-top: 20px;
+    box-shadow: 5px 8px 10px 0px rgba(79, 79, 79, 0.231);
+    cursor: pointer;
  }
-
+s
  #mainContent {
     display: flex;
     flex-direction: row;
@@ -230,7 +231,10 @@ select {
     margin-left: 600px;
  } */
 
- button:hover {
-    background-color: #6d6d6d;
+#createBtn:hover {
+    background-color: #a9a9a9;
     color: white;
+ }
+ #createBtn:active {
+    background-color: #7a7a7a;
  }
