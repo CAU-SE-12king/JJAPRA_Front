@@ -194,3 +194,10 @@ a:active{
       flex-direction: column; 
     }
   } */
+
+#jjapra {
+        text-decoration: none;
+        color: rgb(149, 149, 149);
+        margin-left: 15px;
+        margin-right: 15px;
+}
