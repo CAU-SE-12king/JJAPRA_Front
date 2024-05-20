@@ -31,6 +31,7 @@
                 <span id="mainTitleText">Projects</span>   
             </div>
             <div id="projectList">
+
                 <a class="project" href="./projects/project1.html">
                     <div class="projectTitle">
                         <span >Project 1</span>
@@ -39,61 +40,24 @@
                         <div class="projectDescription">
                             <span>- SE team project</span>
                         </div>
-                        <div class="projectMembers">
-                            <span>- 진승언</span>
-                        </div>
                     </div>    
                 </a>
-
-                <a class="project" href="./projects/project2.html">
-                    <div class="projectTitle">
-                        <span >Project 2</span>
-                    </div>
-                    <div class="projectContent">
-                         <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 노찬솔</span>
-                        </div>
-                    </div>
-                </a> 
-
-                <a class="project" href="./projects/project2.html">
-                    <div class="projectTitle">
-                        <span >Project 3</span>
-                    </div>
-                    <div class="projectContent">
-                        <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 김명규</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="project" href="./projects/project1.html">
-                    <div class="projectTitle">
-                        <span >Project 4</span>
-                    </div>
-                    <div class="projectContent">
-                        <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 송민혁</span>
-                        </div>
-                    </div>    
-                </a>
+            </div>
+                
 
                 <div id="plusBtn">
                     <a class="fa-solid fa-circle-plus" href="./ProjectCreate.html"></a>
                 </div>
-            </div>
+            
     </main>
     <footer>
         <span>Copyrightⓒ JJapRa 2024</span>
     </footer>
+    <script src="./ProjectList.js"></script>
+        <script>        
+        window.onload = function() {
+            getData(); 
+        };
+    </script>
 </body>
 </html>
