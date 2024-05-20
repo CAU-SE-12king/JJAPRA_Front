@@ -18,7 +18,7 @@ const getData = () => {
                 const randomColor = getRandomColor();
                 a.style.borderLeftColor = randomColor;
 
-                
+
 
                 const projectTitle = document.createElement('div');
                 projectTitle.classList.add('projectTitle');
@@ -37,6 +37,7 @@ const getData = () => {
             
 }
 
+
 function getRandomColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
@@ -52,3 +53,16 @@ function getRandomColor() {
 //             project.style.borderLeftColor = randomColor;
 //         });
 // }
+
+const baseURL = "http://10.210.96.144:8080/projects";
+const fetchData = () => {
+
+    fetch(baseURL)
+    .then((response)=> {
+        return response.json();
+    })
+    .then((response)=> {
+        console.log("< response >");
+        console.log(response);
+})
+}
