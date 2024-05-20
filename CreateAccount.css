@@ -8,6 +8,7 @@ body {
     display: flex;
     margin: 0;
     justify-content: center;
+    align-items: center;
 }
 h2 {
     font-size: 32px;
@@ -24,7 +25,9 @@ h2 {
     justify-content: center;
     text-align: center;
     background: white;
-    width: 100%;
+    width: 500px;
+    height: 70%;
+    border-radius: 10px;
 }
 .input-group {
     display: flex;      /* 버튼과 입력 필드를 한 줄에 배치 */
@@ -41,7 +44,7 @@ h2 {
     background-color: #F8F8F8;
 }
 .input-group > button {
-    background-color: #6A24FE;
+    background-color: #707070;
     color: white;
     border: none;
     padding: 0 20px;
@@ -68,9 +71,33 @@ h2 {
 }
 #createaccount-form > input[type="submit"] {
     color: #fff;
-    background-color: #6A24FE;
+    background-color: #1cc88a;
     margin-top: 20px;
 }
 #createaccount-form > input::placeholder {
     color: #909090;
+}
+
+/* suzzang추가 */
+
+.fa-bars {
+    font-size: 30px;
+    color: rgb(124, 154, 255);
+    margin-right: 20px;
+}
+
+#jjapra {
+    text-decoration: none;
+    color: rgb(111, 111, 111);
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.sidebarBtn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
 }

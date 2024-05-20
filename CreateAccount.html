@@ -9,25 +9,17 @@
     <title>CreateAccount</title>
 </head>
 <body>
-    <header>      
-        <div id="titleContainer">
-            <div id="logo">
-                <button class="sidebarBtn" onclick="openSidebar()">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <a href=ProjectList.html id="jjapra">JJapRa</a>
-            </div>
-            <div id="middle">
-                <i class="fa-regular fa-envelope"></i>
-                <i class="fa-regular fa-bell"></i>
-            </div>
-            <div id="profile">                
-                    <span>Suzzang</span>
-                    <i class="fas fa-user-circle"></i>
-            </div>
-        </div>
-    </header>
     <div class="createAccount-wrapper">
+        <header>      
+            <div id="titleContainer">
+                <div id="logo">
+                    <!-- <button class="sidebarBtn" onclick="openSidebar()">
+                        <i class="fa-solid fa-bars"></i>
+                    </button> -->
+                    <a href=ProjectList.html id="jjapra">JJapRa</a>
+                </div>
+            </div>
+        </header>
         <form method="post" action="서버의url" id="createaccount-form" onsubmit="return validatePassword()">
             <div class="input-group">
                 <input type="text" name="userName" placeholder="아이디" id="userName" class="short-input">
