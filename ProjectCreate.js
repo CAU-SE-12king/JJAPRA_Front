@@ -1,3 +1,5 @@
+const baseURL = "http://165.194.89.56:8080/projects";
+
 
 const openProjectList = () => {
     // window.location.href = "./ProjectList.html"; // 기존 탭에서 전환
@@ -15,3 +17,17 @@ const getProjectInputs = () => {
     //확인
     console.log(projectName, projectDescription, dev, pl, tester);
 }
+
+// ///
+// const test = document.getElementById("test");
+// const getData = () => {
+//     fetch(baseURL)
+//     .then((response)=> {
+//         return response.json();
+//     })
+//     .then((response)=> {
+//         console.log("< response >");
+//         console.log(response);
+
+//     })
+// }
