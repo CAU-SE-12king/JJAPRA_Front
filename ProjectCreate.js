@@ -18,7 +18,7 @@ const getProjectInputs = () => {
     console.log(projectName, projectDescription, dev, pl, tester);
 }
 
-// ///
+///
 // const test = document.getElementById("test");
 // const getData = () => {
 //     fetch(baseURL)
@@ -28,6 +28,17 @@ const getProjectInputs = () => {
 //     .then((response)=> {
 //         console.log("< response >");
 //         console.log(response);
-
 //     })
 // }
+
+const getData = () => {
+    fetch('./test.json')
+            // 가져온 데이터를 JSON 형식으로 변환
+            .then(response => response.json())
+            // 변환된 JSON 데이터를 콘솔에 출력
+            .then((response)=> {
+            console.log("< response >");
+            console.log(response);
+            })
+            
+}
