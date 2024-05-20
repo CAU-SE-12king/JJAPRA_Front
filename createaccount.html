@@ -1,0 +1,43 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="createaccount.css">
+</head>
+
+<body>
+    <h2>
+        JJapRa
+    </h2>
+    <div class="createAccount-wrapper">
+        <form method="post" action="서버의url" id="createaccount-form" onsubmit="return validatePassword()">
+            <div class="input-group">
+                <input type="text" name="userName" placeholder="아이디" id="userName">
+                <button type="button" onclick="checkUsername()">중복 확인</button>
+            </div>
+            <input type="password" name="userPassword" placeholder="비밀번호" id="userPassword">
+            <input type="password" name="userPasswordConfirm" placeholder="비밀번호 확인" id="userPasswordConfirm">
+            <input type="submit" value="회원가입">
+        </form>
+    </div>
+
+    <script>
+        function checkUsername() {
+            var username = document.getElementById('userName').value;
+            fetch('/check-username?username=' + encodeURIComponent(username))
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function validatePassword() {
+            var password = document.getElementById('userPassword').value;
+            var confirmPassword = document.getElementById('userPasswordConfirm').value;
+            if (password != confirmPassword) {
+                alert("비밀번호가 다릅니다.");
+                return false; // 폼 제출을 방지
+            }
+            return true; // 폼 제출 허용
+        }
+    </script>
+</body>
