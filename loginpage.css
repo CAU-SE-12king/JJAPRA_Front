@@ -13,7 +13,6 @@ body {
     align-items: center; /* 수직 중앙 정렬 */
     height: 100vh; /* 뷰포트의 전체 높이를 사용 */
     margin: 0; /* 기본 마진 제거 */
-
     color: rgb(94, 94, 94);
     font-family: "Nunito", sans-serif;
     font-weight: 700;
@@ -61,4 +60,16 @@ button {
 button:hover{
     background-color: #a9a9a9;
     color: white;
+}
+
+h2 {
+    font-family: "Poetsen One", sans-serif;
+}
+
+#loginBtn:hover { 
+    cursor: pointer;
+    background-color: #969696;
+}
+#loginBtn:active{
+    background-color: #7a7a7a;
 }

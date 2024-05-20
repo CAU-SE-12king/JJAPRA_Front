@@ -6,13 +6,13 @@ html {
 }
 
 body {
-    background-color: beige;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
     height: 100%;
     color: rgb(94, 94, 94);
+    background-color: rgb(232, 232, 244);
     font-family: "Nunito", sans-serif;
     font-weight: 700;
 }
