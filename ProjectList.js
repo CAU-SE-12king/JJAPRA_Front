@@ -14,6 +14,12 @@ const getData = () => {
                 a.classList.add("project");
                 a.setAttribute('href', "./projects/project1.html");
 
+                // 랜덤 색상 생성 및 적용
+                const randomColor = getRandomColor();
+                a.style.borderLeftColor = randomColor;
+
+                
+
                 const projectTitle = document.createElement('div');
                 projectTitle.classList.add('projectTitle');
                 projectTitle.innerHTML = `${data.title}`;
@@ -30,3 +36,19 @@ const getData = () => {
             })
             
 }
+
+function getRandomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+//   function randomProjectColor() {
+//     const projects = document.querySelectorAll('.project');
+//     // 각 .project 요소에 대해 랜덤한 border-left 색상 설정
+//         projects.forEach(project => {
+//             const randomColor = getRandomColor();
+//             project.style.borderLeftColor = randomColor;
+//         });
+// }
