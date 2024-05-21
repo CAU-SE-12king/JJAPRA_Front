@@ -14,7 +14,7 @@ ul {
 }
 
 body {
-  background-color: beige;
+  background-color: rgb(232, 232, 244);
   padding: 0;
   margin: 0;
   display: flex;
@@ -33,6 +33,11 @@ header {
   justify-content: center;
   color: rgb(149, 149, 149);
   font-family: "Poetsen One", sans-serif;
+}
+
+main {
+  height: 100%;
+  overflow-y: auto;
 }
 
 #titleContainer {
