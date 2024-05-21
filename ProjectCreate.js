@@ -1,4 +1,4 @@
-const baseURL = "https://jjapra.r-e.kr/projects";
+const baseURL = "https://jjapra.r-e.kr/";
 
 
 const openProjectList = () => {
@@ -35,7 +35,7 @@ const postData = () => {
     const pl = $('select#selectPL').val()
     const tester = $('select#selectTester').val()
 
-    fetch(baseURL, {
+    fetch(baseURL+"projects", {
         method: 'POST', //이거중요!!
         headers: {
             'Content-Type': 'application/json'
