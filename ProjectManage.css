@@ -10,7 +10,7 @@ ul li {
 button {
   font: inherit;
   background-color: #f0f0f0;
-  border: 0;
+  border: none;
   color: #242424;
   border-radius: 0.5em;
   font-size: 1rem;
@@ -64,7 +64,7 @@ button:hover {
   justify-content: space-between;
 }
 .createIssuebtn {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   border-radius: 8px;
 }
 .dashboard-section {
