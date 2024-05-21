@@ -59,6 +59,8 @@ footer{
 }
     .fa-bars {
         font-size: 22px;
+        color: rgb(124, 154, 255);
+        margin-right: 10px;
     }
 
 #middle {
@@ -89,10 +91,23 @@ footer{
         font-size: 27px;
     }
 
+    #mainContainer {
+        display: flex;
+        flex-direction: column;
+        margin-left: 100px;
+        margin-right: 100px;
+        overflow-x: hidden; /* 가로 스크롤 숨김 */
+        transition: margin-left 0.5s; /* 오른쪽 콘텐츠를 이동시키는 트랜지션 */
+        /* padding: 16px; */
+        /* margin-left: 0; 초기에는 오른쪽 콘텐츠를 이동하지 않음 */
+        margin-left: 100px; 
+    }
+
 #jjapra {
         text-decoration: none;
         color: rgb(120, 120, 120);
         margin-left: 12px;
+        z-index: 1;
 }
 
 #logoutBtn {
@@ -105,4 +120,69 @@ footer{
 }
 #logoutBtn:hover {
     color: rgb(180, 180, 180);
+}
+
+.sidebarBtn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+/* sidebar test */
+
+#toggleSidebarBtn {
+    /* position: fixed;
+    top: 20px;
+    left: 20px; */
+    z-index: 1;
+    background-color: transparent;
+    border: none;
+    cursor: pointer
+}
+#toggleSidebarBtn:hover {
+    color: rgb(129, 129, 129);
+}
+#toggleSidebarBtn:active {
+    color: rgb(61, 61, 61)
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 80px;
+}
+
+.sidebar a {
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 13px;
+    color: rgb(120, 120, 120);
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #838383;
+    color: white;
+    border-right: 5px solid rgb(131, 166, 255);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebarNav {
+    /* border-bottom: 1px solid rgb(231, 231, 231); */
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navIcon {
+    margin-right: 10px;
+    font-size: 16px;
 }

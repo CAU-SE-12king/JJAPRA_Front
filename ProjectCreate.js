@@ -1,4 +1,4 @@
-const baseURL = "http://165.194.89.56:8080/projects";
+const baseURL = "https://jjapra.r-e.kr/projects";
 
 
 const openProjectList = () => {
@@ -27,27 +27,53 @@ const getProjectInputs = () => {
     //여기서 post하면, 끝나고 project list get 할 때 자동으로 추가됨!!!
 }
 
-///
-// const test = document.getElementById("test");
-// const getData = () => {
-//     fetch(baseURL)
-//     .then((response)=> {
-//         return response.json();
-//     })
-//     .then((response)=> {
-//         console.log("< response >");
-//         console.log(response);
-//     })
-// }
 
-const getData = () => {
-    fetch('./test.json')
-            // 가져온 데이터를 JSON 형식으로 변환
-            .then(response => response.json())
-            // 변환된 JSON 데이터를 콘솔에 출력
-            .then((response)=> {
-            console.log("< response >");
-            console.log(response);
-            })
-            
+const postData = () => {
+    const title = document.getElementById("projectName").value;
+    const description = document.getElementById("projectDescription").value;
+    const dev = $('select#selectDev').val()
+    const pl = $('select#selectPL').val()
+    const tester = $('select#selectTester').val()
+
+    fetch(baseURL, {
+        method: 'POST', //이거중요!!
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title : title,
+            description : description
+        })
+    })
+    .then((response)=> {
+        return response.json()
+    })
+    .then((response)=> {
+        console.log(response);
+        getData();
+    })
 }
+
+
+function logOut() {
+    const confirmed = confirm("Are you sure you want to log out?");
+    if (confirmed) {
+        console.log("logout");
+        location.href = "./loginpage.html";
+    } else {
+        console.log("Logout canceled");
+    }
+}
+
+//sidebar test
+document.getElementById('toggleSidebarBtn').addEventListener('click', function() {
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('mainContainer');
+    if (sidebar.style.width === '170px') {
+        sidebar.style.width = '0';
+        content.style.marginLeft = '100px';
+    } else {
+        sidebar.style.width = '170px';
+        content.style.marginLeft = '200px';
+    }
+});

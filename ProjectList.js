@@ -1,6 +1,6 @@
 
 const getData = () => {
-    fetch('./test.json')
+    fetch('https://jjapra.r-e.kr/projects')
             // 가져온 데이터를 JSON 형식으로 변환
             .then(response => response.json())
             // 변환된 JSON 데이터를 콘솔에 출력
@@ -57,29 +57,15 @@ function logOut() {
 
 
 
-// 서버 데이터 fetch test
-const baseURL = "https://jjapra.r-e.kr/projects";
-const fetchData = () => {
-
-    fetch(baseURL)
-    .then((response)=> {
-        return response.json();
-    })
-    .then((response)=> {
-        console.log("< response >");
-        console.log(response);
-})
-}
-
 //sidebar test
 document.getElementById('toggleSidebarBtn').addEventListener('click', function() {
     const sidebar = document.getElementById('sidebar');
     const content = document.getElementById('mainContainer');
-    if (sidebar.style.width === '250px') {
+    if (sidebar.style.width === '170px') {
         sidebar.style.width = '0';
-        content.style.marginLeft = '0';
+        content.style.marginLeft = '100px';
     } else {
-        sidebar.style.width = '250px';
-        content.style.marginLeft = '250px';
+        sidebar.style.width = '170px';
+        content.style.marginLeft = '200px';
     }
 });

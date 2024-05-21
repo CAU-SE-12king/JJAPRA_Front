@@ -3,16 +3,7 @@
 
 
 /* main */
-#mainContainer {
-    display: flex;
-    flex-direction: column;
-    margin-left: 100px;
-    margin-right: 100px;
-    overflow-x: hidden; /* 가로 스크롤 숨김 */
-    transition: margin-left 0.5s; /* 오른쪽 콘텐츠를 이동시키는 트랜지션 */
-    padding: 16px;
-    margin-left: 0; /* 초기에는 오른쪽 콘텐츠를 이동하지 않음 */
-}
+
     #mainTitle {
         font-size: 50px;
         border-bottom: 1px solid rgb(193, 193, 193);
@@ -28,6 +19,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        padding-left: 50px;
     }
     .project {
         color:rgb(94, 94, 94);
@@ -40,7 +32,7 @@
         box-shadow: 7px 9px 24px 0px #bbbbbb;
         height: 180px;
         width: 200px;
-        border-left: 4px solid rgb(131, 166, 255);
+        border-left: 5px solid rgb(131, 166, 255);
     }
         .projectTitle {
             font-size: 25px;
@@ -98,53 +90,4 @@ a:active{
     text-shadow: 7px 9px 20px 0px #575757;
 }
 
-.fa-bars {
-    font-size: 30px;
-    color: rgb(124, 154, 255);
-    margin-right: 20px;
-}
 
-
-#jjapra {
-        text-decoration: none;
-        color: rgb(149, 149, 149);
-        margin-left: 15px;
-        margin-right: 15px;
-}
-
-/* sidebar test */
-
-#toggleSidebarBtn {
-    /* position: fixed;
-    top: 20px;
-    left: 20px; */
-    z-index: 1;
-    background-color: transparent;
-    border: none;
-    cursor: pointer
-}
-
-.sidebar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.3s;
-    padding-top: 60px;
-}
-
-.sidebar a {
-    padding: 10px 15px;
-    text-decoration: none;
-    font-size: 25px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidebar a:hover {
-    background-color: #575757;
-}
