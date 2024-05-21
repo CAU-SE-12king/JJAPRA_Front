@@ -77,9 +77,29 @@ footer{
     align-items: center;
     font-family: "Nunito", sans-serif;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 15px;
+    margin-left: 10px;
 }
     .fa-user-circle{
         color: rgb(99, 99, 99);
         font-size: 30px;
     }
+
+#jjapra {
+        text-decoration: none;
+        color: rgb(120, 120, 120);
+        margin-left: 15px;
+        margin-right: 15px;
+}
+
+#logoutBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(120, 120, 120);
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+}
+#logoutBtn:hover {
+    color: rgb(180, 180, 180);
+}
