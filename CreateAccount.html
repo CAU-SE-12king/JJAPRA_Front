@@ -13,30 +13,24 @@
         <header>      
             <div id="titleContainer">
                 <div id="logo">
-                    <!-- <button class="sidebarBtn" onclick="openSidebar()">
-                        <i class="fa-solid fa-bars"></i>
-                    </button> -->
                     <a href=ProjectList.html id="jjapra">JJapRa</a>
                 </div>
             </div>
         </header>
-        <form method="post" action="서버의url" id="createaccount-form" onsubmit="return validatePassword()">
             <div class="input-group">
-                <input type="text" name="userName" placeholder="아이디" id="userName" class="short-input">
-                <button type="button" onclick="checkUsername()">중복 확인</button>
+                <input type="text" name="userName" placeholder="ID" id="ID" class="short-input">
+                <button type="button" id="validateBtn" onclick="checkUsername()">Validate</button>
             </div>
-            <input type="password" name="userPassword" placeholder="비밀번호" id="userPassword" class="short-input">
-            <input type="password" name="userPasswordConfirm" placeholder="비밀번호 확인" id="userPasswordConfirm" class="short-input">
+            <input type="password" name="userPassword" placeholder="Password" id="password" class="short-input">
+            <input type="password" name="userPasswordConfirm" placeholder="Confirm Password" id="passwordConfirm" class="short-input">
             
-            <!-- Vertically aligned fields -->
             <div class="vertical-inputs">
-                <input type="text" name="fullName" placeholder="이름" id="fullName">
-                <input type="email" name="email" placeholder="이메일" id="email">
-                <input type="tel" name="phoneNumber" placeholder="전화번호" id="phoneNumber">
+                <input type="text" name="fullName" placeholder="Name" id="name">
+                <input type="email" name="email" placeholder="Email" id="email">
+                <input type="tel" name="phoneNumber" placeholder="Phone Number" id="phoneNumber">
             </div>
             
-            <input type="submit" value="회원가입">
-        </form>
+            <button type="button" id="joinBtn" value="Join">Join</button>
     </div>
 
     <script>

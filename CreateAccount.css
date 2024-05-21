@@ -10,14 +10,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-h2 {
-    font-size: 32px;
-    color: #6A24FE;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
-    text-align: left;
-}
+
 .createAccount-wrapper {
     display: flex;
     flex-direction: column;
@@ -25,59 +18,48 @@ h2 {
     justify-content: center;
     text-align: center;
     background: white;
-    width: 500px;
-    height: 70%;
-    border-radius: 10px;
+    width: 450px;
+    height: 600px;
+    border-radius: 17px;
 }
-.input-group {
-    display: flex;      /* 버튼과 입력 필드를 한 줄에 배치 */
-    margin-bottom: 16px;
-}
-.input-group > input, .input-group > button {
-    height: 48px;
-    border-radius: 6px;
-}
-.input-group > input {
-    flex-grow: 1;       /* 입력 필드가 남은 공간을 모두 차지하도록 설정 */
-    margin-right: 8px;  /* 버튼과의 간격 설정 */
-    padding: 0 10px;
-    background-color: #F8F8F8;
-}
-.input-group > button {
-    background-color: #707070;
-    color: white;
-    border: none;
-    padding: 0 20px;
-}
-.vertical-inputs{
-    display: flex;
-    flex-direction: column;
-}
-.vertical-inputs input {
-    height: 40px;
-    margin-bottom: 15px;
-    padding: 8px 12px; 
-    font-size: 14px; 
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-#createaccount-form > input[type="password"],
-#createaccount-form > input[type="submit"] {
-    width: 100%;
+
+input {
+    width: 250px;
     height: 48px;
     padding: 0 10px;
     box-sizing: border-box;
     margin-bottom: 16px;
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: #F8F8F8;
 }
-#createaccount-form > input[type="submit"] {
-    color: #fff;
-    background-color: #1cc88a;
-    margin-top: 20px;
+#ID {
+    width: 170px;
 }
-#createaccount-form > input::placeholder {
-    color: #909090;
+
+#validateBtn{
+    width: 80px;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 13px;
+    background-color: #808080;
+
+}
+
+#joinBtn {
+    width: 250px;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #1cc88a;
+
 }
 
 /* suzzang추가 */
@@ -93,7 +75,7 @@ h2 {
     color: rgb(111, 111, 111);
     margin-left: 15px;
     margin-right: 15px;
-    font-size: 40px;
+    font-size: 35px;
     margin-bottom: 20px;
 }
 
