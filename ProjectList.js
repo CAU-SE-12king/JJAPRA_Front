@@ -1,4 +1,3 @@
-const projectList = document.getElementById('projectList');
 
 const getData = () => {
     fetch('./test.json')
@@ -7,6 +6,7 @@ const getData = () => {
             // 변환된 JSON 데이터를 콘솔에 출력
             .then((response)=> {
             console.log(response);
+            const projectList = document.getElementById('projectList');
 
             response.map((data)=>{ //data 배열들을 돌면서 요소들 출력
                 //wrapper 생성
@@ -33,7 +33,7 @@ const getData = () => {
                 projectList.appendChild(a);
             })
             
-            })
+        })
             
 }
 
@@ -45,15 +45,19 @@ function getRandomColor() {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-//   function randomProjectColor() {
-//     const projects = document.querySelectorAll('.project');
-//     // 각 .project 요소에 대해 랜덤한 border-left 색상 설정
-//         projects.forEach(project => {
-//             const randomColor = getRandomColor();
-//             project.style.borderLeftColor = randomColor;
-//         });
-// }
+function logOut() {
+    const confirmed = confirm("Are you sure you want to log out?");
+    if (confirmed) {
+        console.log("logout");
+        location.href = "./loginpage.html";
+    } else {
+        console.log("Logout canceled");
+    }
+}
 
+
+
+// 서버 데이터 fetch test
 const baseURL = "http://10.210.96.144:8080/projects";
 const fetchData = () => {
 
