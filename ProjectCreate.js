@@ -16,6 +16,8 @@ const getProjectInputs = () => {
     
     //확인
     console.log(projectName, projectDescription, dev, pl, tester);
+
+    //여기서 post하면, 끝나고 project list get 할 때 자동으로 추가됨!!!
 }
 
 ///

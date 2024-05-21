@@ -12,7 +12,7 @@ const getData = () => {
                 //wrapper 생성
                 const a = document.createElement('a');
                 a.classList.add("project");
-                a.setAttribute('href', "./projects/project1.html");
+                a.setAttribute('href', "./ProjectManage.html");
 
                 // 랜덤 색상 생성 및 적용
                 const randomColor = getRandomColor();
