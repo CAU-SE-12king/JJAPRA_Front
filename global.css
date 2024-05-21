@@ -90,6 +90,12 @@ footer{
         color: rgb(99, 99, 99);
         font-size: 27px;
     }
+    span {
+        margin-left: 15px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+    }
 
     #mainContainer {
         display: flex;
