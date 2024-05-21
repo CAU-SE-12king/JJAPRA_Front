@@ -16,6 +16,13 @@ const getProjectInputs = () => {
     
     //확인
     console.log(projectName, projectDescription, dev, pl, tester);
+    const confirmed = confirm("Are you sure you want to create this project? \n\n < Project Info >\n Title : " + projectName + "\n Description : " + projectDescription + "\n Dev : " + dev + "\n PL : " + pl + "\n Tester : " + tester);
+    if (confirmed) {
+        console.log("Project created");
+        // postData(projectName, projectDescription, dev, pl, tester);
+    } else {
+        console.log("Project Creation canceled");
+    }
 
     //여기서 post하면, 끝나고 project list get 할 때 자동으로 추가됨!!!
 }

@@ -19,7 +19,7 @@ body {
 
 header {
     background-color: white;
-    height: 65px;
+    height: 55px;
     color: rgb(147, 147, 147); 
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@ main {
 
 footer{
     background-color: white;
-    height: 30px;
+    height: 25px;
     color:rgb(149, 149, 149);
     font-weight: 300;
     font-size: 10px;
@@ -54,9 +54,13 @@ footer{
     display: flex;
     flex-direction: row;
     margin-right: auto;
-    font-size: 25px;
+    font-size: 22px;
     align-items: center;
 }
+    .fa-bars {
+        font-size: 22px;
+    }
+
 #middle {
     margin-left: auto;
     display: flex;
@@ -77,19 +81,18 @@ footer{
     align-items: center;
     font-family: "Nunito", sans-serif;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 13px;
     margin-left: 10px;
 }
     .fa-user-circle{
         color: rgb(99, 99, 99);
-        font-size: 30px;
+        font-size: 27px;
     }
 
 #jjapra {
         text-decoration: none;
         color: rgb(120, 120, 120);
-        margin-left: 15px;
-        margin-right: 15px;
+        margin-left: 12px;
 }
 
 #logoutBtn {

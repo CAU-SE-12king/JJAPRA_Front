@@ -58,7 +58,7 @@ function logOut() {
 
 
 // 서버 데이터 fetch test
-const baseURL = "http://10.210.96.144:8080/projects";
+const baseURL = "https://jjapra.r-e.kr/projects";
 const fetchData = () => {
 
     fetch(baseURL)
@@ -70,3 +70,16 @@ const fetchData = () => {
         console.log(response);
 })
 }
+
+//sidebar test
+document.getElementById('toggleSidebarBtn').addEventListener('click', function() {
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('mainContainer');
+    if (sidebar.style.width === '250px') {
+        sidebar.style.width = '0';
+        content.style.marginLeft = '0';
+    } else {
+        sidebar.style.width = '250px';
+        content.style.marginLeft = '250px';
+    }
+});
