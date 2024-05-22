@@ -1,6 +1,8 @@
-const baseURL = 'https://jjapra.r-e.kr/';
+const baseURL = 'http://jjapra.r-e.kr/';
 const getData = () => {
-    fetch(baseURL+"projects")
+    fetch(baseURL+"projects", {
+        credentials: 'include'  // 쿠키를 포함하도록 설정
+    })
             // 가져온 데이터를 JSON 형식으로 변환
             .then(response => response.json())
             // 변환된 JSON 데이터를 콘솔에 출력

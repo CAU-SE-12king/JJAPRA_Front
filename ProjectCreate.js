@@ -8,6 +8,11 @@ const openProjectList = () => {
 }
 
 const getProjectInputs = () => {
+    //모두 채워지지 않았으면 alert
+    if (!document.getElementById("projectName").value || !document.getElementById("projectDescription").value) {
+        alert("Please fill in all fields.");
+        return;
+    }
     const projectName = document.getElementById("projectName").value;
     const projectDescription = document.getElementById("projectDescription").value;
     const dev = $('select#selectDev').val()

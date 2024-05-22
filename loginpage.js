@@ -5,6 +5,7 @@ const baseURL = "https://jjapra.r-e.kr";
      const passwordInput = document.getElementById("userPassword");
      const id = idInput.value;
      const password = passwordInput.value;
+     console.log(id, password);
 
      fetch(baseURL+"/login", {
          method: 'POST', 
