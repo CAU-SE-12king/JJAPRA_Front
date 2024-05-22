@@ -1,4 +1,4 @@
-const baseURL = "https://jjapra.r-e.kr/";
+const baseURL = "https://jjapra.r-e.kr";
 
 const createAccount = () => {
     const id = document.getElementById("ID").value;
@@ -20,7 +20,7 @@ const createAccount = () => {
         return;  // 비밀번호가 일치하지 않으면 함수 종료
     }
     
-    fetch(baseURL+"join", {
+    fetch(baseURL+"/join", {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json',

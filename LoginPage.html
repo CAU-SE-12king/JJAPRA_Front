@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="loginpage.css">
         <link rel="stylesheet" href="./global.css">
         <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>    
@@ -10,14 +11,14 @@
         <div class="login-wrapper">
             <h2>JJapRa</h2>
             <div id="loginInputs">
-                <input type="text" name="userName" placeholder="ID">
-                <input type="password" name="userPassword" placeholder="Password">
-                <button type="button" id="loginBtn">Login</button>
+                <input type="text" id="userID" placeholder="ID">
+                <input type="password" id="userPassword" placeholder="Password">
+                <button type="button" id="loginBtn" onclick="login()">Login</button>
             </div>
             <a href="createaccount.html" style="text-decoration: none;">
                 <button type="button">Join</button>
             </a>
         </div>
+        <script src="loginpage.js"></script>
     </body>
 </html>
-
