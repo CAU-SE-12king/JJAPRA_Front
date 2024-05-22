@@ -123,8 +123,22 @@ footer{
     text-decoration: none;
     font-size: 17px;
     cursor: pointer;
+    font-size: 12px;
 }
 #logoutBtn:hover {
+    color: rgb(180, 180, 180);
+}
+
+#loginBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(120, 120, 120);
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+    font-size: 12px;
+}
+#loginBtn:hover {
     color: rgb(180, 180, 180);
 }
 
@@ -191,4 +205,11 @@ footer{
 .navIcon {
     margin-right: 10px;
     font-size: 16px;
+}
+
+.fa-right-to-bracket {
+    margin-right: 3px;
+}
+.fa-right-from-bracket{
+    margin-right: 3px;
 }
