@@ -65,8 +65,10 @@ const login = () => {
         if (response.status === 200) {
             console.log(response.data);
             const name = response.data.name; // 응답에서 name 값 가져오기
+            localStorage.setItem('username', name); // 사용자 이름 localStorage에 저장
             alert(`Welcome, ${name}!`); // name 값을 환영 메시지와 함께 표시
-            // window.location.href = "./ProjectList.html";
+            console.log(name);
+            window.location.href = "./ProjectList.html";
         } else {
             throw new Error('Unexpected response status: ' + response.status);
         }

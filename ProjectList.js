@@ -74,9 +74,10 @@ const getData = () => { //axios로 변경
 
 // localStorage에서 사용자 이름을 가져와서 프로필에 표시하는 함수 추가
 function displayUsername() {
-    const username = localStorage.getItem('username');
+    console.log("displayUsername() called");
+    const username = localStorage.getItem('username'); // localStorage에서 사용자 이름 가져오기
     if (username) {
-        document.querySelector('#profile span').textContent = username;
+        document.querySelector('#profile span').textContent = username; // 사용자 이름을 페이지에 표시
     }
 }
 
@@ -115,8 +116,9 @@ document.getElementById('toggleSidebarBtn').addEventListener('click', function()
     }
 });
 
-// 페이지 로드 시 사용자 이름 표시
-window.onload = function() {
-    displayUsername();
-    // getData();
-};
+// // 페이지 로드 시 사용자 이름 표시
+// window.onload = function() {
+//     console.log("onload");
+//     displayUsername();
+//     // getData();
+// };
