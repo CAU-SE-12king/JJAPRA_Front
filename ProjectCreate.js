@@ -36,28 +36,43 @@ const getProjectInputs = () => {
 const postData = () => {
     const title = document.getElementById("projectName").value;
     const description = document.getElementById("projectDescription").value;
-    const dev = $('select#selectDev').val()
-    const pl = $('select#selectPL').val()
-    const tester = $('select#selectTester').val()
+    const dev = $('select#selectDev').val();
+    const pl = $('select#selectPL').val();
+    const tester = $('select#selectTester').val();
 
-    fetch(baseURL+"projects", {
-        method: 'POST', //이거중요!!
+    axios.post(baseURL + "projects", {
+        title: title,
+        description: description
+    }, {
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            title : title,
-            description : description
-        })
     })
-    .then((response)=> {
-        return response.json()
+    .then(response => {
+        if (response.status === 200 || response.status === 201) {
+            console.log(response.data);
+            alert("Project created successfully.");
+            getData();
+        } else {
+            throw new Error('Unexpected response status: ' + response.status);
+        }
     })
-    .then((response)=> {
-        console.log(response);
-        getData();
-    })
-}
+    .catch(error => {
+        if (error.response) {
+            // 서버가 상태 코드를 반환했지만 2xx 범위에 있지 않은 경우
+            console.error('Error response:', error.response);
+            alert(`Failed to create project: ${error.response.status} ${error.response.data.error}`);
+        } else if (error.request) {
+            // 요청이 만들어졌지만 응답을 받지 못한 경우
+            console.error('No response:', error.request);
+            alert("No response from the server.");
+        } else {
+            // 요청 설정 중에 문제가 발생한 경우
+            console.error('Error:', error.message);
+            alert("Error occurred: " + error.message);
+        }
+    });
+};
 
 
 function logOut() {

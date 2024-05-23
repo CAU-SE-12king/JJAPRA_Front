@@ -1,4 +1,4 @@
-const baseURL = "https://jjapra.r-e.kr";
+const URL = "https://jjapra.r-e.kr";
 
  function login() {
      const idInput = document.getElementById("userID");
@@ -7,12 +7,11 @@ const baseURL = "https://jjapra.r-e.kr";
      const password = passwordInput.value;
      console.log(id, password);
 
-     fetch(baseURL+"/login", {
+     fetch(URL+"/login", {
          method: 'POST', 
          credentials: 'include',  // 쿠키를 포함하도록 설정
          headers: {
              'Content-Type': 'application/json',
-             'Accept': 'text/plain'
          },
          body: JSON.stringify({
              id : id,
@@ -20,7 +19,7 @@ const baseURL = "https://jjapra.r-e.kr";
          })
      })
      .then((response)=> {
-         console.log(response.text());
+         console.log(response.json());
          if(response.status == 200){
              alert("Login Successed");
             //  window.location.href="./ProjectList.html"
