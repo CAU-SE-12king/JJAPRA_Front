@@ -72,6 +72,14 @@ const getData = () => { //axios로 변경
 }
 
 
+// localStorage에서 사용자 이름을 가져와서 프로필에 표시하는 함수 추가
+function displayUsername() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.querySelector('#profile span').textContent = username;
+    }
+}
+
 function getRandomColor() {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
@@ -106,3 +114,9 @@ document.getElementById('toggleSidebarBtn').addEventListener('click', function()
         content.style.marginLeft = '200px';
     }
 });
+
+// 페이지 로드 시 사용자 이름 표시
+window.onload = function() {
+    displayUsername();
+    // getData();
+};
