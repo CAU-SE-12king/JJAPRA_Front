@@ -88,6 +88,9 @@ function logOut() {
         console.log("Logout canceled");
     }
 }
+function logIn() {
+    location.href = "./loginpage.html";
+}
 
 
 

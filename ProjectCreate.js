@@ -47,6 +47,7 @@ const postData = () => {
         headers: {
             'Content-Type': 'application/json',
         },
+        withCredentials: true  // 쿠키를 포함하도록 설정
     })
     .then(response => {
         if (response.status === 200 || response.status === 201) {
@@ -60,7 +61,8 @@ const postData = () => {
     .catch(error => {
         if (error.response) {
             // 서버가 상태 코드를 반환했지만 2xx 범위에 있지 않은 경우
-            console.error('Error response:', error.response);
+            console.log('Error response:', error.response);
+            console.log('Response data:', error.response.data);
             alert(`Failed to create project: ${error.response.status} ${error.response.data.error}`);
         } else if (error.request) {
             // 요청이 만들어졌지만 응답을 받지 못한 경우
@@ -83,6 +85,9 @@ function logOut() {
     } else {
         console.log("Logout canceled");
     }
+}
+function logIn() {
+    location.href = "./loginpage.html";
 }
 
 //sidebar test
