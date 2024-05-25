@@ -38,7 +38,11 @@ const baseURL = 'https://jjapra.r-e.kr';
 // }
 
 const getData = () => { //axios로 변경
-    axios.get(baseURL + "/projects")
+    axios.get(baseURL + "/projects", {
+        headers: {
+            // 'Authorization': 'Bearer ' + "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzE2NjQ3NDI0LCJleHAiOjE3MTY2NjE4MjR9.uftpvFxarBP0MI-F-3dM0fm0QokLNahNj-gq3h6EdYtED3ymDP0hBsTQpVneFooF"
+        }
+    })
         .then(response => {
             console.log(response.data);
             const projectList = document.getElementById('projectList');
@@ -76,6 +80,7 @@ const getData = () => { //axios로 변경
 function displayUsername() {
     console.log("displayUsername() called");
     const username = localStorage.getItem('username'); // localStorage에서 사용자 이름 가져오기
+    console.log(username);
     if (username) {
         document.querySelector('#profile span').textContent = username; // 사용자 이름을 페이지에 표시
     }
@@ -91,6 +96,7 @@ function getRandomColor() {
 function logOut() {
     const confirmed = confirm("Are you sure you want to log out?");
     if (confirmed) {
+        localStorage.removeItem('username'); // 사용자 이름 삭제
         console.log("logout");
         location.href = "./loginpage.html";
     } else {
@@ -99,6 +105,22 @@ function logOut() {
 }
 function logIn() {
     location.href = "./loginpage.html";
+}
+
+function toggleLoginLogoutButtons() {
+    const username = localStorage.getItem('username');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (username) {
+        // 사용자가 로그인한 경우
+        loginBtn.style.display = 'none';   // 로그인 버튼 숨기기
+        logoutBtn.style.display = 'inline-block'; // 로그아웃 버튼 보이기
+    } else {
+        // 사용자가 로그인하지 않은 경우
+        loginBtn.style.display = 'inline-block'; // 로그인 버튼 보이기
+        logoutBtn.style.display = 'none';   // 로그아웃 버튼 숨기기
+    }
 }
 
 

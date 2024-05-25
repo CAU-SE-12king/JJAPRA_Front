@@ -59,7 +59,6 @@ const login = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        withCredentials: true  // 쿠키를 포함하도록 설정
     })
     .then(response => {
         if (response.status === 200) {
