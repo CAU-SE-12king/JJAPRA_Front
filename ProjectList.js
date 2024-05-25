@@ -40,7 +40,7 @@ const baseURL = 'https://jjapra.r-e.kr';
 const getData = () => { //axios로 변경
     axios.get(baseURL + "/projects", {
         headers: {
-            // 'Authorization': 'Bearer ' + "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzE2NjQ3NDI0LCJleHAiOjE3MTY2NjE4MjR9.uftpvFxarBP0MI-F-3dM0fm0QokLNahNj-gq3h6EdYtED3ymDP0hBsTQpVneFooF"
+            'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
         }
     })
         .then(response => {
