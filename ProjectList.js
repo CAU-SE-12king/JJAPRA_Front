@@ -97,6 +97,7 @@ function logOut() {
     const confirmed = confirm("Are you sure you want to log out?");
     if (confirmed) {
         localStorage.removeItem('username'); // 사용자 이름 삭제
+        localStorage.removeItem('TOKEN'); // 토큰 삭제!!
         console.log("logout");
         location.href = "./loginpage.html";
     } else {

@@ -46,13 +46,15 @@ const postData = () => {
     }, {
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
         },
     })
     .then(response => {
         if (response.status === 200 || response.status === 201) {
             console.log(response.data);
             alert("Project created successfully.");
-            getData();
+            // getData();
+            window.location.href="./ProjectList.html";
         } else {
             throw new Error('Unexpected response status: ' + response.status);
         }
@@ -80,6 +82,7 @@ function logOut() {
     const confirmed = confirm("Are you sure you want to log out?");
     if (confirmed) {
         localStorage.removeItem('username'); // 사용자 이름 삭제
+        localStorage.removeItem('TOKEN'); // 토큰 삭제!!
         console.log("logout");
         location.href = "./loginpage.html";
     } else {
