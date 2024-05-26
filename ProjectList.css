@@ -67,14 +67,17 @@
 .fa-user-circle {
     font-size: 20px;
 }
-a {
+#projectCreateBtn {
+    background-color: transparent;
+    border: none;
     text-decoration: none;
+    cursor: pointer;
     color: #1cc88a;
 }
-a:hover{
+#projectCreateBtn:hover{
     color: rgb(151, 151, 151);
 }
-a:active{
+#projectCreateBtn:active{
     color: rgb(71, 71, 71);
 }
 

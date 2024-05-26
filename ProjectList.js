@@ -1,5 +1,15 @@
 const baseURL = 'https://jjapra.r-e.kr';
 
+//로그인 되어있지 않으면 초록 projectCreate 버튼 안 되게 경고하는 함수
+function openProjectCreate() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        window.location.href = "./ProjectCreate.html";
+    } else {
+        alert("Please Log in first"); // 로그인하라는 메시지
+    }
+}
+
 const getProjects = () => { //axios로 변경
             //일단 로그인 했는지부터 확인   
             const username = localStorage.getItem('username');
@@ -58,9 +68,6 @@ function displayUsername() {
     console.log(username);
     if (username) {
         document.querySelector('#profile span').textContent = username; // 사용자 이름을 페이지에 표시
-    }
-    else {
-        document.querySelector('#profile span').textContent = "(Please log in)";
     }
 }
 
