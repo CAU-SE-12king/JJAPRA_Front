@@ -23,7 +23,7 @@
             </div>
             <div id="profile">                
                     <span></span>
-                    <i class="fas fa-user-circle"></i>
+                    <button id="userBtn" class="fas fa-user-circle" onclick="openUserIssues()"></button>
             </div>
         </div>
     </header>
@@ -64,7 +64,7 @@
     <script src="./ProjectList.js"></script>
         <script>        
         window.onload = function() {
-            getData(); 
+            getProjects(); 
             displayUsername();
             toggleLoginLogoutButtons();
         };

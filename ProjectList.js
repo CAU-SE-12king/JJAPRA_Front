@@ -1,43 +1,6 @@
 const baseURL = 'https://jjapra.r-e.kr';
-// const getData = () => {
-//     fetch(baseURL+"/projects")
-//             // 가져온 데이터를 JSON 형식으로 변환
-//             .then(response => response.json())
-//             // 변환된 JSON 데이터를 콘솔에 출력
-//             .then((response)=> {
-//             console.log(response);
-//             const projectList = document.getElementById('projectList');
 
-//             response.map((data)=>{ //data 배열들을 돌면서 요소들 출력
-//                 //wrapper 생성
-//                 const a = document.createElement('a');
-//                 a.classList.add("project");
-//                 a.setAttribute('href', "./ProjectManage.html");
-
-//                 // 랜덤 색상 생성 및 적용
-//                 const randomColor = getRandomColor();
-//                 a.style.borderLeftColor = randomColor;
-
-
-
-//                 const projectTitle = document.createElement('div');
-//                 projectTitle.classList.add('projectTitle');
-//                 projectTitle.innerHTML = `${data.title}`;
-
-//                 const projectDescription = document.createElement('div');
-//                 projectDescription.classList.add('projectDescription');
-//                 projectDescription.innerHTML = `${data.description}`;
-
-//                 a.appendChild(projectTitle);
-//                 a.appendChild(projectDescription);
-//                 projectList.appendChild(a);
-//             })
-            
-//         })
-            
-// }
-
-const getData = () => { //axios로 변경
+const getProjects = () => { //axios로 변경
     axios.get(baseURL + "/projects", {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
@@ -143,5 +106,10 @@ document.getElementById('toggleSidebarBtn').addEventListener('click', function()
 // window.onload = function() {
 //     console.log("onload");
 //     displayUsername();
-//     // getData();
 // };
+
+
+// 프로필 누르면 해당 계정에만 해당하는 issue 페이지로 이동
+function openUserIssues() {
+    window.location.href = "./UserIssues.html";
+}

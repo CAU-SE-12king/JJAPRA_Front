@@ -53,7 +53,6 @@ const postData = () => {
         if (response.status === 200 || response.status === 201) {
             console.log(response.data);
             alert("Project created successfully.");
-            // getData();
             window.location.href="./ProjectList.html";
         } else {
             throw new Error('Unexpected response status: ' + response.status);

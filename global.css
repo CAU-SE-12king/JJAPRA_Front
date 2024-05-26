@@ -213,3 +213,15 @@ footer{
 .fa-right-from-bracket{
     margin-right: 3px;
 }
+
+#userBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+#userBtn:hover {
+    color: rgb(129, 129, 129);
+}
+#userBtn:active {
+    color: rgb(61, 61, 61)
+}
