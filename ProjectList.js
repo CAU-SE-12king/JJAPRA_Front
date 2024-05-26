@@ -1,6 +1,19 @@
 const baseURL = 'https://jjapra.r-e.kr';
 
 const getProjects = () => { //axios로 변경
+            //일단 로그인 했는지부터 확인   
+            const username = localStorage.getItem('username');
+            if (username) {
+
+            } 
+            else{
+                console.log("Please log in first.");
+                const message = document.createElement('div');
+                message.classList.add('loginPlzMessage');
+                message.innerHTML = "Please log in first.";
+                projectList.appendChild(message);
+            }    
+
     axios.get(baseURL + "/projects", {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
@@ -9,7 +22,6 @@ const getProjects = () => { //axios로 변경
         .then(response => {
             console.log(response.data);
             const projectList = document.getElementById('projectList');
-
             response.data.forEach(data => { //data 배열들을 돌면서 요소들 출력
                 //wrapper 생성
                 const a = document.createElement('a');
@@ -46,6 +58,9 @@ function displayUsername() {
     console.log(username);
     if (username) {
         document.querySelector('#profile span').textContent = username; // 사용자 이름을 페이지에 표시
+    }
+    else {
+        document.querySelector('#profile span').textContent = "(Please log in)";
     }
 }
 
@@ -102,14 +117,14 @@ document.getElementById('toggleSidebarBtn').addEventListener('click', function()
     }
 });
 
-// // 페이지 로드 시 사용자 이름 표시
-// window.onload = function() {
-//     console.log("onload");
-//     displayUsername();
-// };
-
 
 // 프로필 누르면 해당 계정에만 해당하는 issue 페이지로 이동
 function openUserIssues() {
-    window.location.href = "./UserIssues.html";
+    // window.location.href = "./UserIssues.html";
+    const username = localStorage.getItem('username');
+    if (username) {
+        window.location.href = "./UserIssues.html";
+    } else {
+        alert("Please Log in first"); // 로그인하라는 메시지
+    }
 }
