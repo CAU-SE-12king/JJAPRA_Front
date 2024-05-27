@@ -15,6 +15,7 @@
         padding: 10px;
         font-weight: bold;
         flex: 1;
+        text-align: center;
     }
 
 #issueTableBody {
@@ -34,12 +35,9 @@
         .issueTableCell {
             padding: 10px;
             flex: 1;
+            text-align: center;
         }
     
-        .issueTableCell {
-            padding: 10px;
-            flex: 1;
-        }
 
         .issueTableCell:nth-child(1) {
             font-weight: bold;

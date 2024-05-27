@@ -48,6 +48,7 @@ const getUserIssues = () => { //axios로 변경
                 issuePriorty.innerHTML = `${data.priority}`;
 
                 issueTableRow.appendChild(issueId);
+                issueTableRow.appendChild(projectId);
                 issueTableRow.appendChild(issueTitle);
                 issueTableRow.appendChild(issueDescription);
                 issueTableRow.appendChild(issueWriter);
