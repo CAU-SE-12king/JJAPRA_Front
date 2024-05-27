@@ -57,7 +57,9 @@ function postRole() {
         }
     })
     .then(response => {
-        console.log(response.data);
+        alert("Role allocated successfully.");
+        //이거 끝나면 어디로 가게 할지??//
+        window.location.href="./ProjectManage.html?id=" + projectId; 
     })
 }
 

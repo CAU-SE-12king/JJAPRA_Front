@@ -9,7 +9,7 @@ function openProjectCreate() {
         return;
     }
     //admin 계정만 projectCreate 페이지로 이동 가능하게 하는 코드
-    if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋으 ㄹ듯...
+    if(username === 'admin'){ 
         window.location.href = "./ProjectCreate.html";
     }
     else{
@@ -19,6 +19,7 @@ function openProjectCreate() {
 
 //DB에서 프로젝트 목록을 가져와서 출력하는 함수
 const getProjects = () => { //axios로 변경
+    return new Promise((resolve, reject) => {
             //일단 로그인 했는지부터 확인   
             const username = localStorage.getItem('username');
             if (username) {
@@ -52,11 +53,11 @@ const getProjects = () => { //axios로 변경
 
                 const projectTitle = document.createElement('div');
                 projectTitle.classList.add('projectTitle');
-                projectTitle.innerHTML = `${data.project.title}`;
+                projectTitle.innerHTML = `${data.title}`;
 
                 const projectDescription = document.createElement('div');
                 projectDescription.classList.add('projectDescription');
-                projectDescription.innerHTML = `${data.project.description}`;
+                projectDescription.innerHTML = `${data.description}`;
 
                 const allocateRoleBtn = document.createElement('a');
                 const allocateRoleBtnIcon = document.createElement('i');
@@ -71,40 +72,26 @@ const getProjects = () => { //axios로 변경
                 a.appendChild(allocateRoleBtn);
                 projectList.appendChild(a);
             });
+            resolve();
         })
         .catch(error => {
             console.error('Error:', error);
+            reject(error);
         });
+    });
 }
 
-//프로젝트에 멤버들 역할을 할당하는 페이지 이동(admin만 가능) ---> 이미 a 태그 안에 넣어서 필요 없음
-// function openAllocateRole() {
-//     //admin 계정만 openAllocateRole 페이지로 이동 가능하게 하는 코드
-//     if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋으 ㄹ듯...
-//         window.location.href = "./allocateRole.html";
-//     }
-//     else{
-//         alert("Only admin can create a project.");
-//     }
-// }   
 
 function toggleAllocateRoleBtn() {
-    console.log('toggleAllocateRoleBtn() called');
     const username = localStorage.getItem('username');
     const allocateRoleBtns = document.getElementsByClassName('allocateRoleBtn');
-    console.log(allocateRoleBtns);
-    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
     for (let i = 0; i < allocateRoleBtns.length; i++) {
-        if (username === 'test1') {
-            console.log('admin')
-            allocateRoleBtns[i].style.display = 'inline-block';
+        if (username === 'admin') {
+            allocateRoleBtns[i].style.display = 'flex';
         } else {
-            console.log('not admin')
             allocateRoleBtns[i].style.display = 'none';
         }
     }
-    console.log(allocateRoleBtns);
-    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
 }
 
 
@@ -122,7 +109,6 @@ function getRandomColor() {
 function displayUsername() {
     console.log("displayUsername() called");
     const username = localStorage.getItem('username'); // localStorage에서 사용자 이름 가져오기
-    console.log(username);
     if (username) {
         document.querySelector('#profile span').textContent = username; // 사용자 이름을 페이지에 표시
     }
@@ -154,8 +140,8 @@ function toggleLoginLogoutButtons() {
         logoutBtn.style.display = 'inline-block'; // 로그아웃 버튼 보이기
     } else {
         // 사용자가 로그인하지 않은 경우
-        loginBtn.style.display = 'inline-block'; // 로그인 버튼 보이기
-        logoutBtn.style.display = 'none';   // 로그아웃 버튼 숨기기
+        loginBtn.style.display = 'flex'; // 로그인 버튼 보이기
+        logoutBtn.style.display = 'inline-block';   // 로그아웃 버튼 숨기기
     }
 }
 

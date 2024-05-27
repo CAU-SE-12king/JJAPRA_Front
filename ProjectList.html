@@ -54,10 +54,15 @@
     <script src="./ProjectList.js"></script>
         <script>        
         window.onload = function() {
-            getProjects(); 
-            displayUsername();
-            toggleLoginLogoutButtons();
-            toggleAllocateRoleBtn();
+            getProjects()
+            .then(() => {
+                displayUsername();
+                toggleLoginLogoutButtons();
+                toggleAllocateRoleBtn();
+            })
+            .catch(error => {
+            console.error('Failed to load projects:', error);
+        });
         };
     </script>
 </body>
