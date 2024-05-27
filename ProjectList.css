@@ -50,12 +50,8 @@
         width: 200px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        /* margin: 40px;
-        padding: 20px;
-        margin-left: 40px;
-        margin-right: 40px; */
+        justify-self: center;
+        align-self: center;
         margin-left: auto;
     }
 
@@ -78,6 +74,9 @@ a:active {
     cursor: pointer;
     color:#616161;
     margin-top: auto;
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;    /* 수직 중앙 정렬 */
 }
 .fa-person-circle-plus:hover {
     color: rgb(243, 243, 243);

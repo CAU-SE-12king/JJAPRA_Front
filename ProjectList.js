@@ -17,6 +17,7 @@ function openProjectCreate() {
     }
 }
 
+//DB에서 프로젝트 목록을 가져와서 출력하는 함수
 const getProjects = () => { //axios로 변경
             //일단 로그인 했는지부터 확인   
             const username = localStorage.getItem('username');
@@ -58,7 +59,7 @@ const getProjects = () => { //axios로 변경
                 projectDescription.classList.add('projectDescription');
                 projectDescription.innerHTML = `${data.project.description}`;
 
-                const allocateRoleBtn = document.createElement('button');
+                const allocateRoleBtn = document.createElement('a');
                 allocateRoleBtn.classList.add('allocateRoleBtn');
                 allocateRoleBtn.classList.add('fa-solid');
                 allocateRoleBtn.classList.add('fa-person-circle-plus');
@@ -73,6 +74,22 @@ const getProjects = () => { //axios로 변경
             console.error('Error:', error);
         });
 }
+
+//프로젝트에 멤버들 역할을 할당하는 페이지 이동(admin만 가능)
+function openAllocateRole() {
+    const username = localStorage.getItem('username');
+    if (username) {
+    } else {
+        alert("Please Log in first"); // 로그인하라는 메시지
+        return;
+    }
+    if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋을 듯...
+        window.location.href = "./AllocateRole.html";
+    }
+    else{
+        alert("Only admin can allocate roles.");
+    }
+}   
 
 
 // localStorage에서 사용자 이름을 가져와서 프로필에 표시하는 함수 추가
@@ -123,6 +140,24 @@ function toggleLoginLogoutButtons() {
     }
 }
 
+function toggleAllocateRoleBtn() {
+    console.log('toggleAllocateRoleBtn() called');
+    const username = localStorage.getItem('username');
+    const allocateRoleBtns = document.getElementsByClassName('allocateRoleBtn');
+    console.log(allocateRoleBtns);
+    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
+    for (let i = 0; i < allocateRoleBtns.length; i++) {
+        if (username === 'test1') {
+            console.log('admin')
+            allocateRoleBtns[i].style.display = 'inline-block';
+        } else {
+            console.log('not admin')
+            allocateRoleBtns[i].style.display = 'none';
+        }
+    }
+    console.log(allocateRoleBtns);
+    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
+}
 
 
 //sidebar test
