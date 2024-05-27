@@ -59,6 +59,24 @@
         margin-left: auto;
     }
 
+a {
+    text-decoration: none;
+}
+
+button {
+    background-color: transparent;
+    border: 1.5px solid rgb(160, 160, 160);
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    color:#616161;
+    margin-top: auto;
+}
+button:hover {
+    color: rgb(243, 243, 243);
+    background-color:rgb(173, 173, 173);
+}
+
 
 /*  */
 .fa-chess-king{

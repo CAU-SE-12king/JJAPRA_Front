@@ -43,7 +43,8 @@ const getProjects = () => { //axios로 변경
                 //wrapper 생성
                 const a = document.createElement('a');
                 a.classList.add("project");
-                a.setAttribute('href', "./ProjectManage.html");
+                
+                a.setAttribute('href', `./ProjectManage.html?id=${data.id}`);
 
                 // 랜덤 색상 생성 및 적용
                 const randomColor = getRandomColor();
@@ -57,8 +58,14 @@ const getProjects = () => { //axios로 변경
                 projectDescription.classList.add('projectDescription');
                 projectDescription.innerHTML = `${data.project.description}`;
 
+                const allocateRoleBtn = document.createElement('button');
+                allocateRoleBtn.classList.add('allocateRoleBtn');
+                allocateRoleBtn.classList.add('fa-solid');
+                allocateRoleBtn.classList.add('fa-person-circle-plus');
+
                 a.appendChild(projectTitle);
                 a.appendChild(projectDescription);
+                a.appendChild(allocateRoleBtn);
                 projectList.appendChild(a);
             });
         })
