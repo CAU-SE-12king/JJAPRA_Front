@@ -50,8 +50,8 @@
         width: 200px;
         display: flex;
         flex-direction: column;
-        justify-self: center;
-        align-self: center;
+        justify-content: center;
+        align-items: center;
         margin-left: auto;
     }
 
@@ -66,10 +66,12 @@ a:active {
 }
 
 /* allcoateRoleBtn */
-.fa-person-circle-plus {
+.allocateRoleBtn {
+    margin-top: auto;
     background-color: transparent;
     border: 1.5px solid rgb(160, 160, 160);
     height: 30px;
+    width: 100%;
     border-radius: 5px;
     cursor: pointer;
     color:#616161;
@@ -78,7 +80,8 @@ a:active {
     justify-content: center; /* 수평 중앙 정렬 */
     align-items: center;    /* 수직 중앙 정렬 */
 }
-.fa-person-circle-plus:hover {
+
+.allocateRoleBtn:hover {
     color: rgb(243, 243, 243);
     background-color:rgb(173, 173, 173);
 }

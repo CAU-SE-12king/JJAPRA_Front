@@ -44,7 +44,6 @@ const getProjects = () => { //axios로 변경
                 //wrapper 생성
                 const a = document.createElement('a');
                 a.classList.add("project");
-                
                 a.setAttribute('href', `./ProjectManage.html?id=${data.id}`);
 
                 // 랜덤 색상 생성 및 적용
@@ -60,9 +59,12 @@ const getProjects = () => { //axios로 변경
                 projectDescription.innerHTML = `${data.project.description}`;
 
                 const allocateRoleBtn = document.createElement('a');
+                const allocateRoleBtnIcon = document.createElement('i');
+                allocateRoleBtn.appendChild(allocateRoleBtnIcon);
                 allocateRoleBtn.classList.add('allocateRoleBtn');
-                allocateRoleBtn.classList.add('fa-solid');
-                allocateRoleBtn.classList.add('fa-person-circle-plus');
+                allocateRoleBtnIcon.classList.add('fa-solid');
+                allocateRoleBtnIcon.classList.add('fa-person-circle-plus');
+                allocateRoleBtn.setAttribute('href', `./allocateRole.html?id=${data.id}`);
 
                 a.appendChild(projectTitle);
                 a.appendChild(projectDescription);
@@ -77,17 +79,12 @@ const getProjects = () => { //axios로 변경
 
 //프로젝트에 멤버들 역할을 할당하는 페이지 이동(admin만 가능)
 function openAllocateRole() {
-    const username = localStorage.getItem('username');
-    if (username) {
-    } else {
-        alert("Please Log in first"); // 로그인하라는 메시지
-        return;
-    }
-    if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋을 듯...
-        window.location.href = "./AllocateRole.html";
+    //admin 계정만 openAllocateRole 페이지로 이동 가능하게 하는 코드
+    if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋으 ㄹ듯...
+        window.location.href = "./allocateRole.html";
     }
     else{
-        alert("Only admin can allocate roles.");
+        alert("Only admin can create a project.");
     }
 }   
 
