@@ -62,8 +62,15 @@
 a {
     text-decoration: none;
 }
+a:hover {
+    background-color: rgb(243, 243, 243);
+}
+a:active {
+    background-color: rgb(173, 173, 173);
+}
 
-button {
+/* allcoateRoleBtn */
+.fa-person-circle-plus {
     background-color: transparent;
     border: 1.5px solid rgb(160, 160, 160);
     height: 30px;
@@ -72,7 +79,7 @@ button {
     color:#616161;
     margin-top: auto;
 }
-button:hover {
+.fa-person-circle-plus:hover {
     color: rgb(243, 243, 243);
     background-color:rgb(173, 173, 173);
 }
