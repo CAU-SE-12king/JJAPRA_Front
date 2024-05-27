@@ -77,16 +77,16 @@ const getProjects = () => { //axios로 변경
         });
 }
 
-//프로젝트에 멤버들 역할을 할당하는 페이지 이동(admin만 가능)
-function openAllocateRole() {
-    //admin 계정만 openAllocateRole 페이지로 이동 가능하게 하는 코드
-    if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋으 ㄹ듯...
-        window.location.href = "./allocateRole.html";
-    }
-    else{
-        alert("Only admin can create a project.");
-    }
-}   
+//프로젝트에 멤버들 역할을 할당하는 페이지 이동(admin만 가능) ---> 이미 a 태그 안에 넣어서 필요 없음
+// function openAllocateRole() {
+//     //admin 계정만 openAllocateRole 페이지로 이동 가능하게 하는 코드
+//     if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋으 ㄹ듯...
+//         window.location.href = "./allocateRole.html";
+//     }
+//     else{
+//         alert("Only admin can create a project.");
+//     }
+// }   
 
 
 // localStorage에서 사용자 이름을 가져와서 프로필에 표시하는 함수 추가
