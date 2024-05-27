@@ -88,6 +88,35 @@ const getProjects = () => { //axios로 변경
 //     }
 // }   
 
+function toggleAllocateRoleBtn() {
+    console.log('toggleAllocateRoleBtn() called');
+    const username = localStorage.getItem('username');
+    const allocateRoleBtns = document.getElementsByClassName('allocateRoleBtn');
+    console.log(allocateRoleBtns);
+    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
+    for (let i = 0; i < allocateRoleBtns.length; i++) {
+        if (username === 'test1') {
+            console.log('admin')
+            allocateRoleBtns[i].style.display = 'inline-block';
+        } else {
+            console.log('not admin')
+            allocateRoleBtns[i].style.display = 'none';
+        }
+    }
+    console.log(allocateRoleBtns);
+    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
+}
+
+
+function getRandomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+
+// 여기부터 default 코드 ///
 
 // localStorage에서 사용자 이름을 가져와서 프로필에 표시하는 함수 추가
 function displayUsername() {
@@ -97,13 +126,6 @@ function displayUsername() {
     if (username) {
         document.querySelector('#profile span').textContent = username; // 사용자 이름을 페이지에 표시
     }
-}
-
-function getRandomColor() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
 }
 
 function logOut() {
@@ -135,25 +157,6 @@ function toggleLoginLogoutButtons() {
         loginBtn.style.display = 'inline-block'; // 로그인 버튼 보이기
         logoutBtn.style.display = 'none';   // 로그아웃 버튼 숨기기
     }
-}
-
-function toggleAllocateRoleBtn() {
-    console.log('toggleAllocateRoleBtn() called');
-    const username = localStorage.getItem('username');
-    const allocateRoleBtns = document.getElementsByClassName('allocateRoleBtn');
-    console.log(allocateRoleBtns);
-    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
-    for (let i = 0; i < allocateRoleBtns.length; i++) {
-        if (username === 'test1') {
-            console.log('admin')
-            allocateRoleBtns[i].style.display = 'inline-block';
-        } else {
-            console.log('not admin')
-            allocateRoleBtns[i].style.display = 'none';
-        }
-    }
-    console.log(allocateRoleBtns);
-    console.log('allocateRoleBtns length:', allocateRoleBtns.length);
 }
 
 
