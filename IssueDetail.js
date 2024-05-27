@@ -1,5 +1,4 @@
 // import axios from "axios";
-
 const id = "test1";
 const password = "test1";
 const baseURL = "https://jjapra.r-e.kr";
@@ -34,13 +33,23 @@ const projectId = urlParams.get("projectId");
 //       console.error("Error:", error);
 //     });
 // };
+
 const getData = async () => {
   // await login();
-  fetch(baseURL + "/issues/details/" + issueId)
+  const token = localStorage.getItem("TOKEN");
+  console.log(token);
+  fetch(baseURL + "/issues/details/" + issueId, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
     // 변환된 JSON 데이터를 콘솔에 출력
     .then((response) => {
+      console.log(response);
       if (response.status == 400) {
         const detailSectionElement = document.getElementById("detailSection");
         const children = detailSectionElement.children;
@@ -51,6 +60,7 @@ const getData = async () => {
       const issueTitleElement = document.getElementById("issueTitle");
       const priorityElement = document.getElementById("priority");
       const stateElement = document.getElementById("state");
+      const issueDetailElement = document.getElementById("description");
 
       //data 배열들을 돌면서 요소들 출력
       //wrapper 생성
@@ -68,6 +78,7 @@ const getData = async () => {
       priorityElement.innerText = response.priority;
 
       stateElement.innerText = response.state;
+      issueDetailElement.innerText = response.description;
     })
     .catch((error) => {
       console.log(error);
