@@ -21,18 +21,28 @@ const getUserIssues = () => { //axios로 변경
                 issueId.classList.add("issueTableCell");
                 issueId.classList.add("issueId");
                 issueId.innerHTML = `${data.issueId}`;
+
+                const projectId = document.createElement('div');
+                projectId.classList.add("issueTableCell");
+                projectId.classList.add("projectId");
+                projectId.innerHTML = `${data.projectId}`;
+
                 const issueTitle = document.createElement('div');
                 issueTitle.classList.add("issueTableCell");
                 issueTitle.innerHTML = `${data.title}`;
+
                 const issueDescription = document.createElement('div');
                 issueDescription.classList.add("issueTableCell");
                 issueDescription.innerHTML = `${data.description}`;
+
                 const issueWriter = document.createElement('div');
                 issueWriter.classList.add("issueTableCell");
                 issueWriter.innerHTML = `${data.writer}`;
+
                 const issueStatus = document.createElement('div');
                 issueStatus.classList.add("issueTableCell");
                 issueStatus.innerHTML = `${data.status}`;
+
                 const issuePriorty = document.createElement('div');
                 issuePriorty.classList.add("issueTableCell");
                 issuePriorty.innerHTML = `${data.priority}`;
