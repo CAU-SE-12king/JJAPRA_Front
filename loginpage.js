@@ -62,13 +62,12 @@ const login = () => {
     })
     .then(response => {
         if (response.status === 200) {
-            console.log(response.data);
-            const name = response.data.name; // 응답에서 name 값 가져오기
+            const name = response.data.member.name; // 응답에서 name 값 가져오기
             localStorage.setItem('username', name); // 사용자 이름 localStorage에 저장
-            const TOKEN = response.data; // 응답에서 name 값 가져오기
+            const TOKEN = response.data.token; // 응답에서 token 값 가져오기
             localStorage.setItem('TOKEN', TOKEN); // 사용자 이름 localStorage에 저장
+
             alert(`Welcome, ${name}!`); // name 값을 환영 메시지와 함께 표시
-            // console.log(name); 토큰만 보내주는걸로 바뀌어서 잠깐 안함
             window.location.href = "./ProjectList.html";
         } else {
             throw new Error('Unexpected response status: ' + response.status);

@@ -1,4 +1,4 @@
-const baseURL = "https://jjapra.r-e.kr/";
+const baseURL = "https://jjapra.r-e.kr";
 
 
 const openProjectList = () => {
@@ -40,7 +40,7 @@ const postData = () => {
     const pl = $('select#selectPL').val();
     const tester = $('select#selectTester').val();
 
-    axios.post(baseURL + "projects", {
+    axios.post(baseURL + "/projects", {
         title: title,
         description: description
     }, {

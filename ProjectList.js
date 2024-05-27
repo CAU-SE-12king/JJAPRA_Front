@@ -4,9 +4,16 @@ const baseURL = 'https://jjapra.r-e.kr';
 function openProjectCreate() {
     const username = localStorage.getItem('username');
     if (username) {
-        window.location.href = "./ProjectCreate.html";
     } else {
         alert("Please Log in first"); // 로그인하라는 메시지
+        return;
+    }
+    //admin 계정만 projectCreate 페이지로 이동 가능하게 하는 코드
+    if(username === 'test1'){ //이거 admin으로 바꾸는 게 좋으 ㄹ듯...
+        window.location.href = "./ProjectCreate.html";
+    }
+    else{
+        alert("Only admin can create a project.");
     }
 }
 
@@ -44,11 +51,11 @@ const getProjects = () => { //axios로 변경
 
                 const projectTitle = document.createElement('div');
                 projectTitle.classList.add('projectTitle');
-                projectTitle.innerHTML = `${data.title}`;
+                projectTitle.innerHTML = `${data.project.title}`;
 
                 const projectDescription = document.createElement('div');
                 projectDescription.classList.add('projectDescription');
-                projectDescription.innerHTML = `${data.description}`;
+                projectDescription.innerHTML = `${data.project.description}`;
 
                 a.appendChild(projectTitle);
                 a.appendChild(projectDescription);
