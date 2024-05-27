@@ -24,8 +24,8 @@ const projectID = 1;
 //     //대체
 //   });
 
-const id = "test1";
-const password = "test1";
+const id = "admin";
+const password = "admin";
 const baseURL = "https://jjapra.r-e.kr";
 
 const login = async () => {
@@ -35,18 +35,21 @@ const login = async () => {
     headers: {
       "Content-Type": "application/json",
     },
+
     body: JSON.stringify({
       id: id,
       password: password,
     }),
   })
-    .then((response) => {
-      console.log(response.json());
+    .then(async (response) => {
       if (response.status == 200) {
         //  window.location.href="./ProjectList.html"
       } else {
-        alert("세션이 만료되어 로그인화면으로 돌아갑니다.");
+        alert("토큰이 만료되어 로그인화면으로 돌아갑니다.");
       }
+      const data = await response.json();
+      const TOKEN = data.token; // 응답에서 token 값 가져오기
+      localStorage.setItem("TOKEN", TOKEN); // 사용자 이름 localStorage에 저장
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -56,9 +59,7 @@ const login = async () => {
 let local = "./test.json";
 const getData = async () => {
   await login();
-  fetch(baseURL + "/projects/" + projectID + "/issues", {
-    credentials: "include", // 쿠키포함
-  })
+  fetch(baseURL + "/projects/" + projectID + "/issues")
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
     // 변환된 JSON 데이터를 콘솔에 출력
@@ -79,7 +80,7 @@ const getData = async () => {
         liElement.appendChild(aElement);
         aElement.setAttribute(
           "href",
-          `./issueDetail.html/?issueId=${data.issueId}&projectId=${data.projectId}`
+          `./issueDetail.html?issueId=${data.issueId}&projectId=${data.projectId}`
         );
         liElement.setAttribute("id", `${data.issueId}`);
         aElement.innerHTML = `${data.title}`;
@@ -125,9 +126,34 @@ function closemodal() {
 }
 function saveIssue(event) {
   event.preventDefault(); //리로드 안함.
-  const formData = new FormData(event.target);
+  const formData = new FormData(this);
+  const token = localStorage.getItem("TOKEN");
+  console.log(token);
 
   //이슈를 DB에 저장하는 함수
+  fetch(baseURL + "/projects/" + projectID + "/issues", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify({
+      title: formData.get("title"),
+      descricption: formData.get("description"),
+      priority: parseInt(formData.get("priority")),
+    }),
+  })
+    .then((response) => {
+      if (response.status == 400) {
+        alert("서버측 오류로 이슈 저장에 실패했습니다");
+        return;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("알수없는 오류로 이슈 저장에 실패했습니다.");
+      return;
+    });
 
   makeIssue(formData);
 }
