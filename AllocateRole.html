@@ -45,42 +45,24 @@
                     </div>
                     <div class="oneInput">
                         <div class="inputLabel">
-                            Dev *
+                            Member *
                         </div>
-                        <select id="selectDev"> <!-- 여기에서 DB에 있는 사용자들 list 불러와야 함? -->
-                            <option value="1">DDing</option>
-                            <option value="2">Channy</option>
-                            <option value="3">Suzzang</option>
-                            <option value="4">Migging</option>
-                            <option value="5">Unstraguram</option>
+                        <select id="selectedMember"> <!-- 여기에서 DB에 있는 사용자들 list 불러와야 함? -->
+
                         </select>
                     </div>
                     <div class="oneInput">
                         <div class="inputLabel">
-                            PL *
+                            Role *
                         </div>
-                        <select id="selectPL">
-                            <option value="1">DDing</option>
-                            <option value="2">Channy</option>
-                            <option value="3">Suzzang</option>
-                            <option value="4">Migging</option>
-                            <option value="5">Unstraguram</option>
-                        </select>
-                    </div>
-                    <div class="oneInput">
-                        <div class="inputLabel">
-                            Tester *
-                        </div>
-                        <select id="selectTester">
-                            <option value="1">DDing</option>
-                            <option value="2">Channy</option>
-                            <option value="3">Suzzang</option>
-                            <option value="4">Migging</option>
-                            <option value="5">Unstraguram</option>
+                        <select id="selectedRole">
+                            <option value="PL">PL</option>
+                            <option value="Tester">Tester</option>
+                            <option value="Developer">Developer</option>
                         </select>
                     </div>
                     <div class="oneInput" >
-                        <button type="button" id="createBtn" onclick="postData(); ">Create</button>
+                        <button type="button" id="createBtn" onclick="postRole(); ">Allocate</button>
                     </div>
                 </div>
                 <!-- <div id="projectImg">
@@ -103,10 +85,10 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     window.onload = function(){
-        const projectId = new URLSearchParams(window.location.search).get('id');
-        getProjectName(projectId);
+        getProjectName();
         displayUsername();
         toggleLoginLogoutButtons();
+        getMembers();
     }
 </script>
 </script>

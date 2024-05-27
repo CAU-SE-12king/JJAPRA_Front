@@ -1,7 +1,8 @@
 const baseURL = 'https://jjapra.r-e.kr';
+const projectId = new URLSearchParams(window.location.search).get('id');
 
 //쿼리스트링으로 받아온 프로젝트 id를 토대로 프로트트 이름 가져오는 함수
-function getProjectName(projectId) {
+function getProjectName() {
     axios.get(baseURL + "/projects/" + projectId, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
@@ -20,8 +21,47 @@ function getProjectName(projectId) {
     });
 }
 
+//멤버들 모두 불러와서 select에 추가하는 함수
+function getMembers() {
+    axios.get(baseURL + "/members", {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
+        }
+    })
+    .then(response => {
+        console.log(response.data);
 
-// 여기부터 defualt 코드 //
+        //멤버들을 select에 추가
+        const members = response.data;
+        const selectMember = document.getElementById('selectedMember');
+        members.forEach(member => {
+            const option = document.createElement('option');
+            option.value = member.id;
+            option.textContent = member.name;
+            selectMember.appendChild(option);
+        });
+    })
+}
+
+//프로젝트에 역할 설정해서 요청 보내는 함수(멤버 할당 안 할 수도 있어야함!! option값이 없게)
+function postRole() {
+    const userID = document.getElementById('selectedMember').value;
+    const role = document.getElementById('selectedRole').value;
+    console.log(userID, role);
+    axios.post(baseURL + "/projects/" + projectId + "/members", {
+        id: userID,
+        role: role
+    }, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
+        }
+    })
+    .then(response => {
+        console.log(response.data);
+    })
+}
+
+// 여기부터 default 코드 //
 function displayUsername() {
     console.log("displayUsername() called");
     const username = localStorage.getItem('username'); // localStorage에서 사용자 이름 가져오기

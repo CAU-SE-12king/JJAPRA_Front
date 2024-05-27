@@ -36,9 +36,9 @@ const getProjectInputs = () => {
 const postData = () => {
     const title = document.getElementById("projectName").value;
     const description = document.getElementById("projectDescription").value;
-    const dev = $('select#selectDev').val();
-    const pl = $('select#selectPL').val();
-    const tester = $('select#selectTester').val();
+    // const dev = $('select#selectDev').val();
+    // const pl = $('select#selectPL').val();
+    // const tester = $('select#selectTester').val();
 
     axios.post(baseURL + "/projects", {
         title: title,
