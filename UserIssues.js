@@ -8,26 +8,52 @@ const getUserIssues = () => { //axios로 변경
     })
         .then(response => {
             console.log(response.data);
+
+            //이슈들을 출력
+            const issues = response.data;
+            const issueTableBody = document.getElementById('issueTableBody');
+            issues.forEach(data => {
+                //issueTableRow 생성
+                const issueTableRow = document.createElement('div');
+                issueTableRow.classList.add("issueTableRow");
+
+                const issueId = document.createElement('div');
+                issueId.classList.add("issueTableCell");
+                issueId.classList.add("issueId");
+                issueId.innerHTML = `${data.issueId}`;
+                const issueTitle = document.createElement('div');
+                issueTitle.classList.add("issueTableCell");
+                issueTitle.innerHTML = `${data.title}`;
+                const issueDescription = document.createElement('div');
+                issueDescription.classList.add("issueTableCell");
+                issueDescription.innerHTML = `${data.description}`;
+                const issueWriter = document.createElement('div');
+                issueWriter.classList.add("issueTableCell");
+                issueWriter.innerHTML = `${data.writer}`;
+                const issueStatus = document.createElement('div');
+                issueStatus.classList.add("issueTableCell");
+                issueStatus.innerHTML = `${data.status}`;
+                const issuePriorty = document.createElement('div');
+                issuePriorty.classList.add("issueTableCell");
+                issuePriorty.innerHTML = `${data.priority}`;
+
+                issueTableRow.appendChild(issueId);
+                issueTableRow.appendChild(issueTitle);
+                issueTableRow.appendChild(issueDescription);
+                issueTableRow.appendChild(issueWriter);
+                issueTableRow.appendChild(issueStatus);
+                issueTableRow.appendChild(issuePriorty);
+
+                //최종 
+                issueTableBody.appendChild(issueTableRow);
+            })
+
         })
         .catch(error => {
             console.error('Error:', error);
         });
 }
 
-//멤버 정보 조회 test
-const getMembers = () => { //axios로 변경
-    axios.get(baseURL + "/members", {
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), 
-        }
-    })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
 
 // 여기부터 default 코드 //
 function displayUsername() {
