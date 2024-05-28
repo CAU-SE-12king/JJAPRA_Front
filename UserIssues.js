@@ -45,7 +45,10 @@ const getUserIssues = () => { //axios로 변경
 
                 const issuePriorty = document.createElement('div');
                 issuePriorty.classList.add("issueTableCell");
-                issuePriorty.innerHTML = `${data.priority}`;
+                if(data.priority==="BLOCKER" || data.priority==="CRITICAL") 
+                    issuePriorty.innerHTML = `🚨${data.priority}`;
+                else
+                    issuePriorty.innerHTML = `${data.priority}`;
 
                 issueTableRow.appendChild(issueId);
                 issueTableRow.appendChild(projectId);
