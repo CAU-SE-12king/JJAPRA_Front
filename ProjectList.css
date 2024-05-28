@@ -30,8 +30,8 @@
         border-radius: 10px;
         background-color: white;
         box-shadow: 7px 9px 24px 0px #bbbbbb;
-        height: 180px;
-        width: 200px;
+        height: 210px;
+        width: 230px;
         border-left: 5px solid rgb(131, 166, 255);
     }
         .projectTitle {
@@ -44,6 +44,9 @@
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+        }
+        .projectRow {
+            margin-bottom: 5px;
         }
     #plusBtn {
         height: 200px;
@@ -119,4 +122,8 @@ a:active {
     width: 100%;
     text-align: center;
     margin-top: 100px;
+}
+
+#deleteProjectBtn{
+    height: 30px;
 }

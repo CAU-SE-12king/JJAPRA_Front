@@ -56,8 +56,14 @@ const getProjects = () => { //axios로 변경
                 projectTitle.innerHTML = `${data.project.title}`;
 
                 const projectDescription = document.createElement('div');
-                projectDescription.classList.add('projectDescription');
+                projectDescription.classList.add('projectRow');
                 projectDescription.innerHTML = `${data.project.description}`;
+                const projectRole = document.createElement('div');
+                projectRole.classList.add('projectRow');
+                projectRole.innerHTML = `Role: ${data.role}`;
+                const projectMembers = document.createElement('div');
+                projectMembers.classList.add('projectRow');
+                projectMembers.innerHTML = `Members: ${data.members.join(', ')}`;
 
                 const allocateRoleBtn = document.createElement('a');
                 const allocateRoleBtnIcon = document.createElement('i');
@@ -65,10 +71,12 @@ const getProjects = () => { //axios로 변경
                 allocateRoleBtn.classList.add('allocateRoleBtn');
                 allocateRoleBtnIcon.classList.add('fa-solid');
                 allocateRoleBtnIcon.classList.add('fa-person-circle-plus');
-                allocateRoleBtn.setAttribute('href', `./allocateRole.html?id=${data.id}`);
+                allocateRoleBtn.setAttribute('href', `./allocateRole.html?id=${data.project.id}`);
 
                 a.appendChild(projectTitle);
                 a.appendChild(projectDescription);
+                a.appendChild(projectRole);
+                a.appendChild(projectMembers);
                 a.appendChild(allocateRoleBtn);
                 projectList.appendChild(a);
             });
@@ -80,6 +88,8 @@ const getProjects = () => { //axios로 변경
         });
     });
 }
+
+
 
 
 function toggleAllocateRoleBtn() {

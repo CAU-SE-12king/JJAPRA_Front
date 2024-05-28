@@ -31,6 +31,8 @@
     </header>
 
     <main>
+        <button id="deleteProjectBtn" onclick="deleteProject()">Delete Project</button>
+
         <aside class="modal" id="config-overlay">
             <h2>이슈 내용을 작성해주세요</h2>
             <form action="">
@@ -88,5 +90,10 @@
         </div>
     </main>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+window.onload = function() {
+    getProjectDetail();
+}
+</script>
 </html>

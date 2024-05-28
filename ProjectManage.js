@@ -5,7 +5,8 @@ const formElement = document.querySelector("form");
 formElement.addEventListener("submit", saveIssue);
 formElement.addEventListener("reset", closemodal);
 
-const projectID = 1;
+// const projectID = 1;
+const projectId = new URLSearchParams(window.location.search).get("projectId");
 
 // fetch(`https://jjapra.r-e.kr/projects/${projectID}/issues`, {
 //   credentials: "include", // 쿠키포함
@@ -59,7 +60,7 @@ const login = async () => {
 let local = "./test.json";
 const getData = async () => {
   await login();
-  fetch(baseURL + "/projects/" + projectID + "/issues")
+  fetch(baseURL + "/projects/" + projectId + "/issues")
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
     // 변환된 JSON 데이터를 콘솔에 출력
@@ -131,7 +132,7 @@ function saveIssue(event) {
   console.log(token);
 
   //이슈를 DB에 저장하는 함수
-  fetch(baseURL + "/projects/" + projectID + "/issues", {
+  fetch(baseURL + "/projects/" + projectId + "/issues", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -172,4 +173,43 @@ function makeIssue(formData) {
   const modalElement = document.getElementById("config-overlay");
   modalElement.style.display = "none";
   modalElement.children[1].reset();
+}
+
+
+//project detail 정보 가져오기 test
+function getProjectDetail() {
+  fetch(baseURL + "/projects/" + projectId
+    , {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+      },
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    });
+}
+
+function deleteProject() {
+  console.log(projectId);
+  console.log(localStorage.getItem("TOKEN"));
+  axios.delete(baseURL + "/projects/" + projectId, 
+  {
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
+      },
+  })
+  .then(response => {
+      if (response.status === 200) {
+          console.log(response.data);
+          alert("Project deleted successfully.");
+          window.location.href="./ProjectList.html";
+      } else {
+          throw new Error('Unexpected response status: ' + response.status);
+      }
+  })
+
 }
