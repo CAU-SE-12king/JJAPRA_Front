@@ -1,0 +1,9 @@
+.memberWrapper {
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+.memberNum {
+    font-size: 20px;
+    font-weight: bold;
+}

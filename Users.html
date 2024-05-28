@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./ProjectCreate.css">
     <link rel="stylesheet" href="./global.css">
-    <link rel="stylesheet" href="./AllocateRole.css">
+    <link rel="stylesheet" href="./Users.css">
     <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
-    <title>@@Project Create</title>
+    <title>@@Users</title>
 </head>
 <body>
     <header>      
@@ -31,39 +31,11 @@
     <main>
         <div id="mainContainer">
             <div id="mainTitle">
-                <span id="mainTitleText">Allocate Members(admin only)</span>   
+                <span id="mainTitleText">Existing Users</span>   
             </div>
             <div id="mainContent">
-                <div id="info">
-                    <div class="oneInput">
-                        <div class="inputLabel">
-                            Project 
-                        </div>
-                        <div id="selectedProject">
-                            <!-- 여기에 선택된 프로젝트 이름 들어감 -->
-                        </div>
-                    </div>
-                    <div class="oneInput">
-                        <div class="inputLabel">
-                            Member *
-                        </div>
-                        <select id="selectedMember"> <!-- 여기에서 DB에 있는 사용자들 list 불러와야 함? -->
+                <div id="memberList">
 
-                        </select>
-                    </div>
-                    <div class="oneInput">
-                        <div class="inputLabel">
-                            Role *
-                        </div>
-                        <select id="selectedRole">
-                            <option value="PL">PL</option>
-                            <option value="TESTER">Tester</option>
-                            <option value="DEV">Developer</option>
-                        </select>
-                    </div>
-                    <div class="oneInput" >
-                        <button type="button" id="createBtn" onclick="postRole(); ">Allocate</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -71,18 +43,17 @@
     <div id="sidebar" class="sidebar">
         <a class="sidebarNav" href="./ProjectList.html"><i class="fa-solid fa-house navIcon"></i>Projects</a>
         <a class="sidebarNav" href="#"><i class="fa-solid fa-magnifying-glass navIcon"></i>About</a>
-        <a class="sidebarNav" href="Users.html"><i class="fa-solid fa-users navIcon"></i>Services</a>
+        <a class="sidebarNav" href="Users.html"><i class="fa-solid fa-users navIcon"></i>Users</a>
         <a class="sidebarNav" href="Contact.html"><i class="fa-solid fa-phone navIcon"></i>Contact</a>
     </div>
     <footer>
         <span>Copyrightⓒ JJapRa 2024</span>
     </footer>
 </body>
-<script src="./AllocateRole.js"></script>
+<script src="./Users.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     window.onload = function(){
-        getProjectName();
         displayUsername();
         toggleLoginLogoutButtons();
         getMembers();
