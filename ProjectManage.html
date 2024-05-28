@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ProjectManage.css">
     <link rel="stylesheet" href="global.css">
-    <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
     <script src="ProjectManage.js" defer></script>
     <title>ProjectManage</title>
 </head>
@@ -15,15 +14,17 @@
     <header>
         <div id="titleContainer">
             <div id="logo">
-                <button id="toggleSidebarBtn" class="fa-solid fa-bars"></button>
+                <button class="sidebarBtn" onclick="openSidebar()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
                 <a href=ProjectList.html id="jjapra">JJapRa</a>
             </div>
             <div id="middle">
-                <button id="logoutBtn" onclick="logOut()"><i class="fa-solid fa-right-from-bracket"></i>
-                </button>
+                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-regular fa-bell"></i>
             </div>
             <div id="profile">
-                <span>MIGI</span>
+                <span>Suzzang</span>
                 <i class="fas fa-user-circle"></i>
             </div>
         </div>
@@ -61,45 +62,27 @@
                 <div class="board" id="new">
                     <p>new</p>
                     <ul>
-                        <li id="1">이슈 1</li>
-                        <li id="2">이슈 2</li>
                     </ul>
                 </div>
                 <div class="board" id="assigned">
                     <p>assigned</p>
-                    <section>
-                        <ul>
-                            <li id="3">이슈 1</li>
-                            <li id="4">이슈 2</li>
-                        </ul>
-                    </section>
+                    <ul>
+                    </ul>
                 </div>
                 <div class="board" id="resolved">
                     <p>resolved</p>
-                    <section>
-                        <ul>
-                            <li id="5">이슈 1</li>
-                            <li id="6">이슈 2</li>
-                        </ul>
-                    </section>
+                    <ul>
+                    </ul>
                 </div>
                 <div class="board" id="fixed">
                     <p>fixed</p>
-                    <section>
-                        <ul>
-                            <li id="7">이슈 1</li>
-                            <li id="8">이슈 2</li>
-                        </ul>
-                    </section>
+                    <ul>
+                    </ul>
                 </div>
                 <div class="board" id="closed">
                     <p>closed</p>
-                    <section>
-                        <ul>
-                            <li id="9">이슈 1</li>
-                            <li id="10">이슈 2</li>
-                        </ul>
-                    </section>
+                    <ul>
+                    </ul>
                 </div>
             </section>
         </div>

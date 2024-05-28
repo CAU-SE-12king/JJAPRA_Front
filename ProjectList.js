@@ -45,7 +45,7 @@ const getProjects = () => { //axios로 변경
                 //wrapper 생성
                 const a = document.createElement('a');
                 a.classList.add("project");
-                a.setAttribute('href', `./ProjectManage.html?id=${data.id}`);
+                a.setAttribute('href', `./ProjectManage.html?id=${data.role}&projectId=${data.project.id}`);
 
                 // 랜덤 색상 생성 및 적용
                 const randomColor = getRandomColor();
@@ -53,11 +53,11 @@ const getProjects = () => { //axios로 변경
 
                 const projectTitle = document.createElement('div');
                 projectTitle.classList.add('projectTitle');
-                projectTitle.innerHTML = `${data.title}`;
+                projectTitle.innerHTML = `${data.project.title}`;
 
                 const projectDescription = document.createElement('div');
                 projectDescription.classList.add('projectDescription');
-                projectDescription.innerHTML = `${data.description}`;
+                projectDescription.innerHTML = `${data.project.description}`;
 
                 const allocateRoleBtn = document.createElement('a');
                 const allocateRoleBtnIcon = document.createElement('i');

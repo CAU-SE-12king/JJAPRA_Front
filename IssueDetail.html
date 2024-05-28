@@ -11,7 +11,78 @@
 </head>
 
 <body>
-    he
+    <header>
+        <div id="titleContainer">
+            <div id="logo">
+                <button class="sidebarBtn" onclick="openSidebar()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <a href=ProjectList.html id="jjapra">JJapRa</a>
+            </div>
+
+
+            <div id="middle">
+                <i class="fa-regular fa-envelope"></i>
+                <i class="fa-regular fa-bell"></i>
+            </div>
+            <div id="profile">
+                <span>Suzzang</span>
+                <i class="fas fa-user-circle"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="detailSection">
+            <div id="detailHeader">
+                <div id="titleSection">
+                    <h2>
+                        이슈 이름
+                    </h2>
+                    <p id="issueTitle"></p>
+                </div>
+                <div id="prioritySection">
+                    <h4>우선순위</h4>
+                    <div id="priority">HIGH</div>
+                </div>
+            </div>
+            <hr>
+            <section id="info">
+                <div id="issueState">
+                    <h4>이슈 상황</h4>
+                    <hr>
+                    <div id="state">진행중</div>
+                </div>
+                <div id="reportSection">
+                    <div>
+                        <h4>Reporter</h4>
+                        <div></div>
+                    </div>
+                    <hr>
+                    <div>
+                        <h4>reported date</h4>
+                        <p>2014/03/24</p>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h4>이슈 설명</h4>
+                <p id="description"></p>
+            </section>
+            <section id="resolved">
+                <div id="assignee">
+                    <h4>assignee</h4>
+                    <hr>
+                    <div></div>
+                </div>
+                <div id="fixer">
+                    <h4>fixer</h4>
+                    <hr>
+                    <div></div>
+                </div>
+
+            </section>
+        </div>
+    </main>
 </body>
 
 </html>
