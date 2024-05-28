@@ -45,7 +45,7 @@ const getProjects = () => { //axios로 변경
                 //wrapper 생성
                 const a = document.createElement('a');
                 a.classList.add("project");
-                a.setAttribute('href', `./ProjectManage.html?id=${data.role}&projectId=${data.project.id}`);
+                a.setAttribute('href', `./ProjectManage.html?role=${data.role}&projectId=${data.project.id}`);
 
                 // 랜덤 색상 생성 및 적용
                 const randomColor = getRandomColor();
