@@ -14,8 +14,9 @@ const getUserIssues = () => { //axios로 변경
             const issueTableBody = document.getElementById('issueTableBody');
             issues.forEach(data => {
                 //issueTableRow 생성
-                const issueTableRow = document.createElement('div');
+                const issueTableRow = document.createElement('a');
                 issueTableRow.classList.add("issueTableRow");
+                issueTableRow.setAttribute('href', `./IssueDetail.html?issueId=${data.issueId}&projectId=${data.projectId}`);
 
                 const issueId = document.createElement('div');
                 issueId.classList.add("issueTableCell");

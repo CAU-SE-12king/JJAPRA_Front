@@ -21,6 +21,11 @@
 #issueTableBody {
     font-weight: 500;
 }
+
+    a {
+        text-decoration: none;
+        color: rgb(93, 93, 93);
+    }
     .issueTableRow {
         display: flex;
         flex-direction: row;

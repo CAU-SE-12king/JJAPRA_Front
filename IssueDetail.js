@@ -38,6 +38,7 @@ const getData = async () => {
   // await login();
   const token = localStorage.getItem("TOKEN");
   console.log(token);
+  console.log(issueId, projectId);
   fetch(baseURL + "/issues/details/" + issueId, {
     method: "GET",
     headers: {
