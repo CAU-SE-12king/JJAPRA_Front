@@ -2,6 +2,16 @@ const baseURL = 'https://jjapra.r-e.kr';
 
 
 function getMembers() {
+    //일단 admin인지부터 확인
+    const username = localStorage.getItem('username');
+    if (username !== 'admin') {
+        const message = document.createElement('div');
+        message.classList.add('loginPlzMessage');
+        message.innerHTML = "Only admin can view members.";
+        memberList.appendChild(message);
+        return;
+    }
+
     axios.get(baseURL + "/members", {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('TOKEN'), //근데 이거 다른 계정으로 로그인하면 토큰 덮어씌워지나..? 흠...
