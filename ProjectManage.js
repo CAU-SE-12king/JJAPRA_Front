@@ -25,8 +25,8 @@ const projectId = new URLSearchParams(window.location.search).get("projectId");
 //     //대체
 //   });
 
-const id = "admin";
-const password = "admin";
+const id = "suzzang";
+const password = "1234";
 const baseURL = "https://jjapra.r-e.kr";
 
 const login = async () => {
@@ -110,7 +110,7 @@ const getData = async () => {
     });
 };
 
-getData();
+// getData(); 이거 왜 있는거임? ㅡㅡ
 
 [...createIssuebtnElements].forEach(function (element) {
   element.addEventListener("click", showmodal);

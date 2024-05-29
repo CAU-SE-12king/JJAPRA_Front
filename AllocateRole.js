@@ -59,7 +59,8 @@ function postRole() {
     .then(response => {
         alert("Role allocated successfully.");
         //이거 끝나면 어디로 가게 할지??//
-        window.location.href="./ProjectManage.html?id=" + projectId; 
+        // window.location.href="./ProjectManage.html?id=" + projectId; 
+        window.location.href="./ProjectList.html";
     })
 }
 
