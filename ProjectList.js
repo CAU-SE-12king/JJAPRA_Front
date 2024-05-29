@@ -60,7 +60,7 @@ const getProjects = () => { //axios로 변경
                 projectDescription.innerHTML = `${data.project.description}`;
                 const projectRole = document.createElement('div');
                 projectRole.classList.add('projectRow');
-                projectRole.innerHTML = `Role: ${data.role}`;
+                projectRole.innerHTML = `My Role: ${data.role}`;
                 const projectMembers = document.createElement('div');
                 projectMembers.classList.add('projectRow');
                 projectMembers.innerHTML = `Members: ${data.members.join(', ')}`;
