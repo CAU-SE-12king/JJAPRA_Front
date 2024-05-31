@@ -55,7 +55,7 @@
                 <div id="reportSection">
                     <div>
                         <h4>Reporter</h4>
-                        <div></div>
+                        <p>기본값</p>
                     </div>
                     <hr>
                     <div>
@@ -68,18 +68,27 @@
                 <h4>이슈 설명</h4>
                 <p id="description"></p>
             </section>
-            <section id="resolved">
-                <div id="assignee">
+            <section id="bottom">
+                <section id="assigneeCard">
                     <h4>assignee</h4>
                     <hr>
-                    <div></div>
-                </div>
-                <div id="fixer">
+                    <h5 id="assignee"></h5>
+                    <select name="assigneeSelector" id="assigneeSelector">
+                        <option value=null selected>
+                            Assignee
+                        </option>
+                    </select>
+                </section>
+                <section id="fixerCard">
                     <h4>fixer</h4>
                     <hr>
-                    <div></div>
-                </div>
-
+                    <h5 id="fixer"></h5>
+                    <select name="fixerSelector" id="fixerSelector">
+                        <option value=null>
+                            Fixer
+                        </option>
+                    </select>
+                </section>
             </section>
         </div>
     </main>

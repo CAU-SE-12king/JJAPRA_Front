@@ -1,11 +1,20 @@
-const createIssuebtnElements =
-  document.getElementsByClassName("createIssuebtn");
+const createIssuebtnElement = document.getElementById("createIssuebtn");
 const formElement = document.querySelector("form");
+
+const showErrorMsg = () => {
+  alert("권한이 없습니다.");
+};
+
+createIssuebtnElement.addEventListener("click", showErrorMsg);
 
 formElement.addEventListener("submit", saveIssue);
 formElement.addEventListener("reset", closemodal);
 
-const projectID = 1;
+const urlParams = new URLSearchParams(window.location.search);
+const projectId = urlParams.get("projectId");
+const userRole = urlParams.get("role");
+
+let local = "./test.json";
 
 // fetch(`https://jjapra.r-e.kr/projects/${projectID}/issues`, {
 //   credentials: "include", // 쿠키포함
@@ -56,10 +65,16 @@ const login = async () => {
     });
 };
 
-let local = "./test.json";
 const getData = async () => {
   await login();
-  fetch(baseURL + "/projects/" + projectID + "/issues")
+  const token = localStorage.getItem("TOKEN");
+  fetch(baseURL + "/projects/" + projectId + "/issues", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
     // 변환된 JSON 데이터를 콘솔에 출력
@@ -102,18 +117,33 @@ const getData = async () => {
             closedIssuesSectionElement.children[1].appendChild(liElement);
             break;
           default:
-            //진행상태가 없는거? 오류
+            //진행상태가 없는거? 오류ß
             break;
         }
       });
     });
 };
 
-getData();
+const setElementsbyRole = (userRole) => {
+  switch (userRole) {
+    //tester만 이슈를 생성 기능 가능.
+    case "tester":
+      createIssuebtnElement.removeEventListener("click", showErrorMsg);
+      createIssuebtnElement.addEventListener("click", showmodal);
+      break;
+    //pl만 assinee를 할당 가능.
+    default:
+      break;
+  }
+  //tester 만 이슈를 생성하도록 설정
 
-[...createIssuebtnElements].forEach(function (element) {
-  element.addEventListener("click", showmodal);
-});
+  //dev,tester만 코멘트를 달 수 있도록 설정
+
+  //해당 이슈에 assined 된 developer 만 이슈 진행상태를 resolved->fixed가능
+};
+
+setElementsbyRole(userRole);
+getData();
 
 function showmodal(event) {
   const modalElement = document.getElementById("config-overlay");
@@ -131,7 +161,7 @@ function saveIssue(event) {
   console.log(token);
 
   //이슈를 DB에 저장하는 함수
-  fetch(baseURL + "/projects/" + projectID + "/issues", {
+  fetch(baseURL + "/projects/" + projectId + "/issues", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,44 +1,22 @@
-// import axios from "axios";
 const id = "test1";
 const password = "test1";
 const baseURL = "https://jjapra.r-e.kr";
+const token = localStorage.getItem("TOKEN");
 
 const urlParams = new URLSearchParams(window.location.search);
 const issueId = urlParams.get("issueId");
 const projectId = urlParams.get("projectId");
+const userRole = urlParams.get("role");
 
-// const login = () => {
-//   axios
-//     .post(
-//       baseURL + "/login",
-//       {
-//         id: id,
-//         password: password,
-//       },
-//       {
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     )
-//     .then((response) => {
-//       console.log(response.json());
-//       if (response.status == 200) {
-//         //  window.location.href="./ProjectList.html"
-//       } else {
-//         alert("세션이 만료되어 로그인화면으로 돌아갑니다.");
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("Error:", error);
-//     });
-// };
+const stateElement = document.getElementById("state");
+const assigneeSelector = document.getElementById("assigneeSelector");
+
+let members = {};
 
 const getData = async () => {
   // await login();
-  const token = localStorage.getItem("TOKEN");
-  console.log(token);
-  fetch(baseURL + "/issues/details/" + issueId, {
+  console.log(issueId);
+  fetch(baseURL + "/issues/" + issueId, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -47,19 +25,16 @@ const getData = async () => {
   })
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
-    // 변환된 JSON 데이터를 콘솔에 출력
     .then((response) => {
-      console.log(response);
-      if (response.status == 400) {
-        const detailSectionElement = document.getElementById("detailSection");
-        const children = detailSectionElement.children;
-        for (let i = 0; i < children.length; i++) {
-          children[i].style.display = "none";
-        }
-      }
+      // if (response.status != 200) {
+      //   const detailSectionElement = document.getElementById("detailSection");
+      //   const children = detailSectionElement.children;
+      //   for (let i = 0; i < children.length; i++) {
+      //     children[i].style.display = "none";
+      //   }
+      // }
       const issueTitleElement = document.getElementById("issueTitle");
       const priorityElement = document.getElementById("priority");
-      const stateElement = document.getElementById("state");
       const issueDetailElement = document.getElementById("description");
 
       //data 배열들을 돌면서 요소들 출력
@@ -72,11 +47,27 @@ const getData = async () => {
       //   `./issueDetail.html/?issueId=${data.issueId}&projectId=${data.projectId}`
       // );
       // liElement.setAttribute("id", `${data.issueId}`);
-      issueTitleElement.innerHTML = `${response.title}`;
+      issueTitleElement.innerText = `${response.title}`;
 
+      //priority에 따라 다른 css 클래스 적용
+      // switch (response.priority) {
+      //   //low
+      //   case 1:
+      //     priorityElement.classList.add("priority-low");
+      //     break;
+      //   case 2:
+      //     priorityElement.classList.add("priority-middle");
+      //   case 3:
+      //     priorityElement.classList.add("priority-high");
+      //     cas
+      //   default:
+      //     priorityElement.classList.add("priority-high");
+      //     break;
+      // }
       priorityElement.classList.add("priority-middle");
       priorityElement.innerText = response.priority;
 
+      //state에 따라 다른 css 클래스 적용
       stateElement.innerText = response.state;
       issueDetailElement.innerText = response.description;
     })
@@ -85,4 +76,87 @@ const getData = async () => {
     });
 };
 
+const requestChangeIssue = (key, value) => {
+  fetch(baseURL + "/issues/" + issueId, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify({
+      key: value,
+    }),
+  })
+    .then((response) => {
+      if (response.status != 200) {
+        alert("오류로 인해 저장되지 않았습니다");
+        return false;
+      }
+      return true;
+    })
+    .catch((error) => {
+      alert("오류로 인해 저장되지 않았습니다.");
+      return false;
+    });
+};
+
+const setOptions = () => {
+  fetch(baseURL + "/projects/" + projectId, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => {
+      response.members.forEach((element) => {
+        //dev 인경우에만 선택 가능
+        if (element.value == "dev") {
+          const optionElement = document.createElement("option");
+          optionElement.innerText = element.key;
+          optionElement.value = element.key;
+          assigneeSelector.appendChild(optionElement);
+        }
+      });
+      // console.log(members);
+    });
+};
+
+const changeElementsbyRole = (userRole) => {
+  switch (userRole) {
+    case "PL":
+      //new나 resolved일때만 assignee 할당가능.
+      if (
+        stateElement.innerText != "new" ||
+        stateElement.innerText != "fixed"
+      ) {
+        //assigneeSelector의 option을 현재 프로젝트의 dev로 채움
+
+        const assigneeCard = document.getElementById("assigneeCard");
+        const assignBtn = document.createElement("button");
+        assignBtn.innerText = "할당";
+        assignBtn.onclick = () => {
+          const assigneeSelector = document.getElementById("assigneeSelector");
+          //post 요청
+          if (
+            requestChangeIssue("assigneee", assigneeSelector.value) &&
+            requestChangeIssue("status", "resolved")
+          ) {
+            assigneeCard.removeChild(assignBtn);
+          }
+          //post 요청이 성공한다면 할당버튼 삭제
+        };
+        assigneeCard.appendChild(assignBtn);
+      }
+
+      break;
+
+    default:
+      break;
+  }
+};
+
+changeElementsbyRole(userRole);
+setOptions();
 getData();
