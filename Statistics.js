@@ -1,32 +1,5 @@
 const baseURL = "https://jjapra.r-e.kr";
 
-const login = async () => {
-    await fetch(baseURL + "/login", {
-        method: "POST",
-        credentials: "include", // 쿠키를 포함하도록 설정
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            id: "admin",
-            password: "admin",
-        }),
-    })
-    .then(async (response) => {
-        if (response.status == 200) {
-            console.log("로그인 성공");
-        } else {
-            alert("토큰이 만료되어 로그인화면으로 돌아갑니다.");
-        }
-        const data = await response.json();
-        const TOKEN = data.token; // 응답에서 token 값 가져오기
-        localStorage.setItem("TOKEN", TOKEN); // 사용자 이름 localStorage에 저장
-    })
-    .catch((error) => {
-        console.error("Error:", error);
-    });
-};
-
 // 데이터 가져오기 함수
 const fetchData = async () => {
     const token = localStorage.getItem("TOKEN");
@@ -74,7 +47,6 @@ const createChart = (groupedData) => {
     const resolvedIssues = labels.map(month => groupedData[month]['RESOLVED']);
     const fixedIssues = labels.map(month => groupedData[month]['FIXED']);
     const closedIssues = labels.map(month => groupedData[month]['CLOSED']);
-    const reopenedIssues = labels.map(month => groupedData[month]['REOPENED']);
 
     const ctx = document.getElementById('issueChart').getContext('2d');
     new Chart(ctx, {
@@ -116,13 +88,6 @@ const createChart = (groupedData) => {
                     backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderColor: 'rgba(153, 102, 255, 1)',
                     borderWidth: 1
-                },
-                {
-                    label: 'Reopened Issues',
-                    data: reopenedIssues,
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderColor: 'rgba(255, 159, 64, 1)',
-                    borderWidth: 1
                 }
             ]
         },
@@ -143,8 +108,9 @@ const createChart = (groupedData) => {
 // 메인 함수
 const main = async () => {
     try {
-        await login(); // 로그인 수행
+        // await login(); // 로그인 수행
         const data = await fetchData(); // 데이터 가져오기
+        console.log(data);
         const groupedData = processData(data); // 데이터 처리
         createChart(groupedData); // 차트 생성
     } catch (error) {
