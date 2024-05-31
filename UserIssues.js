@@ -88,6 +88,7 @@ const getUserIssues = () => {
         }
     })
     .then(response => {
+        console.log("/issues");
         console.log(response.data);
 
         // 이슈들을 출력
@@ -102,7 +103,9 @@ const getUserIssues = () => {
                 }
             })
             .then(projectResponse => {
-                const projectTitleText = projectResponse.data.title;
+                console.log("/projects");
+                console.log(projectResponse.data);
+                const projectTitleText = projectResponse.data.project.title;
 
                 // issueTableRow 생성
                 const issueTableRow = document.createElement('a');

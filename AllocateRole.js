@@ -12,7 +12,7 @@ function getProjectName() {
         console.log(response.data);
 
         //프로젝트 이름을 가져와서 출력
-        const projectTitle = response.data.title;
+        const projectTitle = response.data.project.title;
         const selectedProject = document.getElementById('selectedProject');
         selectedProject.innerHTML = projectTitle;
     })
@@ -37,7 +37,7 @@ function getMembers() {
         members.forEach(member => {
             const option = document.createElement('option');
             option.value = member.id;
-            option.textContent = member.name;
+            option.textContent = member.id;
             selectMember.appendChild(option);
         });
     })

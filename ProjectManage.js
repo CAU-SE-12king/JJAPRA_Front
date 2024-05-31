@@ -2,28 +2,22 @@ const createIssuebtnElements =
   document.getElementsByClassName("createIssuebtn");
 const formElement = document.querySelector("form");
 
+//suzzang
+const assignedIssueBtnElement = document.getElementById("assignedIssueBtn");
+const fixedIssueBtnElement = document.getElementById("fixedIssueBtn");
+
+const cancelButtons = document.querySelectorAll(".modal #cancel-config-btn");
+
 formElement.addEventListener("submit", saveIssue);
 formElement.addEventListener("reset", closemodal);
+
+cancelButtons.forEach(button => {
+  button.addEventListener("click", closeModal);
+});
 
 // const projectID = 1;
 const projectId = new URLSearchParams(window.location.search).get("projectId");
 
-// fetch(`https://jjapra.r-e.kr/projects/${projectID}/issues`, {
-//   credentials: "include", // 쿠키포함
-// })
-//   .then((response) => {
-//     response.json();
-//   })
-//   .then((data) => {
-//     console.log(data);
-//     if (data.length == 0) {
-//     } else {
-//     }
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//     //대체
-//   });
 
 const id = "suzzang";
 const password = "1234";
@@ -115,6 +109,11 @@ const getData = async () => {
 [...createIssuebtnElements].forEach(function (element) {
   element.addEventListener("click", showmodal);
 });
+//suzzang
+  assignedIssueBtnElement.addEventListener("click", showAssignedIssueModal);
+
+  fixedIssueBtnElement.addEventListener("click", showFixedIssueModal);
+
 
 function showmodal(event) {
   const modalElement = document.getElementById("config-overlay");
@@ -125,6 +124,32 @@ function closemodal() {
   const modalElement = document.getElementById("config-overlay");
   modalElement.style.display = "none";
 }
+
+//suzzang
+function showAssignedIssueModal(event) {
+  const modalElement = document.getElementById("assigned-overlay");
+  modalElement.style.display = "block";
+}
+function closeAssignedIssueModal() {
+  const modalElement = document.getElementById("assigned-overlay");
+  modalElement.style.display = "none";
+}
+function showFixedIssueModal(event) {
+  const modalElement = document.getElementById("fixed-overlay");
+  modalElement.style.display = "block";
+}
+function closeFixedIssueModal() {
+  const modalElement = document.getElementById("fixed-overlay");
+  modalElement.style.display = "none";
+}
+
+function closeModal(event) {
+  const modalElement = event.target.closest(".modal");
+  if (modalElement) {
+    modalElement.style.display = "none";
+  }
+}
+
 function saveIssue(event) {
   event.preventDefault(); //리로드 안함.
   const formData = new FormData(this);

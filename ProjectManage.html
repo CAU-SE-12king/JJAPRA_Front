@@ -55,6 +55,57 @@
                 </div>
             </form>
         </aside>
+
+        <aside class="modal" id="assigned-overlay">
+            <h2>Assigned Issue</h2>
+            <form action="">
+                <div class="issueContainer">
+                    <div class="issueHeader">
+                        <div class="issueTableCell">Date</div>
+                        <div class="issueTableCell">Title</div>
+                        <div class="issueTableCell">Status</div>
+                        <div class="issueTableCell">Priority</div>
+                        <div class="issueTableCell">Writer</div>
+                    </div>
+                    <div class="issueBody">
+                        <div class="issueRow">
+                            <div class="issueTableCell">2021-10-10</div>
+                            <div class="issueTableCell">Hello</div>
+                            <div class="issueTableCell">Critical</div>
+                            <div class="issueTableCell">Major</div>
+                            <div class="issueTableCell">Suzzang</div>
+                        </div>
+                        <div class="issueRow">
+                            <div class="issueTableCell">2021-10-10</div>
+                            <div class="issueTableCell">Hihihi</div>
+                            <div class="issueTableCell">Critical</div>
+                            <div class="issueTableCell">Major</div>
+                            <div class="issueTableCell">Suzzang</div>
+                        </div>
+                    </div>
+                </div>
+                <p id="config-errors"></p>
+                <div class="modal-btnarea">
+                    <button type="reset" class="btn btn-alt" id="cancel-config-btn">Close</button>
+                </div>
+            </form>
+        </aside>
+
+        <aside class="modal" id="fixed-overlay">
+            <h2>Fixed Issue</h2>
+            <form action="">
+                <div class="issueContainer">
+                    <div class="issueRow">
+
+                    </div>
+                </div>
+                <p id="config-errors"></p>
+                <div class="modal-btnarea">
+                    <button type="reset" class="btn btn-alt" id="cancel-config-btn">Close</button>
+                </div>
+            </form>
+        </aside>
+
         <div class="dashboard">
             <div class="dashboard-header">
                 <h2>프로젝트 명</h2>
@@ -87,6 +138,8 @@
                     </ul>
                 </div>
             </section>
+            <button id="assignedIssueBtn">Assigned Issue</button>
+            <button id="fixedIssueBtn">Fixed Issue</button>
         </div>
     </main>
 </body>

@@ -39,7 +39,7 @@ const getData = async () => {
   const token = localStorage.getItem("TOKEN");
   console.log(token);
   console.log(issueId, projectId);
-  fetch(baseURL + "/issues/details/" + issueId, {
+  fetch(baseURL + "/issues/" + issueId, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
