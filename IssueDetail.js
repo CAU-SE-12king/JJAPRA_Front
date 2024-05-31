@@ -36,6 +36,9 @@ const getData = async () => {
       const issueTitleElement = document.getElementById("issueTitle");
       const priorityElement = document.getElementById("priority");
       const issueDetailElement = document.getElementById("description");
+      const assigneeElement = document.getElementById("assignee");
+      const writerElement = document.getElementById("assignee");
+      const reportedDateElement = document.getElementById("assignee");
 
       //data 배열들을 돌면서 요소들 출력
       //wrapper 생성
@@ -70,6 +73,14 @@ const getData = async () => {
       //state에 따라 다른 css 클래스 적용
       stateElement.innerText = response.state;
       issueDetailElement.innerText = response.description;
+      assigneeElement.innerText = response.assignee;
+
+      writerElement.innerText = response.writer;
+      const [year, month, day, hour, minute, second, nanosecond] =
+        response.createdAt;
+      const date = new Date(year, month - 1, day, hour, minute, second);
+      const formattedDate = date.toLocaleString();
+      reportedDateElement.innerText = formattedDate;
     })
     .catch((error) => {
       console.log(error);
@@ -77,6 +88,7 @@ const getData = async () => {
 };
 
 const requestChangeIssue = (key, value) => {
+  console.log("이슈 변경");
   fetch(baseURL + "/issues/" + issueId, {
     method: "PATCH",
     headers: {
@@ -84,7 +96,7 @@ const requestChangeIssue = (key, value) => {
       Authorization: "Bearer " + token,
     },
     body: JSON.stringify({
-      key: value,
+      [key]: value,
     }),
   })
     .then((response) => {
@@ -98,6 +110,26 @@ const requestChangeIssue = (key, value) => {
       alert("오류로 인해 저장되지 않았습니다.");
       return false;
     });
+  console.log("fetch 됨?");
+};
+
+const assignDev = (key, value) => {
+  fetch(baseURL + "/issues/" + issueId, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token,
+    },
+    body: JSON.stringify({
+      [key]: value,
+    }),
+  }).then((response) => {
+    if (response.status != 200) {
+      alert("오류로 인해 저장되지 않았습니다");
+      return false;
+    }
+    return true;
+  });
 };
 
 const setOptions = () => {
@@ -112,7 +144,7 @@ const setOptions = () => {
     .then((response) => {
       response.members.forEach((element) => {
         //dev 인경우에만 선택 가능
-        if (element.value == "dev") {
+        if (element.value != "dev") {
           const optionElement = document.createElement("option");
           optionElement.innerText = element.key;
           optionElement.value = element.key;
@@ -140,7 +172,7 @@ const changeElementsbyRole = (userRole) => {
           const assigneeSelector = document.getElementById("assigneeSelector");
           //post 요청
           if (
-            requestChangeIssue("assigneee", assigneeSelector.value) &&
+            assignDev("assigneee", assigneeSelector.value) &&
             requestChangeIssue("status", "resolved")
           ) {
             assigneeCard.removeChild(assignBtn);
