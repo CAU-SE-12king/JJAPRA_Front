@@ -47,10 +47,10 @@
             </div>
             <hr>
             <section id="info">
-                <div id="issueState">
+                <div id="issueStatus">
                     <h4>이슈 상황</h4>
                     <hr>
-                    <div id="state">진행중</div>
+                    <div id="status">진행중</div>
                 </div>
                 <div id="reportSection">
                     <div>
@@ -74,7 +74,7 @@
                     <hr>
                     <h5 id="assignee"></h5>
                     <select name="assigneeSelector" id="assigneeSelector">
-                        <option value=null selected>
+                        <option value="" selected>
                             Assignee
                         </option>
                     </select>
@@ -83,17 +83,12 @@
                     <h4>fixer</h4>
                     <hr>
                     <h5 id="fixer"></h5>
-                    <select name="fixerSelector" id="fixerSelector">
-                        <option value=null>
-                            Fixer
-                        </option>
-                    </select>
                 </section>
             </section>
             <section id="commentCard">
-                <h5>comments</h5>
+                <h4>comments</h4>
                 <hr>
-                <section id="commments"></section>
+                <ul id="commentsList"></ul>
                 <form id="commentForm">
                     <textarea id="commentContent" name="content" required placeholder="코멘트를 입력하세요"></textarea>
                     <button type="submit">코멘트 등록</button>

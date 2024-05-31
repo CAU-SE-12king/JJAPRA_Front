@@ -80,7 +80,7 @@ hr {
   justify-content: space-between;
 }
 
-#issueState {
+#issueStatus {
   box-sizing: border-box;
   justify-content: center;
   border-radius: 16px;
@@ -91,11 +91,11 @@ hr {
   flex: 1;
 }
 
-#issueState h4 {
+#issueStatus h4 {
   height: 40px;
 }
 
-#state {
+#status {
   border-radius: 8px;
   padding: 0.5rem 1rem;
   width: fit-content;

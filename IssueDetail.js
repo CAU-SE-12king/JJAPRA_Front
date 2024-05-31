@@ -8,14 +8,15 @@ const issueId = urlParams.get("issueId");
 const projectId = urlParams.get("projectId");
 const userRole = urlParams.get("role");
 
-const stateElement = document.getElementById("state");
+const commentFormElement = document.getElementById("commentForm");
+const statusElement = document.getElementById("status");
 const assigneeSelector = document.getElementById("assigneeSelector");
 
-let members = {};
+commentFormElement.addEventListener("submit", submitComment);
 
 const getData = async () => {
   // await login();
-  console.log(issueId);
+  console.log(token);
   fetch(baseURL + "/issues/" + issueId, {
     method: "GET",
     headers: {
@@ -37,8 +38,10 @@ const getData = async () => {
       const priorityElement = document.getElementById("priority");
       const issueDetailElement = document.getElementById("description");
       const assigneeElement = document.getElementById("assignee");
-      const writerElement = document.getElementById("assignee");
-      const reportedDateElement = document.getElementById("assignee");
+      const fixerElement = document.getElementById("fixer");
+      const writerElement = document.getElementById("writer");
+      const reportedDateElement = document.getElementById("reportedDate");
+      const commentsList = document.getElementById("commentsList");
 
       //data 배열들을 돌면서 요소들 출력
       //wrapper 생성
@@ -50,7 +53,7 @@ const getData = async () => {
       //   `./issueDetail.html/?issueId=${data.issueId}&projectId=${data.projectId}`
       // );
       // liElement.setAttribute("id", `${data.issueId}`);
-      issueTitleElement.innerText = `${response.title}`;
+      issueTitleElement.innerText = `${response.issue.title}`;
 
       //priority에 따라 다른 css 클래스 적용
       // switch (response.priority) {
@@ -68,25 +71,48 @@ const getData = async () => {
       //     break;
       // }
       priorityElement.classList.add("priority-middle");
-      priorityElement.innerText = response.priority;
+      priorityElement.innerText = response.issue.priority;
 
       //state에 따라 다른 css 클래스 적용
-      stateElement.innerText = response.state;
-      issueDetailElement.innerText = response.description;
-      assigneeElement.innerText = response.assignee;
+      statusElement.innerText = response.issue.status;
+      issueDetailElement.innerText = response.issue.description;
+      assigneeElement.innerText = response.issue.assignee;
 
-      writerElement.innerText = response.writer;
+      writerElement.innerText = response.issue.writer;
       const [year, month, day, hour, minute, second, nanosecond] =
-        response.createdAt;
+        response.issue.createdAt;
       const date = new Date(year, month - 1, day, hour, minute, second);
       const formattedDate = date.toLocaleString();
       reportedDateElement.innerText = formattedDate;
+
+      if (response.assignee == null) {
+        assigneeElement.innerText = "할당 전";
+      } else {
+        assigneeElement.innerText = response.assignee;
+      }
+
+      if (response.fixer == null) {
+        fixerElement.innerText = "할당 전";
+      } else {
+        fixerElement.innerText = response.fixer;
+      }
+
+      response.issue.comments.forEach((comment) => {
+        console.log(comment);
+        const listItem = document.createElement("li");
+        const [year, month, day, hour, minute, second, nanosecond] =
+          comment.createdAt;
+        const formattedDate = date.toLocaleString();
+        listItem.textContent = `${comment.writerId} (${formattedDate}): ${comment.content}`;
+        commentsList.appendChild(listItem);
+      });
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
+//key를 바탕으로 value값으로 변경.
 const requestChangeIssue = (key, value) => {
   console.log("이슈 변경");
   fetch(baseURL + "/issues/" + issueId, {
@@ -107,31 +133,36 @@ const requestChangeIssue = (key, value) => {
       return true;
     })
     .catch((error) => {
+      console.log(error);
       alert("오류로 인해 저장되지 않았습니다.");
       return false;
     });
-  console.log("fetch 됨?");
+  return true;
 };
 
-const assignDev = (key, value) => {
-  fetch(baseURL + "/issues/" + issueId, {
+//asignee 할당 함수
+const assign = (role, id) => {
+  if (id == "") {
+    alert("유효한 계정을 선택하세요");
+    return false;
+  }
+  fetch(baseURL + "/issues/" + issueId + "/members", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + token,
     },
     body: JSON.stringify({
-      [key]: value,
+      id: id,
+      role: role,
     }),
   }).then((response) => {
-    if (response.status != 200) {
-      alert("오류로 인해 저장되지 않았습니다");
-      return false;
-    }
+    console.log(response.json());
     return true;
   });
 };
 
+//Dev인 사용자만 체크박스 option으로 설정하는 함수
 const setOptions = () => {
   fetch(baseURL + "/projects/" + projectId, {
     method: "GET",
@@ -155,13 +186,14 @@ const setOptions = () => {
     });
 };
 
+//
 const changeElementsbyRole = (userRole) => {
   switch (userRole) {
     case "PL":
       //new나 resolved일때만 assignee 할당가능.
       if (
-        stateElement.innerText != "new" ||
-        stateElement.innerText != "fixed"
+        statusElement.innerText != "NEW" ||
+        statusElement.innerText != "FIXED"
       ) {
         //assigneeSelector의 option을 현재 프로젝트의 dev로 채움
 
@@ -172,12 +204,12 @@ const changeElementsbyRole = (userRole) => {
           const assigneeSelector = document.getElementById("assigneeSelector");
           //post 요청
           if (
-            assignDev("assigneee", assigneeSelector.value) &&
-            requestChangeIssue("status", "resolved")
+            // assign("assignee", assigneeSelector.value) &&
+            requestChangeIssue("status", "ASSIGNED")
           ) {
-            assigneeCard.removeChild(assignBtn);
+            //post 요청이 성공한다면 새로고침
+            location.reload();
           }
-          //post 요청이 성공한다면 할당버튼 삭제
         };
         assigneeCard.appendChild(assignBtn);
       }
@@ -188,6 +220,47 @@ const changeElementsbyRole = (userRole) => {
       break;
   }
 };
+
+async function submitComment(event) {
+  event.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+
+  const content = document.getElementById("commentContent").value;
+
+  try {
+    const response = await fetch(`${baseURL}/issues/${issueId}/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({ content: content }),
+    });
+
+    // if (response.status !== 200) {
+    //   console.log(response);
+    //   alert("오류로 인해 저장되지 않았습니다");
+    //   return;
+    // }
+
+    const data = await response.json();
+    console.log("응답 데이터:", data);
+
+    // 코멘트를 화면에 표시합니다.
+    addCommentToList(data);
+
+    // 텍스트 영역을 초기화합니다.
+    document.getElementById("commentContent").value = "";
+  } catch (error) {
+    console.error("Fetch error:", error);
+    alert("오류로 인해 저장되지 않았습니다.");
+  }
+}
+function addCommentToList(comment) {
+  const commentsList = document.getElementById("commentsList");
+  const listItem = document.createElement("li");
+  listItem.textContent = comment.content; // 서버에서 받은 데이터의 content를 사용합니다.
+  commentsList.appendChild(listItem);
+}
 
 changeElementsbyRole(userRole);
 setOptions();

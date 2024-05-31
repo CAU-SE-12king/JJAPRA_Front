@@ -54,6 +54,7 @@ const login = async () => {
       if (response.status == 200) {
         //  window.location.href="./ProjectList.html"
       } else {
+        window.location.href = "./login.html";
         alert("토큰이 만료되어 로그인화면으로 돌아갑니다.");
       }
       const data = await response.json();
@@ -95,7 +96,7 @@ const getData = async () => {
         liElement.appendChild(aElement);
         aElement.setAttribute(
           "href",
-          `./issueDetail.html?issueId=${data.issueId}&projectId=${data.projectId}`
+          `./issueDetail.html?issueId=${data.issueId}&projectId=${data.projectId}&role=${userRole}`
         );
         liElement.setAttribute("id", `${data.issueId}`);
         aElement.innerHTML = `${data.title}`;
@@ -104,16 +105,16 @@ const getData = async () => {
           case "NEW":
             newIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "assigned":
+          case "ASSIGNED":
             assignedIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "resolved":
+          case "RESOLVED":
             resolvedIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "fixed":
+          case "FIXED":
             fixedIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "closed":
+          case "CLOSED":
             closedIssuesSectionElement.children[1].appendChild(liElement);
             break;
           default:
@@ -141,9 +142,6 @@ const setElementsbyRole = (userRole) => {
 
   //해당 이슈에 assined 된 developer 만 이슈 진행상태를 resolved->fixed가능
 };
-
-setElementsbyRole(userRole);
-getData();
 
 function showmodal(event) {
   const modalElement = document.getElementById("config-overlay");
@@ -203,3 +201,5 @@ function makeIssue(formData) {
   modalElement.style.display = "none";
   modalElement.children[1].reset();
 }
+setElementsbyRole(userRole);
+getData();
