@@ -53,12 +53,17 @@ const login = async () => {
 
 let local = "./test.json";
 const getData = async () => {
-  await login();
-  fetch(baseURL + "/projects/" + projectId + "/issues")
+  fetch(baseURL + "/projects/" + projectId + "/issues", {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + localStorage.getItem("TOKEN"),
+  },
+})
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
     // 변환된 JSON 데이터를 콘솔에 출력
     .then((response) => {
+      console.log("< 이 프로젝트의 issue들 >");
       console.log(response);
 
       const newIssuesSectionElement = document.getElementById("new");
@@ -78,28 +83,63 @@ const getData = async () => {
           `./issueDetail.html?issueId=${data.issueId}&projectId=${data.projectId}`
         );
         liElement.setAttribute("id", `${data.issueId}`);
-        aElement.innerHTML = `${data.title}`;
+        aElement.innerHTML = `${data.issue.title}`;
 
-        switch (data.status) {
+        switch (data.issue.status) {
           case "NEW":
             newIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "assigned":
+          case "ASSIGNED":
             assignedIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "resolved":
+          case "RESOLVED":
             resolvedIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "fixed":
+          case "FIXED":
             fixedIssuesSectionElement.children[1].appendChild(liElement);
             break;
-          case "closed":
+          case "CLOSED":
             closedIssuesSectionElement.children[1].appendChild(liElement);
             break;
           default:
             //진행상태가 없는거? 오류
             break;
         }
+
+        // Assigned Issue Modal
+          //자신에게 assigned된 이슈만 보여주기
+          if(data.assignee != localStorage.getItem("username")) {
+            return;
+          }
+
+        const issueBody = document.getElementById("issueBody");
+
+        const issueRow = document.createElement("div");
+        issueRow.classList.add("issueRow");
+
+        const issueDate = document.createElement("div");
+        issueDate.classList.add("issueTableCell");
+        issueDate.innerHTML = data.issue.createdAt;
+        const issueTitle = document.createElement("div");
+        issueTitle.classList.add("issueTableCell");
+        issueTitle.innerHTML = data.issue.title;
+        const issuePriority = document.createElement("div");
+        issuePriority.classList.add("issueTableCell");
+        issuePriority.innerHTML = data.issue.priority;
+        const issueStatus = document.createElement("div");
+        issueStatus.classList.add("issueTableCell");
+        issueStatus.innerHTML = data.issue.status;
+        const issueWriter = document.createElement("div");
+        issueWriter.classList.add("issueTableCell");
+        issueWriter.innerHTML = data.issue.writer;
+
+        issueRow.appendChild(issueDate);
+        issueRow.appendChild(issueTitle);
+        issueRow.appendChild(issuePriority);
+        issueRow.appendChild(issueStatus);
+        issueRow.appendChild(issueWriter);
+
+        issueBody.appendChild(issueRow);
       });
     });
 };

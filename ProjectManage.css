@@ -109,7 +109,7 @@ button:hover {
 }
 
 #assigned-overlay {
-  display: block;
+
 }
 
 .issueContainer {
@@ -120,7 +120,7 @@ button:hover {
     justify-content: space-between;
     border-bottom: 1.2px solid rgb(218, 218, 218);
   }
-  .issueBody {
+  #issueBody {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
