@@ -1,20 +1,52 @@
-const id = "test1";
-const password = "test1";
 const baseURL = "https://jjapra.r-e.kr";
 const token = localStorage.getItem("TOKEN");
+const decodedToken = parseJWT(token);
 
 const urlParams = new URLSearchParams(window.location.search);
 const issueId = urlParams.get("issueId");
 const projectId = urlParams.get("projectId");
-const userRole = urlParams.get("role");
+const userRole = decodedToken.payload.role;
+const userName = decodedToken.payload.userName;
+
+const assigneeElement = document.getElementById("assignee");
 
 const commentFormElement = document.getElementById("commentForm");
 const statusElement = document.getElementById("status");
-const assigneeSelector = document.getElementById("assigneeSelector");
+const commentsList = document.getElementById("commentsList");
 
 commentFormElement.addEventListener("submit", submitComment);
 
-const getData = async () => {
+function parseJWT(token) {
+  // Base64Url 인코딩에서 Base64 인코딩으로 변환하는 함수
+  function base64UrlDecode(str) {
+    return decodeURIComponent(
+      atob(str.replace(/-/g, "+").replace(/_/g, "/"))
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+  }
+
+  const parts = token.split(".");
+
+  if (parts.length !== 3) {
+    throw new Error("Invalid JWT token");
+  }
+
+  const header = JSON.parse(base64UrlDecode(parts[0]));
+  const payload = JSON.parse(base64UrlDecode(parts[1]));
+  const signature = parts[2]; // 서명은 디코딩할 필요가 없음
+
+  return {
+    header,
+    payload,
+    signature,
+  };
+}
+
+const getData = () => {
   // await login();
   console.log(token);
   fetch(baseURL + "/issues/" + issueId, {
@@ -37,11 +69,10 @@ const getData = async () => {
       const issueTitleElement = document.getElementById("issueTitle");
       const priorityElement = document.getElementById("priority");
       const issueDetailElement = document.getElementById("description");
-      const assigneeElement = document.getElementById("assignee");
-      const fixerElement = document.getElementById("fixer");
+      const fixedElement = document.getElementById("isFixed");
+      const resolvedElement = document.getElementById("isResolved");
       const writerElement = document.getElementById("writer");
       const reportedDateElement = document.getElementById("reportedDate");
-      const commentsList = document.getElementById("commentsList");
 
       //data 배열들을 돌면서 요소들 출력
       //wrapper 생성
@@ -76,7 +107,8 @@ const getData = async () => {
       //state에 따라 다른 css 클래스 적용
       statusElement.innerText = response.issue.status;
       issueDetailElement.innerText = response.issue.description;
-      assigneeElement.innerText = response.issue.assignee;
+      assignee = response.issue.assignee;
+      assigneeElement.innerText = assignee;
 
       writerElement.innerText = response.issue.writer;
       const [year, month, day, hour, minute, second, nanosecond] =
@@ -85,27 +117,33 @@ const getData = async () => {
       const formattedDate = date.toLocaleString();
       reportedDateElement.innerText = formattedDate;
 
-      if (response.assignee == null) {
-        assigneeElement.innerText = "할당 전";
-      } else {
+      if (response.assignee) {
         assigneeElement.innerText = response.assignee;
-      }
-
-      if (response.fixer == null) {
-        fixerElement.innerText = "할당 전";
       } else {
-        fixerElement.innerText = response.fixer;
+        assigneeElement.innerText = "할당 전";
+      }
+      if (response.issue.status == "RESOLVED") {
+        resolvedElement.innerText = "완료";
+        fixedElement.innerText = "완료";
+      } else {
+        resolvedElement.innerText = "미완료";
+        if (response.issue.status == "FIXED") {
+          fixedElement.innerText = "완료";
+        } else {
+          fixedElement.innerText = "미완료";
+        }
       }
 
       response.issue.comments.forEach((comment) => {
-        console.log(comment);
         const listItem = document.createElement("li");
         const [year, month, day, hour, minute, second, nanosecond] =
           comment.createdAt;
+        const date = new Date(year, month - 1, day, hour, minute, second);
         const formattedDate = date.toLocaleString();
         listItem.textContent = `${comment.writerId} (${formattedDate}): ${comment.content}`;
         commentsList.appendChild(listItem);
       });
+      changeElementsbyRole();
     })
     .catch((error) => {
       console.log(error);
@@ -113,9 +151,9 @@ const getData = async () => {
 };
 
 //key를 바탕으로 value값으로 변경.
-const requestChangeIssue = (key, value) => {
+const requestChangeIssue = async (key, value) => {
   console.log("이슈 변경");
-  fetch(baseURL + "/issues/" + issueId, {
+  await fetch(baseURL + "/issues/" + issueId, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -126,22 +164,22 @@ const requestChangeIssue = (key, value) => {
     }),
   })
     .then((response) => {
-      if (response.status != 200) {
+      if (!response.ok) {
         alert("오류로 인해 저장되지 않았습니다");
         return false;
       }
-      return true;
+      return response.json().then((data) => {
+        console.log(data);
+        return true; // 성공 시 true 반환
+      });
     })
     .catch((error) => {
-      console.log(error);
-      alert("오류로 인해 저장되지 않았습니다.");
-      return false;
+      alert(error);
     });
-  return true;
 };
 
 //asignee 할당 함수
-const assign = (role, id) => {
+const assign = (id, role) => {
   if (id == "") {
     alert("유효한 계정을 선택하세요");
     return false;
@@ -156,10 +194,21 @@ const assign = (role, id) => {
       id: id,
       role: role,
     }),
-  }).then((response) => {
-    console.log(response.json());
-    return true;
-  });
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return false;
+      }
+      return response.json(); // JSON 응답을 반환하여 다음 then으로 연결
+    })
+    .then((data) => {
+      console.log(data);
+      return true; // 성공 시 true 반환
+    })
+    .catch((error) => {
+      console.error(error);
+      return false; // 에러 시 false 반환
+    });
 };
 
 //Dev인 사용자만 체크박스 option으로 설정하는 함수
@@ -174,11 +223,13 @@ const setOptions = () => {
     .then((response) => response.json())
     .then((response) => {
       response.members.forEach((element) => {
-        //dev 인경우에만 선택 가능
-        if (element.value != "dev") {
+        //dev 인경우에만 option에 추가
+        if (element.value == "DEV") {
           const optionElement = document.createElement("option");
           optionElement.innerText = element.key;
           optionElement.value = element.key;
+
+          const assigneeSelector = document.getElementById("assigneeSelector");
           assigneeSelector.appendChild(optionElement);
         }
       });
@@ -186,38 +237,99 @@ const setOptions = () => {
     });
 };
 
+const setPrioriyOptions = (selector, priorities) => {
+  priorities.forEach((element) => {
+    const option = document.createElement("option");
+    option.innerText = element;
+    option.value = element;
+    selector.appendChild(option);
+  });
+};
+
 //
-const changeElementsbyRole = (userRole) => {
-  switch (userRole) {
-    case "PL":
-      //new나 resolved일때만 assignee 할당가능.
-      if (
-        statusElement.innerText != "NEW" ||
-        statusElement.innerText != "FIXED"
-      ) {
-        //assigneeSelector의 option을 현재 프로젝트의 dev로 채움
+const changeElementsbyRole = async () => {
+  //pl은 priority 변경 가능
+  if (userRole == "PL" || userRole == "ADMIN") {
+    const prioritySection = document.getElementById("prioritySection");
+    const prioritySelector = document.createElement("select");
+    prioritySelector.id = "prioritySelector";
 
-        const assigneeCard = document.getElementById("assigneeCard");
-        const assignBtn = document.createElement("button");
-        assignBtn.innerText = "할당";
-        assignBtn.onclick = () => {
-          const assigneeSelector = document.getElementById("assigneeSelector");
-          //post 요청
-          if (
-            // assign("assignee", assigneeSelector.value) &&
-            requestChangeIssue("status", "ASSIGNED")
-          ) {
-            //post 요청이 성공한다면 새로고침
-            location.reload();
-          }
-        };
-        assigneeCard.appendChild(assignBtn);
+    const defaultOption = document.createElement("option");
+    defaultOption.innerText = "Priority 목록";
+    defaultOption.selected = true;
+    defaultOption.value = "";
+
+    prioritySelector.appendChild(defaultOption);
+    prioritySection.appendChild(prioritySelector);
+    setPrioriyOptions(prioritySelector, [
+      "BLOCKER",
+      "CRITICAL",
+      "MAJOR",
+      "MINOR",
+      "TRIVIAL",
+    ]);
+    prioritySelector.onchange = async () => {
+      console.log("fds");
+      await requestChangeIssue("priority", prioritySelector.value);
+      window.location.reload();
+    };
+
+    const status = statusElement.innerText;
+    //new나 resolved일때만 할당 가능
+    if (status == "NEW" || status == "RESOLVED") {
+      //assigneeSelector의 option을 현재 프로젝트의 dev로 채움
+      const assigneeCard = document.getElementById("assigneeCard");
+      const assigneeSelector = document.createElement("select");
+      assigneeSelector.id = "assigneeSelector";
+
+      const defaultOption = document.createElement("option");
+      defaultOption.innerText = "Dev 목록";
+      defaultOption.selected = true;
+      defaultOption.value = "";
+      await setOptions();
+
+      assigneeSelector.appendChild(defaultOption);
+      const assignBtn = document.createElement("button");
+      assignBtn.innerText = "할당";
+      assignBtn.onclick = async () => {
+        await assign(assigneeSelector.value, "ASSIGNEE");
+        await requestChangeIssue("status", "ASSIGNED");
+        window.location.reload();
+      };
+      assigneeCard.appendChild(assigneeSelector);
+      assigneeCard.appendChild(assignBtn);
+      //resolved일 경우 closed로 변환할 수 있어야함
+      if (status == "RESOLVED") {
+        const detailSection = document.getElementById("detailSection");
+        const closedBtn = document.createElement("button");
+        closedBtn.innerText = "이슈 Closed";
+        detailSection.appendChild(closedBtn);
       }
-
-      break;
-
-    default:
-      break;
+    }
+  }
+  if (userRole == "DEV" || userRole == "ADMIN") {
+    //해당 issue에 할당된 DEV일경우 ASSINGE->FIXED 가능
+    if (assigneeElement.innerText != userName) {
+      const fixCard = document.getElementById("fixCard");
+      const fixBtn = document.createElement("button");
+      fixBtn.innerText = "FIX 처리";
+      fixCard.appendChild(fixBtn);
+      fixBtn.onclick = async () => {
+        await requestChangeIssue("status", "FIXED");
+        window.location.reload();
+      };
+    }
+  }
+  if (userRole == "TESTER" || userRole == "ADMIN") {
+    //해당 issue에 할당된 DEV일경우 ASSINGE->RESOLVED 가능
+    const resolvedCard = document.getElementById("resolvedCard");
+    const resovledBtn = document.createElement("button");
+    resovledBtn.innerText = "Resolved 처리";
+    resolvedCard.appendChild(resovledBtn);
+    resovledBtn.onclick = async () => {
+      await requestChangeIssue("status", "RESOLVED");
+      window.location.reload();
+    };
   }
 };
 
@@ -256,12 +368,12 @@ async function submitComment(event) {
   }
 }
 function addCommentToList(comment) {
-  const commentsList = document.getElementById("commentsList");
   const listItem = document.createElement("li");
-  listItem.textContent = comment.content; // 서버에서 받은 데이터의 content를 사용합니다.
+  const [year, month, day, hour, minute, second, nanosecond] =
+    comment.createdAt;
+  const date = new Date(year, month - 1, day, hour, minute, second);
+  const formattedDate = date.toLocaleString();
+  listItem.textContent = `${comment.writerId} (${formattedDate}): ${comment.content}`;
   commentsList.appendChild(listItem);
 }
-
-changeElementsbyRole(userRole);
-setOptions();
 getData();

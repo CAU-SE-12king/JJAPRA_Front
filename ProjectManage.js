@@ -1,5 +1,6 @@
 const createIssuebtnElement = document.getElementById("createIssuebtn");
 const formElement = document.querySelector("form");
+const token = localStorage.getItem("TOKEN");
 
 const showErrorMsg = () => {
   alert("권한이 없습니다.");
@@ -10,12 +11,41 @@ createIssuebtnElement.addEventListener("click", showErrorMsg);
 formElement.addEventListener("submit", saveIssue);
 formElement.addEventListener("reset", closemodal);
 
+const decodedToken = parseJWT(token);
 const urlParams = new URLSearchParams(window.location.search);
 const projectId = urlParams.get("projectId");
-const userRole = urlParams.get("role");
+const userRole = decodedToken.payload.role;
+const userName = decodedToken.payload.userName;
 
-let local = "./test.json";
+function parseJWT(token) {
+  // Base64Url 인코딩에서 Base64 인코딩으로 변환하는 함수
+  function base64UrlDecode(str) {
+    return decodeURIComponent(
+      atob(str.replace(/-/g, "+").replace(/_/g, "/"))
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+  }
 
+  const parts = token.split(".");
+
+  if (parts.length !== 3) {
+    throw new Error("Invalid JWT token");
+  }
+
+  const header = JSON.parse(base64UrlDecode(parts[0]));
+  const payload = JSON.parse(base64UrlDecode(parts[1]));
+  const signature = parts[2]; // 서명은 디코딩할 필요가 없음
+
+  return {
+    header,
+    payload,
+    signature,
+  };
+}
 // fetch(`https://jjapra.r-e.kr/projects/${projectID}/issues`, {
 //   credentials: "include", // 쿠키포함
 // })
@@ -96,12 +126,12 @@ const getData = async () => {
         liElement.appendChild(aElement);
         aElement.setAttribute(
           "href",
-          `./issueDetail.html?issueId=${data.issueId}&projectId=${data.projectId}&role=${userRole}`
+          `./issueDetail.html?issueId=${data.issue.issueId}&projectId=${data.issue.projectId}&role=${userRole}`
         );
-        liElement.setAttribute("id", `${data.issueId}`);
-        aElement.innerHTML = `${data.title}`;
+        liElement.setAttribute("id", `${data.issue.issueId}`);
+        aElement.innerHTML = `${data.issue.title}`;
 
-        switch (data.status) {
+        switch (data.issue.status) {
           case "NEW":
             newIssuesSectionElement.children[1].appendChild(liElement);
             break;
@@ -128,11 +158,11 @@ const getData = async () => {
 const setElementsbyRole = (userRole) => {
   switch (userRole) {
     //tester만 이슈를 생성 기능 가능.
-    case "tester":
+    case "TESTER":
+    case "ADMIN":
       createIssuebtnElement.removeEventListener("click", showErrorMsg);
       createIssuebtnElement.addEventListener("click", showmodal);
       break;
-    //pl만 assinee를 할당 가능.
     default:
       break;
   }
@@ -156,7 +186,6 @@ function saveIssue(event) {
   event.preventDefault(); //리로드 안함.
   const formData = new FormData(this);
   const token = localStorage.getItem("TOKEN");
-  console.log(token);
 
   //이슈를 DB에 저장하는 함수
   fetch(baseURL + "/projects/" + projectId + "/issues", {
@@ -167,11 +196,12 @@ function saveIssue(event) {
     },
     body: JSON.stringify({
       title: formData.get("title"),
-      descricption: formData.get("description"),
+      description: formData.get("description"),
       priority: parseInt(formData.get("priority")),
     }),
   })
     .then((response) => {
+      console.log(response.status);
       if (response.status == 400) {
         alert("서버측 오류로 이슈 저장에 실패했습니다");
         return;
@@ -188,8 +218,8 @@ function saveIssue(event) {
 
 function makeIssue(formData) {
   const title = formData.get("title");
-  const descricption = formData.get("description");
-  const priority = formData.get("priority");
+  // const descricption = formData.get("description");
+  // const priority = formData.get("priority");
 
   const newIssueElement = document.createElement("li");
   newIssueElement.append(title);
