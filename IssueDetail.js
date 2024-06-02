@@ -6,7 +6,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const issueId = urlParams.get("issueId");
 const projectId = urlParams.get("projectId");
 const userRole = urlParams.get("role");
-const userName = decodedToken.payload.userName;
+const userName = decodedToken.payload.username;
 
 const assigneeElement = document.getElementById("assignee");
 
@@ -313,7 +313,7 @@ const changeElementsbyRole = async () => {
   }
   if (userRole == "DEV" || userRole == "ADMIN") {
     //해당 issue에 할당된 DEV일경우 ASSINGE->FIXED 가능
-    if (assigneeElement.innerText != userName) {
+    if (assigneeElement.innerText == userName) {
       const fixCard = document.getElementById("fixCard");
       const fixBtn = document.createElement("button");
       fixBtn.classList.add("fixBtn");
