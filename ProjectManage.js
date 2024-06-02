@@ -199,21 +199,14 @@ function saveIssue(event) {
       description: formData.get("description"),
       priority: parseInt(formData.get("priority")),
     }),
-  })
-    .then((response) => {
-      console.log(response.status);
-      if (response.status == 400) {
-        alert("서버측 오류로 이슈 저장에 실패했습니다");
-        return;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      alert("알수없는 오류로 이슈 저장에 실패했습니다.");
-      return;
-    });
+  }).then((response) => {
+    console.log(response.status);
+    if (response.status == 400) {
+      alert("서버측 오류로 이슈 저장에 실패했습니다");
+    }
+  });
 
-  makeIssue(formData);
+  window.location.reload();
 }
 
 function makeIssue(formData) {

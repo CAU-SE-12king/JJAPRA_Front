@@ -180,36 +180,34 @@ const requestChangeIssue = async (key, value) => {
 };
 
 //asignee 할당 함수
-const assign = (id, role) => {
+const assign = async (id, role) => {
   if (id == "") {
     alert("유효한 계정을 선택하세요");
-    return false;
+    throw new Error("미선택");
   }
-  fetch(baseURL + "/issues/" + issueId + "/members", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
-    },
-    body: JSON.stringify({
-      id: id,
-      role: role,
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        return false;
-      }
-      return response.json(); // JSON 응답을 반환하여 다음 then으로 연결
-    })
-    .then((data) => {
-      console.log(data);
-      return true; // 성공 시 true 반환
-    })
-    .catch((error) => {
-      console.error(error);
-      return false; // 에러 시 false 반환
+  try {
+    const response = await fetch(baseURL + "/issues/" + issueId + "/members", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        id: id,
+        role: role,
+      }),
     });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    const data = await response.json();
+    return data; // JSON 응답을 반환
+  } catch (error) {
+    console.error(error);
+    return false; // 에러 시 false 반환
+  }
 };
 
 //Dev인 사용자만 체크박스 option으로 설정하는 함수
