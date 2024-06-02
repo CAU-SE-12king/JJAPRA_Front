@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poetsen+One&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: rgb(94, 94, 94);
+    background-color: rgb(232, 232, 244);
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+}
+
+header {
+    background-color: white;
+    height: 55px;
+    color: rgb(147, 147, 147); 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color:rgb(149, 149, 149);
+    font-family: "Poetsen One", sans-serif;
+}
+
+main {
+    background-color: rgb(232, 232, 244);
+    height: 100%;
+    overflow-y: auto;
+}
+
+footer{
+    background-color: white;
+    height: 25px;
+    color:rgb(149, 149, 149);
+    font-weight: 300;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#titleContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 20px; 
+}
+
+#logo {
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    font-size: 22px;
+    align-items: center;
+}
+    .fa-bars {
+        font-size: 22px;
+        color: rgb(124, 154, 255);
+        margin-right: 10px;
+    }
+
+#middle {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+    .fa-envelope, .fa-bell {
+        font-size: 13px;
+        margin-right: 15px;
+    }
+
+#profile {
+    display: flex;
+    flex-direction: row;
+    /* margin-left: auto; */
+    border-left: 1px solid rgb(193, 193, 193);
+    display: flex;
+    align-items: center;
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    margin-left: 10px;
+}
+    .fa-user-circle{
+        color: rgb(99, 99, 99);
+        font-size: 27px;
+    }
+    span {
+        margin-left: 15px;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    #mainContainer {
+        display: flex;
+        flex-direction: column;
+        margin-left: 100px;
+        margin-right: 100px;
+        overflow-x: hidden; /* 가로 스크롤 숨김 */
+        transition: margin-left 0.5s; /* 오른쪽 콘텐츠를 이동시키는 트랜지션 */
+        /* padding: 16px; */
+        /* margin-left: 0; 초기에는 오른쪽 콘텐츠를 이동하지 않음 */
+        margin-left: 100px; 
+    }
+
+#jjapra {
+    font-family: "Poetsen One", sans-serif;
+    text-decoration: none;
+    color: rgb(149, 149, 149);
+    margin-left: 12px;
+    font-size: 22px;
+    z-index: 1;
+}
+
+#logoutBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(120, 120, 120);
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+    font-size: 12px;
+}
+#logoutBtn:hover {
+    color: rgb(180, 180, 180);
+}
+
+#loginBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(120, 120, 120);
+    text-decoration: none;
+    font-size: 17px;
+    cursor: pointer;
+    font-size: 12px;
+}
+#loginBtn:hover {
+    color: rgb(180, 180, 180);
+}
+
+.sidebarBtn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+/* sidebar test */
+
+#toggleSidebarBtn {
+    /* position: fixed;
+    top: 20px;
+    left: 20px; */
+    z-index: 1;
+    background-color: transparent;
+    border: none;
+    cursor: pointer
+}
+#toggleSidebarBtn:hover {
+    color: rgb(129, 129, 129);
+}
+#toggleSidebarBtn:active {
+    color: rgb(61, 61, 61)
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 80px;
+}
+
+.sidebar a {
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 13px;
+    color: rgb(120, 120, 120);
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #838383;
+    color: white;
+    border-right: 5px solid rgb(131, 166, 255);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebarNav {
+    /* border-bottom: 1px solid rgb(231, 231, 231); */
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navIcon {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.fa-right-to-bracket {
+    margin-right: 3px;
+}
+.fa-right-from-bracket{
+    margin-right: 3px;
+}
+
+#userBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+#userBtn:hover {
+    color: rgb(129, 129, 129);
+}
+#userBtn:active {
+    color: rgb(61, 61, 61)
+}

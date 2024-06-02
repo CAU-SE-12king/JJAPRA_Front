@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poetsen+One&display=swap');
+
+/* main */
+    #mainTitle {
+        font-size: 50px;
+        border-bottom: 1px solid rgb(193, 193, 193);
+        color: rgb(75, 86, 82);
+        margin-bottom: 10px;
+        margin-top: 70px;
+    }
+    #mainTitleText{
+        margin-left: 50px;
+    }
+
+
+/*  */
+span {
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.fa-chess-king{
+    font-size: 15px;
+}
+.fa-user-circle {
+    font-size: 20px;
+}
+a {
+    text-decoration: none;
+    color: rgb(149, 149, 149);
+}
+
+
+.fa-circle-plus {
+    font-size: 60px;
+    text-shadow: 7px 9px 20px 0px #575757;
+}
+
+
+input {
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    width: 180px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid #ced4da;
+}
+select {
+    font-family: "Nunito", sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    width:200px;
+    padding: 10px;
+    color: rgb(120, 120, 120);
+    background-color: #fff;
+
+    border: 1px solid #ced4da;
+    border-radius: 7px;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  }  
+  select:hover {
+    border-color: #888;
+  }
+  select:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+  select:disabled {
+    opacity: 0.5;
+  }
+
+  .inputLabel{
+    font-size:20px;
+  }
+
+  /* create 부분 */
+  .oneInput {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* margin-left: 70px; */
+ }
+
+
+ #createBtn{
+    border: none;
+    background-color: #1cc88a;
+    border-radius: 6px;
+    color: white;
+    width: 100px;
+    height: 40px;
+    font-weight: 800;
+    font-size: 15px;
+    box-shadow: 5px 8px 10px 0px rgba(79, 79, 79, 0.231);
+    cursor: pointer;
+ }
+s
+ #mainContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+ }
+
+ #info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
+ #projectImg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+
+
+#createBtn:hover {
+    background-color: #a9a9a9;
+    color: white;
+ }
+ #createBtn:active {
+    background-color: #7a7a7a;
+ }
+

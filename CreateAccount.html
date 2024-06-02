@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CreateAccount.css">
+    <link rel="stylesheet" href="./global.css">
+    <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
+    <title>CreateAccount</title>
+</head>
+<body>
+    <div class="createAccount-wrapper">
+        <header>      
+            <div id="titleContainer">
+                <div id="logo">
+                    <a href=ProjectList.html id="jjapra">JJapRa</a>
+                </div>
+            </div>
+        </header>
+            <input type="text" name="userName" placeholder="ID" id="ID" class="short-input">
+            <input type="password" name="userPassword" placeholder="Password" id="password" class="short-input">
+            <input type="password" name="userPasswordConfirm" placeholder="Confirm Password" id="confirmPassword" class="short-input">
+            
+            <div class="vertical-inputs">
+                <input type="text" name="fullName" placeholder="Name" id="name">
+                <input type="text" name="email" placeholder="Email" id="email">
+                <input type="text" name="phoneNumber" placeholder="Phone Number" id="phoneNumber">
+            </div>
+            
+            <button type="button" id="joinBtn" onclick="createAccount()">Join</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="CreateAccount.js"></script>
+</body>
+</html>

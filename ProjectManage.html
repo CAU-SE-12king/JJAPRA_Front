@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ProjectManage.css">
+    <link rel="stylesheet" href="global.css">
+    <script src="ProjectManage.js" defer></script>
+    <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
+    <title>ProjectManage</title>
+</head>
+
+<body>
+    <header>
+        <div id="titleContainer">
+            <div id="logo">
+                <button id="toggleSidebarBtn" class="fa-solid fa-bars"></button>
+                <a href=ProjectList.html id="jjapra">JJapRa</a>
+            </div>
+            <div id="middle">
+                <button id="loginBtn" onclick="logIn()"><i class="fa-solid fa-right-to-bracket"></i>login
+                </button>
+                <button id="logoutBtn" onclick="logOut()"><i class="fa-solid fa-right-from-bracket"></i>logout
+                </button>
+            </div>
+            <div id="profile">
+                <span></span>
+                <button id="userBtn" class="fas fa-user-circle" onclick="openUserIssues()"></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="sidebar" class="sidebar">
+            <a class="sidebarNav" href="./ProjectList.html"><i class="fa-solid fa-house navIcon"></i>Projects</a>
+            <a class="sidebarNav" href="./Documents.html"><i class="fa-regular fa-folder-open navIcon"></i>Documents</a>
+            <a class="sidebarNav" href="Users.html"><i class="fa-solid fa-users navIcon"></i>Users</a>
+            <a class="sidebarNav" href="/Contact.html"><i class="fa-solid fa-phone navIcon"></i>Contact</a>
+        </div>
+        <div id="mainContainer">
+            <aside class="modal" id="config-overlay">
+                <h1>Create Issue</h1>
+                <form action="">
+                    <!--title,description,reporter,reporteddate,fixer,assignee,priority,state
+                이중 reporter는 생성한 사람,
+                reporteddate는 생성 날짜
+                state는 todo 고정-->
+                    <div class="form-control">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="issueTitle" required>
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="issueDescription" required>
+                        <label for="priority">Priorty</label>
+                        <input type="text" name="priority" id="issuePriority" required>
+                    </div>
+                    <p id="config-errors"></p>
+                    <div class="modal-btnarea">
+                        <button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
+                        <button type="submit" class="btn" id="confirmBtn">Confirm</button>
+                    </div>
+                </form>
+            </aside>
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <h1 id="projectName"> </h1>
+                    <button id="createIssueBtn">Create Issue</button>
+                </div>
+                <section class="dashboard-section">
+                    <div class="board" id="new">
+                        <p>New</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="assigned">
+                        <p>Assigned</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="fixed">
+                        <p>Fixed</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="resolved">
+                        <p>Resolved</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="closed">
+                        <p>Closed</p>
+                        <ul>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    window.onload = function () {
+        displayUsername();
+        toggleLoginLogoutButtons();
+        getProjectName();
+    };
+</script>
+</html>

@@ -1,0 +1,86 @@
+#issueTable {
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+#issueTableHeader {
+    border-bottom: 1.2px solid rgb(213, 213, 213);
+    display: flex;
+    flex-direction: row;
+}
+    .issueTableHeaderCell {
+        padding: 10px;
+        font-weight: bold;
+        flex: 1;
+        text-align: center;
+    }
+
+#issueTableBody {
+    font-weight: 500;
+}
+
+    a {
+        text-decoration: none;
+        color: rgb(93, 93, 93);
+    }
+    .issueTableRow {
+        display: flex;
+        flex-direction: row;
+        border-radius: 7px;
+    }
+    .issueTableRow:hover {
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 강화 */
+        cursor: pointer;
+        background-color: #ffffff; 
+        transform: translateY(-2px) translateX(-2px); /* 살짝 위로 이동 */
+    }
+        .issueTableCell {
+            padding: 10px;
+            flex: 1;
+            text-align: center;
+        }
+    
+
+        .issueTableCell:nth-child(1) {
+            font-weight: bold;
+        }
+
+#mainTitle {
+    display: flex;
+}
+
+#searchContainer {
+    margin-left: auto;
+    display: flex;
+}
+#searchType {
+    margin-left: auto;
+    align-self: center;
+    width: 75px;
+    font-size: 10px;
+    padding: 5px;
+}
+#searchInput {
+    margin-left: auto;
+    align-self: center;
+    width: 100px;
+    margin-right: 3px;
+    margin-left: 5px;
+    padding: 5px;
+}
+#searchBtn {
+    align-self: center;
+    background-color: rgb(209, 209, 209);
+    border: 1.4px solid rgb(182, 182, 182);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#searchBtn:hover {
+    background-color: rgb(182, 182, 182);
+}
+#searchBtn:active {
+    background-color: rgb(160, 160, 160);
+}
