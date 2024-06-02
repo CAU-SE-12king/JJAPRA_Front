@@ -1,3 +1,4 @@
+
 const baseURL = "https://jjapra.r-e.kr";
 const token = localStorage.getItem("TOKEN");
 const decodedToken = parseJWT(token);
@@ -49,6 +50,7 @@ function parseJWT(token) {
 const getData = () => {
   // await login();
   console.log(token);
+
   fetch(baseURL + "/issues/" + issueId, {
     method: "GET",
     headers: {

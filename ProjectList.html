@@ -4,95 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./ProjectList.css">
+    <link rel="stylesheet" href="./global.css">
     <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
-    <title>Project List</title>
+    <title>@@Project List</title>
 </head>
 <body>
     <header>      
         <div id="titleContainer">
             <div id="logo">
-                <i class="fa-solid fa-bars"></i>
-                <span>JJapRa</span>
+                <button id="toggleSidebarBtn" class="fa-solid fa-bars"></button>
+                <a href=ProjectList.html id="jjapra">JJapRa</a>
             </div>
             <div id="middle">
-                <i class="fa-regular fa-envelope"></i>
-                <i class="fa-regular fa-bell"></i>
+                <button id="loginBtn" onclick="logIn()"><i class="fa-solid fa-right-to-bracket"></i>login
+                </button>
+                <button id="logoutBtn" onclick="logOut()"><i class="fa-solid fa-right-from-bracket"></i>logout
+                </button>
             </div>
             <div id="profile">                
-                    <span>Suzzang</span>
-                    <i class="fas fa-user-circle"></i>
+                    <span></span>
+                    <button id="userBtn" class="fas fa-user-circle" onclick="openUserIssues()"></button>
             </div>
         </div>
     </header>
     <main>
+
+    <div id="sidebar" class="sidebar">
+        <a class="sidebarNav" href="./ProjectList.html"><i class="fa-solid fa-house navIcon"></i>Projects</a>
+        <a class="sidebarNav" href="./Documents.html"><i class="fa-regular fa-folder-open navIcon"></i>Documents</a>
+        <a class="sidebarNav" href="Users.html"><i class="fa-solid fa-users navIcon"></i>Users</a>
+        <a class="sidebarNav" href="/Contact.html"><i class="fa-solid fa-phone navIcon"></i>Contact</a>
+    </div>
         <div id="mainContainer">
             <div id="mainTitle">
                 <span id="mainTitleText">Projects</span>   
-            </div>
-            <div id="projectList">
-                <a class="project" href="./projects/project1.html">
-                    <div class="projectTitle">
-                        <span >Project 1</span>
-                    </div>
-                    <div class="projectContent">
-                        <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 진승언</span>
-                        </div>
-                    </div>    
-                </a>
-
-                <a class="project" href="./projects/project2.html">
-                    <div class="projectTitle">
-                        <span >Project 2</span>
-                    </div>
-                    <div class="projectContent">
-                         <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 노찬솔</span>
-                        </div>
-                    </div>
-                </a> 
-
-                <a class="project" href="./projects/project2.html">
-                    <div class="projectTitle">
-                        <span >Project 3</span>
-                    </div>
-                    <div class="projectContent">
-                        <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 김명규</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a class="project" href="./projects/project1.html">
-                    <div class="projectTitle">
-                        <span >Project 4</span>
-                    </div>
-                    <div class="projectContent">
-                        <div class="projectDescription">
-                            <span>- SE team project</span>
-                        </div>
-                        <div class="projectMembers">
-                            <span>- 송민혁</span>
-                        </div>
-                    </div>    
-                </a>
-
                 <div id="plusBtn">
-                    <a class="fa-solid fa-circle-plus" href="./ProjectCreate.html"></a>
+                    <button id="projectCreateBtn" class="fa-solid fa-circle-plus" onclick="openProjectCreate()"></button>
                 </div>
             </div>
+            <div id="projectList">
+
+            </div>
+            
     </main>
     <footer>
         <span>Copyrightⓒ JJapRa 2024</span>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./ProjectList.js"></script>
+        <script>        
+        window.onload = function() {
+            getProjects()
+            .then(() => {
+                displayUsername();
+                toggleLoginLogoutButtons();
+                toggleAllocateRoleBtn();
+            })
+            .catch(error => {
+            console.error('Failed to load projects:', error);
+        });
+        };
+    </script>
 </body>
 </html>

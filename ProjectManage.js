@@ -182,6 +182,7 @@ function closemodal() {
   const modalElement = document.getElementById("config-overlay");
   modalElement.style.display = "none";
 }
+
 function saveIssue(event) {
   event.preventDefault(); //리로드 안함.
   const formData = new FormData(this);

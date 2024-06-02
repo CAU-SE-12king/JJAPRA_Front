@@ -105,7 +105,10 @@ ul {
   height: 40px;
 }
 
-#status {
+#issueState h4 {
+  height: 40px;
+}
+
   border-radius: 8px;
   padding: 0.5rem 1rem;
   width: fit-content;
@@ -141,21 +144,26 @@ ul {
   height: 5rem;
 }
 
+
 #bottom {
   display: flex;
   justify-content: space-between;
 }
 
 #bottom section {
+
   justify-content: space-between;
   flex: 1;
   margin-right: 1rem;
 }
 
+
 #bottom section div {
+
   margin-left: 8px;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   background-color: gray;
 }
+
