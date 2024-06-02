@@ -461,3 +461,24 @@ function openUserIssues() {
     alert("Please Log in first"); // 로그인하라는 메시지
   }
 }
+
+const deleteBtn = document.getElementById("delete");
+deleteBtn.onclick = () => {
+  if (userRole == "PL" || userRole == "ADMIN") {
+    fetch(baseURL + "/issues/" + issueId, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    }).then((response) => {
+      if (!response.ok) {
+        alert("assigned된 이슈는 삭제할 수 없습니다.");
+      } else {
+        alert("삭제되었습니다.");
+        window.location.reload();
+      }
+    });
+  } else {
+  }
+};

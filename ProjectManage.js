@@ -90,10 +90,10 @@ const getData = () => {
         //wrapper 생성
         const liElement = document.createElement("li");
         const aElement = document.createElement("a");
-        const btnElement = document.createElement("button");
+        // const btnElement = document.createElement("button");
 
         liElement.appendChild(aElement);
-        liElement.appendChild(btnElement);
+        // liElement.appendChild(btnElement);
         aElement.setAttribute(
           "href",
           `./issueDetail.html?issueId=${data.issue.issueId}&projectId=${data.issue.projectId}&role=${userRole}`
@@ -101,24 +101,24 @@ const getData = () => {
         liElement.setAttribute("id", `${data.issue.issueId}`);
         aElement.innerHTML = `${data.issue.title}`;
 
-        btnElement.innerText = "Delete";
-        btnElement.onclick = function () {
-          const issueId = this.parentElement.id;
-          if (userRole == "PL" || userRole == "ADMIN") {
-            fetch(baseURL + "/issues/" + issueId, {
-              method: "DELETE",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + token,
-              },
-            }).then(() => {
-              alert("삭제되었습니다.");
-              window.location.reload();
-            });
-          } else {
-            alert("권한이 없습니다.");
-          }
-        };
+        // btnElement.innerText = "Delete";
+        // btnElement.onclick = function () {
+        //   const issueId = this.parentElement.id;
+        //   if (userRole == "PL" || userRole == "ADMIN") {
+        //     fetch(baseURL + "/issues/" + issueId, {
+        //       method: "DELETE",
+        //       headers: {
+        //         "Content-Type": "application/json",
+        //         Authorization: "Bearer " + token,
+        //       },
+        //     }).then(() => {
+        //       alert("삭제되었습니다.");
+        //       window.location.reload();
+        //     });
+        //   } else {
+        //     alert("권한이 없습니다.");
+        //   }
+        // };
 
         switch (data.issue.status) {
           case "NEW":
