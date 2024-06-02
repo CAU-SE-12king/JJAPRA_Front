@@ -14,79 +14,102 @@
     <header>
         <div id="titleContainer">
             <div id="logo">
-                <button class="sidebarBtn" onclick="openSidebar()">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <button id="toggleSidebarBtn" class="fa-solid fa-bars"></button>
                 <a href=ProjectList.html id="jjapra">JJapRa</a>
             </div>
             <div id="middle">
-                <i class="fa-regular fa-envelope"></i>
-                <i class="fa-regular fa-bell"></i>
+                <button id="loginBtn" onclick="logIn()"><i class="fa-solid fa-right-to-bracket"></i>login
+                </button>
+                <button id="logoutBtn" onclick="logOut()"><i class="fa-solid fa-right-from-bracket"></i>logout
+                </button>
             </div>
             <div id="profile">
-                <span>Suzzang</span>
-                <i class="fas fa-user-circle"></i>
+                <span></span>
+                <button id="userBtn" class="fas fa-user-circle" onclick="openUserIssues()"></button>
             </div>
         </div>
     </header>
 
     <main>
-        <aside class="modal" id="config-overlay">
-            <h2>이슈 내용을 작성해주세요</h2>
-            <form action="">
-                <!--title,description,reporter,reporteddate,fixer,assignee,priority,state
+        <div id="sidebar" class="sidebar">
+            <a class="sidebarNav" href="./ProjectList.html"><i class="fa-solid fa-house navIcon"></i>Projects</a>
+            <a class="sidebarNav" href="./Documents.html"><i class="fa-regular fa-folder-open navIcon"></i>Documents</a>
+            <a class="sidebarNav" href="Users.html"><i class="fa-solid fa-users navIcon"></i>Users</a>
+            <a class="sidebarNav" href="/Contact.html"><i class="fa-solid fa-phone navIcon"></i>Contact</a>
+        </div>
+        <div id="mainContainer">
+            <div id="mainTitle">
+                <span id="mainTitleText">Projects</span>
+                <div id="plusBtn">
+                    <button id="projectCreateBtn" class="fa-solid fa-circle-plus"
+                        onclick="openProjectCreate()"></button>
+                </div>
+            </div>
+            <div id="projectList">
+
+            </div>
+            <aside class="modal" id="config-overlay">
+                <h2>이슈 내용을 작성해주세요</h2>
+                <form action="">
+                    <!--title,description,reporter,reporteddate,fixer,assignee,priority,state
                 이중 reporter는 생성한 사람,
                 reporteddate는 생성 날짜
                 state는 todo 고정-->
-                <div class="form-control">
-                    <label for="title">이슈 이름</label>
-                    <input type="text" name="title" id="issueTitle" required>
-                    <label for="description">이슈 설명</label>
-                    <input type="text" name="description" id="issueDescription" required>
-                    <label for="priority">우선순위</label>
-                    <input type="text" name="priority" id="issuePriority" required>
+                    <div class="form-control">
+                        <label for="title">이슈 이름</label>
+                        <input type="text" name="title" id="issueTitle" required>
+                        <label for="description">이슈 설명</label>
+                        <input type="text" name="description" id="issueDescription" required>
+                        <label for="priority">우선순위</label>
+                        <input type="text" name="priority" id="issuePriority" required>
+                    </div>
+                    <p id="config-errors"></p>
+                    <div class="modal-btnarea">
+                        <button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
+                        <button type="submit" class="btn">Confirm</button>
+                    </div>
+                </form>
+            </aside>
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <h2>프로젝트 명</h2>
+                    <button id="createIssuebtn">이슈 만들기</button>
                 </div>
-                <p id="config-errors"></p>
-                <div class="modal-btnarea">
-                    <button type="reset" class="btn btn-alt" id="cancel-config-btn">Cancel</button>
-                    <button type="submit" class="btn">Confirm</button>
-                </div>
-            </form>
-        </aside>
-        <div class="dashboard">
-            <div class="dashboard-header">
-                <h2>프로젝트 명</h2>
-                <button id="createIssuebtn">이슈 만들기</button>
+                <section class="dashboard-section">
+                    <div class="board" id="new">
+                        <p>new</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="assigned">
+                        <p>assigned</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="fixed">
+                        <p>fixed</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="resolved">
+                        <p>resolved</p>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="board" id="closed">
+                        <p>closed</p>
+                        <ul>
+                        </ul>
+                    </div>
+                </section>
             </div>
-            <section class="dashboard-section">
-                <div class="board" id="new">
-                    <p>new</p>
-                    <ul>
-                    </ul>
-                </div>
-                <div class="board" id="assigned">
-                    <p>assigned</p>
-                    <ul>
-                    </ul>
-                </div>
-                <div class="board" id="fixed">
-                    <p>fixed</p>
-                    <ul>
-                    </ul>
-                </div>
-                <div class="board" id="resolved">
-                    <p>resolved</p>
-                    <ul>
-                    </ul>
-                </div>
-                <div class="board" id="closed">
-                    <p>closed</p>
-                    <ul>
-                    </ul>
-                </div>
-            </section>
-        </div>
     </main>
 </body>
+<script>
+    window.onload = function () {
+        displayUsername();
+        toggleLoginLogoutButtons();
+    };
+</script>
 
 </html>
