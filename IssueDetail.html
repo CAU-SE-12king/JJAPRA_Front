@@ -47,20 +47,20 @@
             </div>
             <hr>
             <section id="info">
-                <div id="issueStatus">
+                <div id="issueState">
                     <h4>이슈 상황</h4>
                     <hr>
-                    <div id="status">진행중</div>
+                    <div id="state">진행중</div>
                 </div>
                 <div id="reportSection">
                     <div>
-                        <h4>writer</h4>
-                        <p id="writer">기본값</p>
+                        <h4>Reporter</h4>
+                        <div></div>
                     </div>
                     <hr>
                     <div>
                         <h4>reported date</h4>
-                        <p id="reportedDate">2014/03/24</p>
+                        <p>2014/03/24</p>
                     </div>
                 </div>
             </section>
@@ -68,31 +68,18 @@
                 <h4>이슈 설명</h4>
                 <p id="description"></p>
             </section>
-            <section id="bottom">
-                <section id="assigneeCard">
+            <section id="resolved">
+                <div id="assignee">
                     <h4>assignee</h4>
                     <hr>
-                    <h5 id="assignee"></h5>
-                </section>
-                <section id="fixCard">
-                    <h4>fixed?</h4>
+                    <div></div>
+                </div>
+                <div id="fixer">
+                    <h4>fixer</h4>
                     <hr>
-                    <h5 id="isFixed">미완료</h5>
-                </section>
-                <section id="resolvedCard">
-                    <h4>resolved?</h4>
-                    <hr>
-                    <h5 id="isResolved">미완료</h5>
-                </section>
-            </section>
-            <section id="commentCard">
-                <h4>comments</h4>
-                <hr>
-                <ul id="commentsList"></ul>
-                <form id="commentForm">
-                    <textarea id="commentContent" name="content" required placeholder="코멘트를 입력하세요"></textarea>
-                    <button type="submit">코멘트 등록</button>
-                </form>
+                    <div></div>
+                </div>
+
             </section>
         </div>
     </main>

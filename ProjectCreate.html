@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +8,11 @@
     <script src="https://kit.fontawesome.com/3474060677.js" crossorigin="anonymous"></script>
     <title>@@Project Create</title>
 </head>
-
 <body>
-    <header>
+    <header>      
         <div id="titleContainer">
             <div id="logo">
-                <button class="sidebarBtn" onclick="openSidebar()">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <button id="toggleSidebarBtn" class="fa-solid fa-bars"></button>
                 <a href=ProjectList.html id="jjapra">JJapRa</a>
             </div>
             <div id="middle">
@@ -25,16 +21,16 @@
                 <button id="logoutBtn" onclick="logOut()"><i class="fa-solid fa-right-from-bracket"></i>logout
                 </button>
             </div>
-            <div id="profile">
-                <span>Suzzang</span>
-                <i class="fas fa-user-circle"></i>
+            <div id="profile">                
+                    <span> </span>
+                    <i class="fas fa-user-circle"></i>
             </div>
         </div>
     </header>
     <main>
         <div id="mainContainer">
             <div id="mainTitle">
-                <span id="mainTitleText">Create Project</span>
+                <span id="mainTitleText">Create Project</span>   
             </div>
             <div id="mainContent">
                 <div id="info">
@@ -46,36 +42,13 @@
                     </div>
                     <div class="oneInput">
                         <div class="inputLabel">
-                            Dev *
-                        </div>
-                        <select> <!-- 여기에서 DB에 있는 사용자들 list 불러와야 함? -->
-                            <option value="1">DDing</option>
-                            <option value="2">Channy</option>
-                            <option value="3">Suzzang</option>
-                            <option value="4">Migging</option>
-                            <option value="5">Unstraguram</option>
-                        </select>
-                    </div>
-                    <div class="oneInput">
-                        <div class="inputLabel">
                             Description *
                         </div>
                         <input type="text" id="projectDescription" placeholder="Project Description">
                     </div>
                     <div class="oneInput">
-                        <div class="inputLabel">
-                            Tester *
-                        </div>
-                        <select>
-                            <option value="1">DDing</option>
-                            <option value="2">Channy</option>
-                            <option value="3">Suzzang</option>
-                            <option value="4">Migging</option>
-                            <option value="5">Unstraguram</option>
-                        </select>
-                    </div>
-                    <div class="oneInput">
-                        <button id="createBtn" onclick="openProjectList()">Create</button>
+                    <div class="oneInput" >
+                        <button type="button" id="createBtn" onclick="postData(); ">Create</button>
                     </div>
                 </div>
                 <!-- <div id="projectImg">
@@ -95,4 +68,13 @@
     </footer>
 </body>
 <script src="./ProjectCreate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+<script>        
+    window.onload = function() {
+        displayUsername();
+        toggleLoginLogoutButtons();
+    };
+</script>
 </html>
