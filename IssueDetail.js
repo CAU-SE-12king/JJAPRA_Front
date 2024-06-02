@@ -125,7 +125,7 @@ const getData = () => {
       }
       if (response.issue.status == "RESOLVED") {
         resolvedElement.innerText = " ⭕️ ";
-        fixedElement.innerText = " ❌ ";
+        fixedElement.innerText = " ⭕️  ";
       } else {
         resolvedElement.innerText = " ❌ ";
         if (response.issue.status == "FIXED") {
@@ -307,26 +307,33 @@ const changeElementsbyRole = async () => {
         const detailSection = document.getElementById("detailSection");
         const closedBtn = document.createElement("button");
         closedBtn.innerText = "이슈 Closed";
-        detailSection.appendChild(closedBtn);
+        closedBtn.onclick = async () => {
+          await requestChangeIssue("status", "CLOSED");
+          window.location.reload();
+        };
+        detailSection.prepend(closedBtn);
       }
     }
   }
   if (userRole == "DEV" || userRole == "ADMIN") {
     //해당 issue에 할당된 DEV일경우 ASSINGE->FIXED 가능
     if (assigneeElement.innerText == userName) {
-      const fixCard = document.getElementById("fixCard");
-      const fixBtn = document.createElement("button");
-      fixBtn.classList.add("fixBtn");
-      fixBtn.innerText = "fix";
-      fixCard.appendChild(fixBtn);
-      fixBtn.onclick = async () => {
-        await requestChangeIssue("status", "FIXED");
-        window.location.reload();
-      };
+      const status = statusElement.innerText;
+      if (status == "ASSIGNED") {
+        const fixCard = document.getElementById("fixCard");
+        const fixBtn = document.createElement("button");
+        fixBtn.classList.add("fixBtn");
+        fixBtn.innerText = "fix";
+        fixCard.appendChild(fixBtn);
+        fixBtn.onclick = async () => {
+          await requestChangeIssue("status", "FIXED");
+          window.location.reload();
+        };
+      }
     }
   }
   if (userRole == "TESTER" || userRole == "ADMIN") {
-    //해당 issue에 할당된 DEV일경우 ASSINGE->RESOLVED 가능
+    //해당 issue에 할당된 DEV일경우 FIXED->RESOLVED 가능
     const status = statusElement.innerText;
     if (status == "FIXED") {
       const resolvedCard = document.getElementById("resolvedCard");
