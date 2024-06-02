@@ -32,6 +32,15 @@
         <div id="mainContainer">
             <div id="mainTitle">
                 <span id="mainTitleText">Issues</span>   
+                <div id="searchContainer">
+                    <select id="searchType">
+                        <option value="writer">Writer</option>                    
+                        <option value="status">Status</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Search">
+                    <button id="searchBtn" onclick="searchIssues()">🔎</button>
+                </div>
+            </div>
             </div>
             <div id="mainContent">
                 <div id="issueTable">

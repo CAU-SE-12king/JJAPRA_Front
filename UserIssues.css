@@ -47,3 +47,40 @@
         .issueTableCell:nth-child(1) {
             font-weight: bold;
         }
+
+#mainTitle {
+    display: flex;
+}
+
+#searchContainer {
+    margin-left: auto;
+    display: flex;
+}
+#searchType {
+    margin-left: auto;
+    align-self: center;
+    width: 75px;
+    font-size: 10px;
+    padding: 5px;
+}
+#searchInput {
+    margin-left: auto;
+    align-self: center;
+    width: 100px;
+    margin-right: 3px;
+    margin-left: 5px;
+    padding: 5px;
+}
+#searchBtn {
+    align-self: center;
+    background-color: rgb(209, 209, 209);
+    border: 1.4px solid rgb(182, 182, 182);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#searchBtn:hover {
+    background-color: rgb(182, 182, 182);
+}
+#searchBtn:active {
+    background-color: rgb(160, 160, 160);
+}
