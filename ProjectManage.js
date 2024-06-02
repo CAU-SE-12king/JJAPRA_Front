@@ -14,7 +14,7 @@ formElement.addEventListener("reset", closemodal);
 const decodedToken = parseJWT(token);
 const urlParams = new URLSearchParams(window.location.search);
 const projectId = urlParams.get("projectId");
-const userRole = decodedToken.payload.role;
+const userRole = urlParams.get("role");
 const userName = decodedToken.payload.userName;
 
 function getProjectName() {
@@ -62,41 +62,9 @@ function parseJWT(token) {
   };
 }
 
-const id = "admin";
-const password = "admin";
 const baseURL = "https://jjapra.r-e.kr";
 
-const login = async () => {
-  await fetch(baseURL + "/login", {
-    method: "POST",
-    credentials: "include", // 쿠키를 포함하도록 설정
-    headers: {
-      "Content-Type": "application/json",
-    },
-
-    body: JSON.stringify({
-      id: id,
-      password: password,
-    }),
-  })
-    .then(async (response) => {
-      if (response.status == 200) {
-        //  window.location.href="./ProjectList.html"
-      } else {
-        window.location.href = "./login.html";
-        alert("토큰이 만료되어 로그인화면으로 돌아갑니다.");
-      }
-      const data = await response.json();
-      const TOKEN = data.token; // 응답에서 token 값 가져오기
-      localStorage.setItem("TOKEN", TOKEN); // 사용자 이름 localStorage에 저장
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-};
-
-const getData = async () => {
-  await login();
+const getData = () => {
   const token = localStorage.getItem("TOKEN");
   fetch(baseURL + "/projects/" + projectId + "/issues", {
     method: "GET",
@@ -108,7 +76,7 @@ const getData = async () => {
     // 가져온 데이터를 JSON 형식으로 변환
     .then((response) => response.json())
     // 변환된 JSON 데이터를 콘솔에 출력
-    .then((response) => {
+    .then(async (response) => {
       console.log(response);
 
       const newIssuesSectionElement = document.getElementById("new");
@@ -117,18 +85,40 @@ const getData = async () => {
       const fixedIssuesSectionElement = document.getElementById("fixed");
       const closedIssuesSectionElement = document.getElementById("closed");
 
-      response.map((data) => {
+      await response.map((data) => {
         //data 배열들을 돌면서 요소들 출력
         //wrapper 생성
         const liElement = document.createElement("li");
         const aElement = document.createElement("a");
+        const btnElement = document.createElement("button");
+
         liElement.appendChild(aElement);
+        liElement.appendChild(btnElement);
         aElement.setAttribute(
           "href",
           `./issueDetail.html?issueId=${data.issue.issueId}&projectId=${data.issue.projectId}&role=${userRole}`
         );
         liElement.setAttribute("id", `${data.issue.issueId}`);
         aElement.innerHTML = `${data.issue.title}`;
+
+        btnElement.innerText = "Delete";
+        btnElement.onclick = function () {
+          const issueId = this.parentElement.id;
+          if (userRole == "PL" || userRole == "ADMIN") {
+            fetch(baseURL + "/issues/" + issueId, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+              },
+            }).then(() => {
+              alert("삭제되었습니다.");
+              window.location.reload();
+            });
+          } else {
+            alert("권한이 없습니다.");
+          }
+        };
 
         switch (data.issue.status) {
           case "NEW":
@@ -154,22 +144,11 @@ const getData = async () => {
     });
 };
 
-const setElementsbyRole = (userRole) => {
-  switch (userRole) {
-    //tester만 이슈를 생성 기능 가능.
-    case "TESTER":
-    case "ADMIN":
-      createIssuebtnElement.removeEventListener("click", showErrorMsg);
-      createIssuebtnElement.addEventListener("click", showmodal);
-      break;
-    default:
-      break;
+const setElementsbyRole = () => {
+  if (userRole == "TESTER" || userRole == "ADMIN") {
+    createIssuebtnElement.removeEventListener("click", showErrorMsg);
+    createIssuebtnElement.addEventListener("click", showmodal);
   }
-  //tester 만 이슈를 생성하도록 설정
-
-  //dev,tester만 코멘트를 달 수 있도록 설정
-
-  //해당 이슈에 assined 된 developer 만 이슈 진행상태를 resolved->fixed가능
 };
 
 function showmodal(event) {
@@ -224,7 +203,7 @@ function makeIssue(formData) {
   modalElement.style.display = "none";
   modalElement.children[1].reset();
 }
-setElementsbyRole(userRole);
+setElementsbyRole();
 getData();
 
 function displayUsername() {

@@ -12,6 +12,8 @@ ul li {
   display: flex;
   align-items: center;
   padding-left: 10px;
+  justify-content: space-between;
+  padding: 8px;
 }
 li:hover {
   background-color: #f0f0f0;
@@ -19,7 +21,6 @@ li:hover {
 p {
   font-size: 20px;
 }
-
 
 #createIssueBtn {
   font: inherit;
@@ -128,36 +129,38 @@ p {
 
 a {
   text-decoration: none;
-  color:rgb(75, 86, 82);
+  color: rgb(75, 86, 82);
 }
 a:hover {
   color: #000;
 }
 
-#cancel-config-btn, #confirmBtn {
+#cancel-config-btn,
+#confirmBtn {
   border: none;
   height: 35px;
   width: 80px;
   border-radius: 7px;
-  color:rgb(53, 53, 53);
+  color: rgb(53, 53, 53);
   font-weight: 600;
   font-family: "Nunito", sans-serif;
   cursor: pointer;
 }
-#cancel-config-btn:hover, #confirmBtn:hover {
+#cancel-config-btn:hover,
+#confirmBtn:hover {
   background-color: #828282;
   color: white;
 }
-#cancel-config-btn:active, #confirmBtn:active {
+#cancel-config-btn:active,
+#confirmBtn:active {
   background-color: #4f4f4f;
   color: white;
-
 }
 
 input {
   margin-bottom: 15px;
   border-radius: 7px;
-  color:#3a3a3a;
+  color: #3a3a3a;
   font-family: "Nunito", sans-serif;
   height: 30px;
 }
@@ -168,4 +171,3 @@ input {
   align-items: center;
   margin-top: 50px;
 }
-

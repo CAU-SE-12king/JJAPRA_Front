@@ -5,7 +5,7 @@ const decodedToken = parseJWT(token);
 const urlParams = new URLSearchParams(window.location.search);
 const issueId = urlParams.get("issueId");
 const projectId = urlParams.get("projectId");
-const userRole = decodedToken.payload.role;
+const userRole = urlParams.get("role");
 const userName = decodedToken.payload.userName;
 
 const assigneeElement = document.getElementById("assignee");
@@ -327,15 +327,18 @@ const changeElementsbyRole = async () => {
   }
   if (userRole == "TESTER" || userRole == "ADMIN") {
     //해당 issue에 할당된 DEV일경우 ASSINGE->RESOLVED 가능
-    const resolvedCard = document.getElementById("resolvedCard");
-    const resovledBtn = document.createElement("button");
-    resovledBtn.classList.add("resolvedBtn");
-    resovledBtn.innerText = "resolve";
-    resolvedCard.appendChild(resovledBtn);
-    resovledBtn.onclick = async () => {
-      await requestChangeIssue("status", "RESOLVED");
-      window.location.reload();
-    };
+    const status = statusElement.innerText;
+    if (status == "FIXED") {
+      const resolvedCard = document.getElementById("resolvedCard");
+      const resovledBtn = document.createElement("button");
+      resovledBtn.classList.add("resolvedBtn");
+      resovledBtn.innerText = "resolve";
+      resolvedCard.appendChild(resovledBtn);
+      resovledBtn.onclick = async () => {
+        await requestChangeIssue("status", "RESOLVED");
+        window.location.reload();
+      };
+    }
   }
 };
 

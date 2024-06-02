@@ -51,8 +51,6 @@
                         <input type="text" name="title" id="issueTitle" required>
                         <label for="description">Description</label>
                         <input type="text" name="description" id="issueDescription" required>
-                        <label for="priority">Priorty</label>
-                        <input type="text" name="priority" id="issuePriority" required>
                     </div>
                     <p id="config-errors"></p>
                     <div class="modal-btnarea">
@@ -77,13 +75,13 @@
                         <ul>
                         </ul>
                     </div>
-                    <div class="board" id="fixed">
-                        <p>Fixed</p>
+                    <div class="board" id="resolved">
+                        <p>Resolved</p>
                         <ul>
                         </ul>
                     </div>
-                    <div class="board" id="resolved">
-                        <p>Resolved</p>
+                    <div class="board" id="fixed">
+                        <p>Fixed</p>
                         <ul>
                         </ul>
                     </div>
@@ -104,4 +102,5 @@
         getProjectName();
     };
 </script>
+
 </html>

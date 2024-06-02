@@ -142,22 +142,18 @@ ul {
   height: 5rem;
 }
 
-
 #bottom {
   display: flex;
   justify-content: space-between;
 }
 
 #bottom section {
-
   justify-content: space-between;
   flex: 1;
   margin-right: 1rem;
 }
 
-
 #bottom section div {
-
   margin-left: 8px;
   width: 40px;
   height: 40px;
@@ -174,21 +170,24 @@ select {
   border: 1px solid rgba(0, 0, 0, 0.1);
   font-family: "Nunito", sans-serif;
   border-radius: 5px;
-  color:rgb(91, 91, 91);
+  color: rgb(91, 91, 91);
 }
 
-#commentBtn, .fixBtn, .resolvedBtn, .assignBtn {
+#commentBtn,
+.fixBtn,
+.resolvedBtn,
+.assignBtn {
   cursor: pointer;
   border: 1.7px solid rgb(160, 160, 160);
   border-radius: 5px;
   font-family: "Nunito", sans-serif;
-  color:rgb(91, 91, 91);
+  color: rgb(91, 91, 91);
   font-weight: 600;
 }
 textarea {
   padding: 10px;
   border-radius: 7px;
-  color:#3a3a3a;
+  color: #3a3a3a;
   font-family: "Nunito", sans-serif;
   height: 30px;
   width: 95%;
